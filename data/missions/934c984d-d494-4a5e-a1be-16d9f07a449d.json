@@ -1,0 +1,39 @@
+{
+  "id": "934c984d-d494-4a5e-a1be-16d9f07a449d",
+  "Gameplay": {
+    "Checkpoint": "Orchid_Springtail_Tier03",
+    "Tags": [
+      "orchid_springtail",
+      "online_global"
+    ],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 300,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "Sunflower_Cine_Start",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Orchid_Springtail_Tier03_Name",
+    "Image": "images/tacticalsims/escalations/orchid/s_orchid_springtail_tier3.jpg",
+    "HighResImage": "images/tacticalsims/escalations/orchid/orchid_springtail_tier3.jpg",
+    "Description": "Orchid_Springtail_Tier03_Desc",
+    "Location": "Orchid_Springtail_Location",
+    "Goal": "",
+    "Objectives": [
+      "Orchid_Springtail_Goal"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": "ce75d821-6c24-4006-87b3-0aa21a68d689",
+    "Children": null
+  }
+}

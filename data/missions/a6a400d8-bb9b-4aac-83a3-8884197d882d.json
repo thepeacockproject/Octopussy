@@ -1,0 +1,34 @@
+{
+  "id": "a6a400d8-bb9b-4aac-83a3-8884197d882d",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_clover",
+      "story_global"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M01 - Iceland (Clover)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

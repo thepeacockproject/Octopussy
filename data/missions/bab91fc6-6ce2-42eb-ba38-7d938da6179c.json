@@ -1,0 +1,36 @@
+{
+  "id": "bab91fc6-6ce2-42eb-ba38-7d938da6179c",
+  "Gameplay": {
+    "Checkpoint": "TSIM_Pepper_Ant",
+    "Tags": [
+      "pepper_ant",
+      "online_global"
+    ],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 300,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "Sunflower_Cine_Start",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Pepper_Ant_Name",
+    "Image": "images/tacticalsims/operations/pepper/s_pepper_ant.jpg",
+    "HighResImage": "images/tacticalsims/operations/pepper/pepper_ant.jpg",
+    "Description": "Pepper_Ant_Desc",
+    "Location": "Pepper_Ant_Location",
+    "Goal": "",
+    "Objectives": [
+      "Pepper_Ant_Goal"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

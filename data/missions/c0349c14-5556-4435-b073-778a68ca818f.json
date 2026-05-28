@@ -1,0 +1,31 @@
+{
+  "id": "c0349c14-5556-4435-b073-778a68ca818f",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "CC_GYM_KILL_TARGET",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

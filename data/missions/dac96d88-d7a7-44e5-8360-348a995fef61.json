@@ -1,0 +1,35 @@
+{
+  "id": "dac96d88-d7a7-44e5-8360-348a995fef61",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_lotus",
+      "story_global",
+      "story_lotus_middle_hub"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M02.3 - MI6 (Lotus Middle Hub)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

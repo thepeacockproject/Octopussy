@@ -1,0 +1,34 @@
+{
+  "id": "9a398893-50f0-49b9-8ee1-21081d870292",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_global",
+      "story_lily"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M03.2 - England (Lily)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

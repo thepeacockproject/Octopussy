@@ -1,0 +1,35 @@
+{
+  "id": "cb7d1b50-d871-4b4e-8d61-2ee4b5b0396d",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_lotus",
+      "story_global",
+      "story_lotus_advanced_training"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M02.4 - Malta (Lotus Advanced Training)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

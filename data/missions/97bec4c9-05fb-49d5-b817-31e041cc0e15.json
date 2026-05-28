@@ -1,0 +1,31 @@
+{
+  "id": "97bec4c9-05fb-49d5-b817-31e041cc0e15",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Pepper Office Contract Creation",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

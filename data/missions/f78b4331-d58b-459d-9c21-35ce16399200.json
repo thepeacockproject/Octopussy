@@ -1,0 +1,34 @@
+{
+  "id": "f78b4331-d58b-459d-9c21-35ce16399200",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Test Escalation Tier 2",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": "f433798d-42ac-439e-a05f-d798f77131c2",
+    "Children": null
+  }
+}

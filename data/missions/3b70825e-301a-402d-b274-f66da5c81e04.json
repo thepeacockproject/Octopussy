@@ -1,0 +1,31 @@
+{
+  "id": "3b70825e-301a-402d-b274-f66da5c81e04",
+  "Gameplay": {
+    "Checkpoint": "Proceed to space 3",
+    "Tags": [],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Campaign M3",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

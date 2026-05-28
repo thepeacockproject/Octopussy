@@ -1,0 +1,34 @@
+{
+  "id": "25be3490-e76c-4665-b353-c7344f5014f4",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_pepper",
+      "story_global"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M05 - Kensington (Pepper)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

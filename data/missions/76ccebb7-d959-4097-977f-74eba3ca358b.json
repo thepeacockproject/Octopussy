@@ -1,0 +1,35 @@
+{
+  "id": "76ccebb7-d959-4097-977f-74eba3ca358b",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_lotus",
+      "story_global",
+      "story_lotus_end_hub"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M02.6 - MI6 (Lotus End Hub)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

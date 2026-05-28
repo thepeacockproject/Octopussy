@@ -1,0 +1,34 @@
+{
+  "id": "318f5a50-9702-46a8-a768-4e7bb09eb1f6",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_bluebell",
+      "story_global"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M06 - England (Bluebell)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

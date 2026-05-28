@@ -1,0 +1,31 @@
+{
+  "id": "6b7f218b-f7f1-48e5-89ea-31bdd097766e",
+  "Gameplay": {
+    "Checkpoint": "MissionLoad01",
+    "Tags": [],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Mission Load",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

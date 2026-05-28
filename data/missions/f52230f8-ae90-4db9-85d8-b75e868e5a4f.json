@@ -1,0 +1,35 @@
+{
+  "id": "f52230f8-ae90-4db9-85d8-b75e868e5a4f",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_lotus",
+      "story_global",
+      "story_lotus_start_hub"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M02.1 - MI6 (Lotus Start Hub)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

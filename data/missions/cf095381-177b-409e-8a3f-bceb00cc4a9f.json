@@ -1,0 +1,34 @@
+{
+  "id": "cf095381-177b-409e-8a3f-bceb00cc4a9f",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_global",
+      "story_buttercup"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M08.5 - Yacht (Buttercup)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

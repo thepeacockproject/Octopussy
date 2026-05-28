@@ -1,0 +1,36 @@
+{
+  "id": "7946625a-b91f-49db-a313-9610b9d72617",
+  "Gameplay": {
+    "Checkpoint": "Boat Race Prototype",
+    "Tags": [
+      "cattail_lakefly",
+      "online_global"
+    ],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 100,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Cattail_Lakefly_Name",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "Cattail_Lakefly_Desc",
+    "Location": "Cattail_Lakefly_Location",
+    "Goal": "Cattail_Lakefly_Goal",
+    "Objectives": [
+      "Cattail_Lakefly_Goal"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

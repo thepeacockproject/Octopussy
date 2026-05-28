@@ -1,0 +1,34 @@
+{
+  "id": "e0f0f08a-29dc-4451-a64e-b12aac20a58c",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Test Escalation Tier 3",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": "f433798d-42ac-439e-a05f-d798f77131c2",
+    "Children": null
+  }
+}

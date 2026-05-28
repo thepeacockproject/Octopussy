@@ -1,0 +1,39 @@
+{
+  "id": "d3616b7f-a719-4f27-9c18-808546d1cd69",
+  "Gameplay": {
+    "Checkpoint": "Bluebell_Butterfly_Tier01",
+    "Tags": [
+      "online_global",
+      "bluebell_butterfly"
+    ],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 100,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "Sunflower_Cine_Start",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Bluebell_Butterfly_Tier01_Name",
+    "Image": "images/tacticalsims/escalations/bluebell/s_bluebell_butterfly_tier01.jpg",
+    "HighResImage": "images/tacticalsims/escalations/bluebell/bluebell_butterfly_tier01.jpg",
+    "Description": "Bluebell_Butterfly_Tier01_Desc",
+    "Location": "Bluebell_Butterfly_Location_Name",
+    "Goal": "",
+    "Objectives": [
+      "Bluebell_Butterfly_Goal_Name"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": "29c8470e-e865-475d-ac00-446bda1d40af",
+    "Children": null
+  }
+}

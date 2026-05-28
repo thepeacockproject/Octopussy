@@ -1,0 +1,43 @@
+{
+  "id": "ce75d821-6c24-4006-87b3-0aa21a68d689",
+  "Gameplay": {
+    "Checkpoint": "TSIM_Orchid_Springtail",
+    "Tags": [
+      "orchid_springtail",
+      "online_global"
+    ],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "Sunflower_Cine_Start",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Orchid_Springtail_Name",
+    "Image": "images/tacticalsims/escalations/orchid/s_orchid_springtail_group.jpg",
+    "HighResImage": "images/tacticalsims/escalations/orchid/orchid_springtail_group.jpg",
+    "Description": "Orchid_Springtail_Coreobjective_Desc",
+    "Location": "Orchid_Springtail_Location",
+    "Goal": "Orchid_Springtail_Goal",
+    "Objectives": [
+      "Orchid_Springtail_Coreobjective_Name"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": null,
+    "Children": [
+      "7ba68331-fcb5-4803-bb42-6644ce14efa0",
+      "89f64052-567d-4723-b515-8d50dbeced11",
+      "934c984d-d494-4a5e-a1be-16d9f07a449d"
+    ]
+  }
+}

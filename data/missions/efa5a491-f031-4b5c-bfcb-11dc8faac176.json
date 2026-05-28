@@ -1,0 +1,35 @@
+{
+  "id": "efa5a491-f031-4b5c-bfcb-11dc8faac176",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_lotus",
+      "story_global",
+      "story_lotus_nightclub"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M02.5 - Malta (Lotus Night Club)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

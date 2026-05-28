@@ -1,0 +1,41 @@
+{
+  "id": "dc428da4-ff92-46a8-b841-e9f0b5458dac",
+  "Gameplay": {
+    "Checkpoint": "TSIM_Clover_Midge",
+    "Tags": [
+      "clover_midge",
+      "online_global"
+    ],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Clover_Midge_Name",
+    "Image": "images/tacticalsims/escalations/clover/s_clover_midge.jpg",
+    "HighResImage": "images/tacticalsims/escalations/clover/clover_midge.jpg",
+    "Description": "Clover_Midge_Desc",
+    "Location": "Clover_Midge_Location_Name",
+    "Goal": "Clover_Midge_Goal_Name",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": null,
+    "Children": [
+      "fbf521ae-4d12-47ab-af54-e3426f6e17bf",
+      "a5147c00-1cc0-4bc4-a1ea-1d81d1d3ab00",
+      "06af5231-149f-4e35-a50d-49224eb519c4"
+    ]
+  }
+}

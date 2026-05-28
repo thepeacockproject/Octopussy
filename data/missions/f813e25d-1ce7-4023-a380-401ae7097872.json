@@ -1,0 +1,39 @@
+{
+  "id": "f813e25d-1ce7-4023-a380-401ae7097872",
+  "Gameplay": {
+    "Checkpoint": "TSIM_Dahlia_Ringleg_Tier02",
+    "Tags": [
+      "dahlia_ringleg",
+      "online_global"
+    ],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 200,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "Sunflower_Cine_Start",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Dahlia_Ringleg_Tier02_Name",
+    "Image": "images/tacticalsims/escalations/dahlia/s_dahlia_ringleg_tier02.jpg",
+    "HighResImage": "images/tacticalsims/escalations/dahlia/dahlia_ringleg_tier02.jpg",
+    "Description": "Dahlia_Ringleg_Tier02_Desc",
+    "Location": "Dahlia_Ringleg_Location_Name",
+    "Goal": "",
+    "Objectives": [
+      "Dahlia_Ringleg_Goal_Name"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": "4c269040-27f4-4f22-b733-5cdafc051bce",
+    "Children": null
+  }
+}

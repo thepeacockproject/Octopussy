@@ -1,0 +1,31 @@
+{
+  "id": "0c654bef-fa61-41e0-852c-6e2f396738ee",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "ChallengeTest",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

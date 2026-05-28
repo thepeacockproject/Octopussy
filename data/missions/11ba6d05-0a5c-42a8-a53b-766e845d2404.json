@@ -1,0 +1,36 @@
+{
+  "id": "11ba6d05-0a5c-42a8-a53b-766e845d2404",
+  "Gameplay": {
+    "Checkpoint": "TSIM_ROSE_FIREFLY",
+    "Tags": [
+      "rose_firefly",
+      "online_global"
+    ],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 300,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "Sunflower_Cine_Start",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Rose_Firefly_Name",
+    "Image": "images/tacticalsims/operations/rose/s_rose_firefly.jpg",
+    "HighResImage": "images/tacticalsims/operations/rose/rose_firefly.jpg",
+    "Description": "Rose_Firefly_Desc",
+    "Location": "Rose_Firefly_Location_Name",
+    "Goal": "",
+    "Objectives": [
+      "Rose_Firefly_Goal_Name"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

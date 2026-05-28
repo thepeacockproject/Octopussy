@@ -1,0 +1,34 @@
+{
+  "id": "cc01c5d5-ab0d-4fc9-aa5b-6f96c581e4c8",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_global",
+      "story_daisy"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M03.5 - MI6 (Daisy)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "4ad814ad-57ea-429f-8a86-d9bff08aaea6",
+  "Gameplay": {
+    "Checkpoint": "OnlineHub",
+    "Tags": [
+      "online_hub",
+      "online_global"
+    ],
+    "Type": 3,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Online Hub Test",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

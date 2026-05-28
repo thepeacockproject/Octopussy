@@ -1,0 +1,34 @@
+{
+  "id": "0b2b758e-f0cf-4630-856b-a06c628d7cc5",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_global",
+      "story_lavender"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M06.5 - MI6 (Lavender)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

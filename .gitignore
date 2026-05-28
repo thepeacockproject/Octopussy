@@ -1,0 +1,8 @@
+# SQLite database files (runtime persistence)
+*.db
+*.db-shm
+*.db-wal
+
+# Build output
+/octopussy
+/Octopussy

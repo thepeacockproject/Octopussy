@@ -1,0 +1,34 @@
+{
+  "id": "9bab19f5-dd02-408c-bc8f-20a7339a99aa",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_global",
+      "story_sunflower"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M10.5 - England (Sunflower)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

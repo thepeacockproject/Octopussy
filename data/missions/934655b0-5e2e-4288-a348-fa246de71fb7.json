@@ -1,0 +1,34 @@
+{
+  "id": "934655b0-5e2e-4288-a348-fa246de71fb7",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_orchid",
+      "story_global"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M09 - Antarctica (Orchid)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "055b2e09-64b9-4b5f-8769-1a200ca53e8b",
+  "Gameplay": {
+    "Checkpoint": "TSIM_Lotus_Bee_Tier01",
+    "Tags": [
+      "lotus_bee",
+      "online_global"
+    ],
+    "Type": 1,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 100,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "Lotus_Bee_Tier1_Title",
+    "Image": "images/tacticalsims/escalations/lotus/s_lotus_bee_tier1.jpg",
+    "HighResImage": "images/tacticalsims/escalations/lotus/lotus_bee_tier1.jpg",
+    "Description": "Lotus_Bee_Tier1_Description",
+    "Location": "Lotus_Bee_Location",
+    "Goal": "",
+    "Objectives": [
+      "Lotus_Bee_Tier1_Objective_Main_Description"
+    ],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": {
+    "Parent": "394917c6-0b87-42bc-a9ef-649e85b1017b",
+    "Children": null
+  }
+}

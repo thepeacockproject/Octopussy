@@ -1,0 +1,78 @@
+[
+  {
+    "Name": "KNT_System",
+    "Missions": [
+      "4ad814ad-57ea-429f-8a86-d9bff08aaea6"
+    ]
+  },
+  {
+    "Name": "KNT_Story",
+    "Missions": [
+      "25be3490-e76c-4665-b353-c7344f5014f4"
+    ]
+  },
+  {
+    "Name": "KNT_Missions",
+    "Missions": [
+      "a6a400d8-bb9b-4aac-83a3-8884197d882d",
+      "f52230f8-ae90-4db9-85d8-b75e868e5a4f",
+      "4d77a793-ebac-4082-9fa8-ca1fcae9809e",
+      "dac96d88-d7a7-44e5-8360-348a995fef61",
+      "cb7d1b50-d871-4b4e-8d61-2ee4b5b0396d",
+      "efa5a491-f031-4b5c-bfcb-11dc8faac176",
+      "76ccebb7-d959-4097-977f-74eba3ca358b",
+      "1311b0b4-ecf6-4fbd-a868-2fdf55660717",
+      "9a398893-50f0-49b9-8ee1-21081d870292",
+      "cc01c5d5-ab0d-4fc9-aa5b-6f96c581e4c8",
+      "d17447a2-6881-4af6-a7f9-df426d5f0154",
+      "a26e8d49-d1b0-48c9-a9d7-9f2382fb65cf",
+      "25be3490-e76c-4665-b353-c7344f5014f4",
+      "318f5a50-9702-46a8-a768-4e7bb09eb1f6",
+      "0b2b758e-f0cf-4630-856b-a06c628d7cc5",
+      "54832c76-6fef-4d44-b0e8-e08e491b6470",
+      "a3d7e28b-d852-4b5b-bb90-8aa58964b174",
+      "cf095381-177b-409e-8a3f-bceb00cc4a9f",
+      "934655b0-5e2e-4288-a348-fa246de71fb7",
+      "ad9bcd49-2cfc-49d0-8059-8903558ab67a",
+      "9bab19f5-dd02-408c-bc8f-20a7339a99aa"
+    ]
+  },
+  {
+    "Name": "KNT_Escalations",
+    "Missions": [
+      "dc428da4-ff92-46a8-b841-e9f0b5458dac",
+      "394917c6-0b87-42bc-a9ef-649e85b1017b",
+      "4c269040-27f4-4f22-b733-5cdafc051bce",
+      "29c8470e-e865-475d-ac00-446bda1d40af",
+      "ce75d821-6c24-4006-87b3-0aa21a68d689"
+    ]
+  },
+  {
+    "Name": "KNT_Operations",
+    "Missions": [
+      "11ba6d05-0a5c-42a8-a53b-766e845d2404",
+      "bab91fc6-6ce2-42eb-ba38-7d938da6179c"
+    ]
+  },
+  {
+    "Name": "KNT_ContractCreation",
+    "Missions": [
+      "97bec4c9-05fb-49d5-b817-31e041cc0e15",
+      "f1a1aab4-684a-4f2a-8209-387fbc7ca60b",
+      "c0349c14-5556-4435-b073-778a68ca818f"
+    ]
+  },
+  {
+    "Name": "KNT_ListTest",
+    "Missions": [
+      "f433798d-42ac-439e-a05f-d798f77131c2",
+      "7946625a-b91f-49db-a313-9610b9d72617",
+      "6b7f218b-f7f1-48e5-89ea-31bdd097766e",
+      "0c654bef-fa61-41e0-852c-6e2f396738ee",
+      "12e26346-115c-4a05-9c92-8dc6a5442ad0",
+      "271de166-0cc6-4baf-827a-2291a231c567",
+      "3b70825e-301a-402d-b274-f66da5c81e04",
+      "4f5dac0c-c17e-4fa6-8b4c-8374784e1397"
+    ]
+  }
+]

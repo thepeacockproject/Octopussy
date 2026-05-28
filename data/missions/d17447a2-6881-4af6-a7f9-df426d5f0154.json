@@ -1,0 +1,34 @@
+{
+  "id": "d17447a2-6881-4af6-a7f9-df426d5f0154",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [
+      "story_dahlia",
+      "story_global"
+    ],
+    "Type": 2,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "M04 - Mauritania (Dahlia)",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}

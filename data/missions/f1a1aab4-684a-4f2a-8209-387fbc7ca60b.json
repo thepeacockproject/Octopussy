@@ -1,0 +1,31 @@
+{
+  "id": "f1a1aab4-684a-4f2a-8209-387fbc7ca60b",
+  "Gameplay": {
+    "Checkpoint": "",
+    "Tags": [],
+    "Type": 0,
+    "Rewards": {
+      "Xp": 0,
+      "Intel": 0,
+      "Unlockables": []
+    },
+    "RequirementTags": "",
+    "RequiredCheckpoint": "",
+    "Entitlements": []
+  },
+  "Ui": {
+    "Title": "CC_GYM_MARK_TARGET",
+    "Image": "",
+    "HighResImage": "",
+    "Description": "",
+    "Location": "",
+    "Goal": "",
+    "Objectives": [],
+    "Requirements": [],
+    "ShortDescription": ""
+  },
+  "Ugc": {
+    "Objectives": []
+  },
+  "Group": null
+}
