@@ -10,9 +10,10 @@ func testFS() fstest.MapFS {
 	return fstest.MapFS{
 		"menu/mission_lists.json": {Data: []byte(
 			`[{"Name":"KNT_Missions","Missions":["bbbb","aaaa"]}]`)},
-		"menu/player_levels.json": {Data: []byte(`{"XpThresholds":[3950,7900]}`)},
-		"missions/aaaa.json":      {Data: []byte(`{"id":"aaaa","Ui":{"Title":"A"},"Group":null}`)},
-		"missions/bbbb.json":      {Data: []byte(`{"id":"bbbb","Ui":{"Title":"B"},"Group":null}`)},
+		"menu/player_levels.json":  {Data: []byte(`{"XpThresholds":[3950,7900]}`)},
+		"missions/aaaa.json":       {Data: []byte(`{"id":"aaaa","Ui":{"Title":"A"},"Group":null}`)},
+		"missions/bbbb.json":       {Data: []byte(`{"id":"bbbb","Ui":{"Title":"B"},"Group":null}`)},
+		"privacypolicy_pc_en.json": {Data: []byte(`{"view":"menu3.modal.ModalDialogGeneric"}`)},
 	}
 }
 

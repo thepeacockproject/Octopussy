@@ -55,6 +55,7 @@ func (c *Controller) registerRoutes() {
 
 	// Static documents the config discovery doc points at.
 	c.mux.HandleFunc("GET /files/onlineconfig.json", c.handleOnlineConfigFile)
+	c.mux.HandleFunc("GET /files/privacypolicy/knt/privacypolicy_pc_en.json", c.handlePrivacyPolicy)
 
 	// Metrics ingest: a no-op telemetry sink (config discovery points here).
 	c.mux.HandleFunc("POST /ingest", c.handleMetricsIngest)

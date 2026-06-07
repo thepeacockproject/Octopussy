@@ -41,6 +41,10 @@ type Store struct {
 	missionLists []MissionList
 	playerLevels json.RawMessage
 
+	// privacyPolicy is the verbatim KNT privacy-policy dialog document, served
+	// under /files/privacypolicy/. The game requires it before going online.
+	privacyPolicy json.RawMessage
+
 	// missions maps a mission id to its raw JSON; missionOrder is the stable
 	// (sorted-by-id) order used when listing the mission pool.
 	missions     map[string]json.RawMessage
@@ -68,7 +72,13 @@ func Load(fsys fs.FS) (*Store, error) {
 	if err != nil {
 		return nil, fmt.Errorf("read player levels: %w", err)
 	}
-	s.playerLevels = json.RawMessage(levels)
+	s.playerLevels = levels
+
+	policy, err := fs.ReadFile(fsys, "privacypolicy_pc_en.json")
+	if err != nil {
+		return nil, fmt.Errorf("read privacy policy: %w", err)
+	}
+	s.privacyPolicy = policy
 
 	entries, err := fs.ReadDir(fsys, "missions")
 	if err != nil {
@@ -89,7 +99,7 @@ func Load(fsys fs.FS) (*Store, error) {
 		if h.ID == "" {
 			return nil, fmt.Errorf("mission %s has no id", e.Name())
 		}
-		s.missions[h.ID] = json.RawMessage(raw)
+		s.missions[h.ID] = raw
 		s.missionOrder = append(s.missionOrder, h.ID)
 	}
 
@@ -113,6 +123,10 @@ func (s *Store) MenuContent() MenuContent {
 		PlayerLevels:        s.playerLevels,
 	}
 }
+
+// PrivacyPolicy returns the raw KNT privacy-policy document, served verbatim
+// under /files/privacypolicy/. It is always present once Load succeeds.
+func (s *Store) PrivacyPolicy() json.RawMessage { return s.privacyPolicy }
 
 // Contract returns the raw JSON for a single mission/contract by id. This backs
 // future per-contract lookups.

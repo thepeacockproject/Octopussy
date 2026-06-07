@@ -1,7 +1,7 @@
 // Package logging provides a small, dependency-light structured logger built
 // on top of log/slog. It renders nicely-colored, human-readable lines to the
 // console (with a [timestamp] [LEVEL] message key=value layout) and is
-// inspired by the Peacock project's logging interop layer.
+// inspired by Peacock's logging interop layer.
 package logging
 
 import (

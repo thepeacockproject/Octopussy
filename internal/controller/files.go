@@ -1,6 +1,14 @@
 package controller
 
-import "net/http"
+import (
+	"log/slog"
+	"net/http"
+)
+
+// privacyPolicyVersion is sent as the x-ms-meta-version response header on the
+// privacy-policy document. It mirrors the blob metadata the client originally
+// received from IOI's storage and is bumped when the policy text changes.
+const privacyPolicyVersion = "20260529"
 
 // Static documents served under /files/. These were originally hosted on IOI's
 // blob storage; we serve our own copies so the client has somewhere to fetch
@@ -38,4 +46,17 @@ func (c *Controller) handleOnlineConfigFile(w http.ResponseWriter, _ *http.Reque
 			WebSocketsEnabled:                   false,
 		},
 	})
+}
+
+// handlePrivacyPolicy serves the static KNT privacy-policy dialog document. The
+// body is stored verbatim and embedded in the binary; the x-ms-meta-version
+// header reproduces what the original blob storage returned, which the client
+// checks to decide whether the cached policy is current.
+func (c *Controller) handlePrivacyPolicy(w http.ResponseWriter, _ *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("x-ms-meta-version", privacyPolicyVersion)
+	w.WriteHeader(http.StatusOK)
+	if _, err := w.Write(c.Content.PrivacyPolicy()); err != nil {
+		c.Log.Error("failed to write privacy policy", slog.String("error", err.Error()))
+	}
 }

@@ -1,5 +1,5 @@
 // Package jwt implements the server's JSON Web Token handling. Its design is
-// inspired by the Peacock project's oauthToken module, but follows the newer
+// inspired by Peacock's oauthToken module, but follows the newer
 // IOI auth stack the Bond game expects: RS256-signed "at+jwt" tokens carrying
 // the full IOI claim set, with the signing certificate's SHA-1 thumbprint
 // exposed as the kid / x5t header values.

@@ -4,7 +4,9 @@ package main
 
 import (
 	"context"
+	"embed"
 	"errors"
+	"io/fs"
 	"log/slog"
 	"net/http"
 	"os"
@@ -19,6 +21,13 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/logging"
 	"github.com/thepeacockproject/Octopussy/internal/store"
 )
+
+// embeddedData holds the static game data baked into the binary so the server
+// runs as a single self-contained executable. OCTOPUSSY_DATA can override this
+// with an on-disk directory for editing data without recompiling.
+//
+//go:embed data
+var embeddedData embed.FS
 
 func main() {
 	if err := run(); err != nil {
@@ -71,17 +80,23 @@ func run() error {
 	defer st.Close()
 	log.Info("opened database", slog.String("driver", dbDriver), slog.String("dsn", dbDSN))
 
-	// Static game data lives on disk so it can be edited without recompiling.
-	dataDir := os.Getenv("OCTOPUSSY_DATA")
-	if dataDir == "" {
-		dataDir = "data"
+	// Static game data is embedded in the binary by default; OCTOPUSSY_DATA
+	// points at an on-disk directory instead so data can be edited without
+	// recompiling.
+	var dataFS fs.FS
+	dataSrc := "embedded"
+	if dataDir := os.Getenv("OCTOPUSSY_DATA"); dataDir != "" {
+		dataFS = os.DirFS(dataDir)
+		dataSrc = dataDir
+	} else if dataFS, err = fs.Sub(embeddedData, "data"); err != nil {
+		return err
 	}
-	gameContent, err := content.Load(os.DirFS(dataDir))
+	gameContent, err := content.Load(dataFS)
 	if err != nil {
 		return err
 	}
 	log.Info("loaded game content",
-		slog.String("dir", dataDir),
+		slog.String("source", dataSrc),
 		slog.Int("missions", gameContent.MissionCount()),
 	)
 

@@ -25,6 +25,7 @@ func testContent(t *testing.T) *content.Store {
 		"menu/player_levels.json": {Data: []byte(`{"XpThresholds":[3950,7900]}`)},
 		"missions/aaaaaaaa-0000-4000-8000-000000000001.json": {Data: []byte(
 			`{"id":"aaaaaaaa-0000-4000-8000-000000000001","Ui":{"Title":"Test Mission"},"Group":null}`)},
+		"privacypolicy_pc_en.json": {Data: []byte(`{"view":"menu3.modal.ModalDialogGeneric","type":"gdprconsent"}`)},
 	}
 	st, err := content.Load(fsys)
 	if err != nil {
