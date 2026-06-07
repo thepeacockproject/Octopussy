@@ -36,8 +36,6 @@ type Options struct {
 	Level slog.Level
 	// Writer is where log lines are written. Defaults to os.Stdout.
 	Writer io.Writer
-	// Color forces ANSI colors on or off. When nil, colors are auto-detected.
-	Color *bool
 }
 
 // New returns a *slog.Logger backed by the pretty console handler.
@@ -47,34 +45,11 @@ func New(opts Options) *slog.Logger {
 		w = os.Stdout
 	}
 
-	color := autoColor(w)
-	if opts.Color != nil {
-		color = *opts.Color
-	}
-
 	return slog.New(&prettyHandler{
 		w:     w,
 		mu:    &sync.Mutex{},
 		level: opts.Level,
-		color: color,
 	})
-}
-
-// autoColor reports whether colored output should be used for the writer.
-func autoColor(w io.Writer) bool {
-	if _, ok := os.LookupEnv("NO_COLOR"); ok {
-		return false
-	}
-	f, ok := w.(*os.File)
-	if !ok {
-		return false
-	}
-	info, err := f.Stat()
-	if err != nil {
-		return false
-	}
-	// Character device => attached to a terminal.
-	return info.Mode()&os.ModeCharDevice != 0
 }
 
 // prettyHandler is a slog.Handler that emits colorized, single-line records.
@@ -203,9 +178,6 @@ func (h *prettyHandler) levelLabel(level slog.Level) string {
 
 // paint wraps s in an ANSI color when color output is enabled.
 func (h *prettyHandler) paint(color, s string) string {
-	if !h.color {
-		return s
-	}
 	return color + s + colReset
 }
 
