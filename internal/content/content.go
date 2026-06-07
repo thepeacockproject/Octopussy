@@ -41,6 +41,11 @@ type Store struct {
 	missionLists []MissionList
 	playerLevels json.RawMessage
 
+	// xpThresholds is the parsed XpThresholds array from player_levels.json: the
+	// cumulative XP needed to reach each successive level (ascending). It backs
+	// level calculation for player progression.
+	xpThresholds []int64
+
 	// privacyPolicy is the verbatim KNT privacy-policy dialog document, served
 	// under /files/privacypolicy/. The game requires it before going online.
 	privacyPolicy json.RawMessage
@@ -73,6 +78,14 @@ func Load(fsys fs.FS) (*Store, error) {
 		return nil, fmt.Errorf("read player levels: %w", err)
 	}
 	s.playerLevels = levels
+
+	var pl struct {
+		XpThresholds []int64 `json:"XpThresholds"`
+	}
+	if err := json.Unmarshal(levels, &pl); err != nil {
+		return nil, fmt.Errorf("parse player levels: %w", err)
+	}
+	s.xpThresholds = pl.XpThresholds
 
 	policy, err := fs.ReadFile(fsys, "privacypolicy_pc_en.json")
 	if err != nil {
@@ -122,6 +135,20 @@ func (s *Store) MenuContent() MenuContent {
 		MissionProgressions: nil, // marshals as null
 		PlayerLevels:        s.playerLevels,
 	}
+}
+
+// LevelForXP returns the player level for a given total XP. Level 1 is the base;
+// each XpThreshold the XP has reached grants one more level. Thresholds are
+// ascending, so the scan stops at the first one not yet reached.
+func (s *Store) LevelForXP(xp int64) int {
+	level := 1
+	for _, threshold := range s.xpThresholds {
+		if xp < threshold {
+			break
+		}
+		level++
+	}
+	return level
 }
 
 // PrivacyPolicy returns the raw KNT privacy-policy document, served verbatim

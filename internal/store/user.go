@@ -2,6 +2,7 @@ package store
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"gorm.io/gorm"
@@ -9,6 +10,32 @@ import (
 )
 
 // User accessors back player accounts and their external platform identities.
+
+// SetUserXP sets a user's accumulated XP to an absolute value.
+func (s *Store) SetUserXP(ctx context.Context, userID string, xp int64) error {
+	err := s.db.WithContext(ctx).
+		Model(&User{}).
+		Where("id = ?", userID).
+		Update("xp_earned", xp).Error
+	if err != nil {
+		return fmt.Errorf("set user xp: %w", err)
+	}
+	return nil
+}
+
+// UserXP returns a user's accumulated XP. An unknown user reports zero XP rather
+// than an error, matching a brand-new profile with no progression yet.
+func (s *Store) UserXP(ctx context.Context, userID string) (int64, error) {
+	var user User
+	err := s.db.WithContext(ctx).Select("xp_earned").First(&user, "id = ?", userID).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return 0, nil
+	}
+	if err != nil {
+		return 0, fmt.Errorf("read user xp: %w", err)
+	}
+	return user.XPEarned, nil
+}
 
 // EnsureUser makes sure a user and the given platform identity both exist,
 // creating them on first login and leaving any existing rows untouched. It is

@@ -76,6 +76,34 @@ func TestEnsureUserIsIdempotent(t *testing.T) {
 	}
 }
 
+func TestUserXP(t *testing.T) {
+	st := newTestStore(t)
+	ctx := context.Background()
+
+	xp, err := st.UserXP(ctx, "nobody")
+	if err != nil {
+		t.Fatalf("UserXP(unknown): %v", err)
+	}
+	if xp != 0 {
+		t.Errorf("UserXP(unknown) = %d, want 0", xp)
+	}
+
+	if err := st.EnsureUser(ctx, "profile-1", "gamer", "steam", "steam-123"); err != nil {
+		t.Fatalf("EnsureUser: %v", err)
+	}
+	if err := st.db.WithContext(ctx).Model(&User{}).Where("id = ?", "profile-1").Update("xp_earned", 5500).Error; err != nil {
+		t.Fatalf("set xp: %v", err)
+	}
+
+	xp, err = st.UserXP(ctx, "profile-1")
+	if err != nil {
+		t.Fatalf("UserXP: %v", err)
+	}
+	if xp != 5500 {
+		t.Errorf("UserXP = %d, want 5500", xp)
+	}
+}
+
 func TestEnsureUserLinksSecondIdentity(t *testing.T) {
 	st := newTestStore(t)
 	ctx := context.Background()

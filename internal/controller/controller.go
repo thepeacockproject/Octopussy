@@ -85,6 +85,8 @@ func (c *Controller) registerRoutes() {
 		c.JWT.Middleware(http.HandlerFunc(c.handleSetClientEntitlements)))
 	c.mux.Handle("POST /services/KntProfileService/GetEntitlements",
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetEntitlements)))
+	c.mux.Handle("POST /services/KntProfileService/GetPlayerProgression",
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetPlayerProgression)))
 }
 
 // requestBaseURL reconstructs the scheme://host this server was reached at,
