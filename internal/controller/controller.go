@@ -74,6 +74,12 @@ func (c *Controller) registerRoutes() {
 		c.JWT.Middleware(http.HandlerFunc(c.handleCustomProfileReadAll)))
 	c.mux.Handle("POST /services/CustomProfileDataService/Write",
 		c.JWT.Middleware(http.HandlerFunc(c.handleCustomProfileWrite)))
+
+	// KntProfileService: Entitlements & player progression.
+	c.mux.Handle("POST /services/KntProfileService/SetClientEntitlements",
+		c.JWT.Middleware(http.HandlerFunc(c.handleSetClientEntitlements)))
+	c.mux.Handle("POST /services/KntProfileService/GetEntitlements",
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetEntitlements)))
 }
 
 // requestBaseURL reconstructs the scheme://host this server was reached at,
