@@ -14,7 +14,7 @@ type CustomProfileData struct {
 	User   User   `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
 }
 
-// TableName pins the table name so it doesn't depend on GORM's pluralization.
+// TableName pins the table name because "data" should not be pluralized.
 func (CustomProfileData) TableName() string { return "custom_profile_data" }
 
 // User is a single player account. ID is the canonical profile id (the stable
@@ -25,6 +25,10 @@ type User struct {
 	ID       string `gorm:"primaryKey;column:id"`
 	Gamertag string `gorm:"column:gamertag;not null"`
 	XPEarned int64  `gorm:"column:xp_earned;not null;default:0"`
+	// IntelCurrency is the player's spendable in-game currency (starts at 0)
+	IntelCurrency int `gorm:"column:intel_currency;not null;default:0"`
+	// Rank is the player's current rank (starts at 1).
+	Rank int `gorm:"column:rank;not null;default:1"`
 }
 
 // UserIdentity links an external platform login (e.g. Steam, Epic, Apple) to a
@@ -38,5 +42,15 @@ type UserIdentity struct {
 	User       User   `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
 }
 
-// TableName pins the table name so it doesn't depend on GORM's pluralization.
-func (UserIdentity) TableName() string { return "user_identities" }
+// UserSession is one play session for a user.
+type UserSession struct {
+	// SessionID is the session's UUID (the primary key)
+	SessionID string `gorm:"primaryKey;column:session_id"`
+	// UserID is a foreign key into users.id
+	UserID string `gorm:"column:user_id;not null;index"`
+	// IntelCurrencyWas value of users.intel_currency when session started.
+	IntelCurrencyWas int `gorm:"column:intel_currency_was;not null"`
+	// RankWas value of users.rank when session started.
+	RankWas int  `gorm:"column:rank_was;not null"`
+	User    User `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
+}

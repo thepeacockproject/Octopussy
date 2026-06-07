@@ -49,5 +49,23 @@ func migrations() []*gormigrate.Migration {
 				return tx.Migrator().RenameColumn(&CustomProfileData{}, "user_id", "profile_id")
 			},
 		},
+		{
+			// Add intel_currency (default 0) and rank (default 1) to users, and
+			// create the user_sessions table tracking a user's intel currency and
+			// rank as they were at the start of each play session.
+			ID: "0004_user_sessions_and_currency",
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&User{}, &UserSession{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				if err := tx.Migrator().DropTable(&UserSession{}); err != nil {
+					return err
+				}
+				if err := tx.Migrator().DropColumn(&User{}, "intel_currency"); err != nil {
+					return err
+				}
+				return tx.Migrator().DropColumn(&User{}, "rank")
+			},
+		},
 	}
 }
