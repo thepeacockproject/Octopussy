@@ -1,5 +1,7 @@
 package store
 
+import "time"
+
 // GORM models. Schema changes to these structs must be paired with a migration
 // in migrations.go - AutoMigrate is only ever invoked from inside a versioned
 // migration, never implicitly at startup, so the schema stays reproducible.
@@ -51,6 +53,13 @@ type UserSession struct {
 	// IntelCurrencyWas value of users.intel_currency when session started.
 	IntelCurrencyWas int `gorm:"column:intel_currency_was;not null"`
 	// RankWas value of users.rank when session started.
-	RankWas int  `gorm:"column:rank_was;not null"`
-	User    User `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
+	RankWas int `gorm:"column:rank_was;not null"`
+	// ContractID the contract's ID.
+	ContractID string `gorm:"column:contract_id"`
+	// CreatedAt is set by GORM when the session is created; it orders sessions so
+	// the most recent can be found.
+	CreatedAt time.Time `gorm:"column:created_at;not null"`
+	// XpWas value of users.xp_earned when session started.
+	XpWas int  `gorm:"column:xp_was;not null"`
+	User  User `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
 }

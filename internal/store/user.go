@@ -37,6 +37,12 @@ func (s *Store) UserXP(ctx context.Context, userID string) (int64, error) {
 	return user.XPEarned, nil
 }
 
+// User loads a user by ID.
+func (s *Store) User(ctx context.Context, userID string) (*User, error) {
+	var user User
+	return &user, s.db.WithContext(ctx).First(&user, "id = ?", userID).Error
+}
+
 // EnsureUser makes sure a user and the given platform identity both exist,
 // creating them on first login and leaving any existing rows untouched. It is
 // called during OAuth so every authenticated account is backed by a persisted

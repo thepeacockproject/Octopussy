@@ -67,5 +67,36 @@ func migrations() []*gormigrate.Migration {
 				return tx.Migrator().DropColumn(&User{}, "rank")
 			},
 		},
+		{
+			// Add contract_id to user_sessions
+			ID: "0005_session_contract_id",
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&UserSession{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				return tx.Migrator().DropColumn(&UserSession{}, "contract_id")
+			},
+		},
+		{
+			// Add created_at to user_sessions so the most recent session for a
+			// user can be ordered and found.
+			ID: "0006_session_created_at",
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&UserSession{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				return tx.Migrator().DropColumn(&UserSession{}, "created_at")
+			},
+		},
+		{
+			// Add xp_was to user_sessions
+			ID: "0007_user_session_xp_was",
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&UserSession{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				return tx.Migrator().DropColumn(&UserSession{}, "xp_was")
+			},
+		},
 	}
 }

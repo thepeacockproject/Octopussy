@@ -91,6 +91,12 @@ func (c *Controller) registerRoutes() {
 	// KntProgressionService: challenges.
 	c.mux.Handle("POST /services/KntProgressionService/GetChallenges",
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetChallenges)))
+
+	// KntSessionService: sessions.
+	c.mux.Handle("POST /services/KntSessionService/GetForPlay",
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetForPlay)))
+	c.mux.Handle("POST /services/KntSessionService/StopSession",
+		c.JWT.Middleware(http.HandlerFunc(c.handleStopSession)))
 }
 
 // requestBaseURL reconstructs the scheme://host this server was reached at,

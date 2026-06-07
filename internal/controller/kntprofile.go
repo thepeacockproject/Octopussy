@@ -36,12 +36,6 @@ type playerProgressionResponse struct {
 	PlayerProgression playerProgression `json:"PlayerProgression"`
 }
 
-// playerProgression carries a player's total XP and the level it maps to.
-type playerProgression struct {
-	Xp    int64 `json:"Xp"`
-	Level int   `json:"Level"`
-}
-
 // handleGetPlayerProgression returns the caller's XP and derived level. Level is computed from the XpThresholds in the game's
 // player_levels data.
 func (c *Controller) handleGetPlayerProgression(w http.ResponseWriter, r *http.Request) {
