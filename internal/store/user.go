@@ -32,3 +32,65 @@ func (s *Store) EnsureUser(ctx context.Context, userID, gamertag, platform, plat
 		return nil
 	})
 }
+
+// ResolvedProfile is a user together with its external platform identities,
+// keyed platform -> platform id. It backs SharedProfileService/ResolveProfiles.
+type ResolvedProfile struct {
+	ID             string
+	Gamertag       string
+	LinkedAccounts map[string]string
+}
+
+// ResolveProfiles looks up the given user ids and returns each as a
+// ResolvedProfile with its gamertag and linked platform accounts. Results follow
+// the order of the requested ids; ids with no matching user are skipped, so the
+// returned slice may be shorter than the input.
+func (s *Store) ResolveProfiles(ctx context.Context, ids []string) ([]ResolvedProfile, error) {
+	if len(ids) == 0 {
+		return []ResolvedProfile{}, nil
+	}
+
+	var users []User
+	if err := s.db.WithContext(ctx).Where("id IN ?", ids).Find(&users).Error; err != nil {
+		return nil, fmt.Errorf("resolve profiles: load users: %w", err)
+	}
+
+	var identities []UserIdentity
+	if err := s.db.WithContext(ctx).Where("user_id IN ?", ids).Find(&identities).Error; err != nil {
+		return nil, fmt.Errorf("resolve profiles: load identities: %w", err)
+	}
+
+	// Group identities by user into platform -> platform_id maps.
+	linked := make(map[string]map[string]string, len(users))
+	for _, id := range identities {
+		accounts := linked[id.UserID]
+		if accounts == nil {
+			accounts = make(map[string]string)
+			linked[id.UserID] = accounts
+		}
+		accounts[id.Platform] = id.PlatformID
+	}
+
+	byID := make(map[string]User, len(users))
+	for _, u := range users {
+		byID[u.ID] = u
+	}
+
+	out := make([]ResolvedProfile, 0, len(ids))
+	for _, id := range ids {
+		u, ok := byID[id]
+		if !ok {
+			continue
+		}
+		accounts := linked[id]
+		if accounts == nil {
+			accounts = map[string]string{}
+		}
+		out = append(out, ResolvedProfile{
+			ID:             u.ID,
+			Gamertag:       u.Gamertag,
+			LinkedAccounts: accounts,
+		})
+	}
+	return out, nil
+}

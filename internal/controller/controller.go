@@ -75,6 +75,11 @@ func (c *Controller) registerRoutes() {
 	c.mux.Handle("POST /services/CustomProfileDataService/Write",
 		c.JWT.Middleware(http.HandlerFunc(c.handleCustomProfileWrite)))
 
+	// SharedProfileService: public-facing profile lookup (gamertag, linked
+	// accounts) for one or more users.
+	c.mux.Handle("POST /services/SharedProfileService/ResolveProfiles",
+		c.JWT.Middleware(http.HandlerFunc(c.handleResolveProfiles)))
+
 	// KntProfileService: Entitlements & player progression.
 	c.mux.Handle("POST /services/KntProfileService/SetClientEntitlements",
 		c.JWT.Middleware(http.HandlerFunc(c.handleSetClientEntitlements)))
