@@ -68,7 +68,7 @@ func platformForGrant(grantType string) (platform, useridField string) {
 // endpoint. The request is form-encoded; the response carries an RS256 JWT
 // shaped like the game's real tokens.
 //
-// TODO: validate the steam_clienttoken / external session ticket against the platform, persist the external-id -> profile-id mapping, and support the refresh_token grant. For now we trust the supplied external id and derive a stable profile id from it.
+// TODO: validate the steam_clienttoken / external session ticket against the platform, and support the refresh_token grant. For now we trust the supplied external id and derive a stable profile id from it.
 func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 	form, err := parseAuthForm(r)
 	if err != nil {
@@ -93,6 +93,14 @@ func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 	profileID := form.Get("pId")
 	if profileID == "" {
 		profileID = uuid.NewSHA1(uuid.NameSpaceOID, []byte(platform+":"+userID)).String()
+	}
+
+	// Persist the user and its external identity on first login; existing rows
+	// are left untouched. The external user id seeds the initial gamertag.
+	if err := c.Store.EnsureUser(r.Context(), profileID, userID, platform, userID); err != nil {
+		c.Log.Error("failed to persist user", slog.String("error", err.Error()))
+		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
+		return
 	}
 
 	access, err := c.JWT.Sign(jwt.Claims{
