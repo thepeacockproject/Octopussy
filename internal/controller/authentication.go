@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"encoding/json"
 	"fmt"
 	"log/slog"
 	"net/http"
@@ -44,6 +45,10 @@ type authProfileInit struct {
 	IAS     int    `json:"ias"`
 	Email   string `json:"email"`
 	BaseURL string `json:"baseurl"`
+}
+
+type getBlobOfflineCacheDatabaseDiffRequest struct {
+	ProductVersion string `json:"productVersion"`
 }
 
 // handleAuthConfigInit answers authentication/api/configuration/Init. It runs
@@ -102,4 +107,14 @@ func (c *Controller) handleAuthConfigInit(w http.ResponseWriter, r *http.Request
 			BaseURL: "https://thepeacockproject.org",
 		},
 	})
+}
+
+func (c *Controller) handleGetBlobOfflineCacheDatabaseDiff(w http.ResponseWriter, r *http.Request) {
+	var req getBlobOfflineCacheDatabaseDiffRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+		return
+	}
+
+	c.writeJSON(w, http.StatusOK, fmt.Sprintf("Unknown product version %s", req.ProductVersion))
 }

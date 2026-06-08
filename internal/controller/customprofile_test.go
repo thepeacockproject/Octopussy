@@ -26,6 +26,8 @@ func testContent(t *testing.T) *content.Store {
 		"missions/aaaaaaaa-0000-4000-8000-000000000001.json": {Data: []byte(
 			`{"id":"aaaaaaaa-0000-4000-8000-000000000001","Ui":{"Title":"Test Mission"},"Group":null}`)},
 		"privacypolicy_pc_en.json": {Data: []byte(`{"view":"menu3.modal.ModalDialogGeneric","type":"gdprconsent"}`)},
+		"challenges.json":          {Data: []byte(`[]`)},
+		"unlockables.json":         {Data: []byte(`[]`)},
 	}
 	st, err := content.Load(fsys)
 	if err != nil {

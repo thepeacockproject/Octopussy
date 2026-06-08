@@ -3,6 +3,7 @@ package controller
 import (
 	"log/slog"
 	"net/http"
+	"strconv"
 )
 
 // privacyPolicyVersion is sent as the x-ms-meta-version response header on the
@@ -52,11 +53,16 @@ func (c *Controller) handleOnlineConfigFile(w http.ResponseWriter, _ *http.Reque
 // body is stored verbatim and embedded in the binary; the x-ms-meta-version
 // header reproduces what the original blob storage returned, which the client
 // checks to decide whether the cached policy is current.
-func (c *Controller) handlePrivacyPolicy(w http.ResponseWriter, _ *http.Request) {
+func (c *Controller) handlePrivacyPolicy(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("x-ms-meta-version", privacyPolicyVersion)
 	w.WriteHeader(http.StatusOK)
-	if _, err := w.Write(c.Content.PrivacyPolicy()); err != nil {
-		c.Log.Error("failed to write privacy policy", slog.String("error", err.Error()))
+
+	if r.Method == http.MethodHead {
+		w.Header().Set("Content-Length", strconv.Itoa(len(c.Content.PrivacyPolicy())))
+	} else if r.Method == http.MethodGet {
+		if _, err := w.Write(c.Content.PrivacyPolicy()); err != nil {
+			c.Log.Error("failed to write privacy policy", slog.String("error", err.Error()))
+		}
 	}
 }

@@ -104,7 +104,7 @@ func run() error {
 
 	addr := os.Getenv("OCTOPUSSY_ADDR")
 	if addr == "" {
-		addr = ":8080"
+		addr = ":80"
 	}
 
 	srv := &http.Server{

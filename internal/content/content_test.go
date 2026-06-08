@@ -14,6 +14,19 @@ func testFS() fstest.MapFS {
 		"missions/aaaa.json":       {Data: []byte(`{"id":"aaaa","Ui":{"Title":"A"},"Group":null}`)},
 		"missions/bbbb.json":       {Data: []byte(`{"id":"bbbb","Ui":{"Title":"B"},"Group":null}`)},
 		"privacypolicy_pc_en.json": {Data: []byte(`{"view":"menu3.modal.ModalDialogGeneric"}`)},
+		"challenges.json": {Data: []byte(`[{` +
+			`"Definition":{"Id":"chal-1","Name":"N","Description":"D"},` +
+			`"KntDefinition":{"Id":"chal-1","Tags":["t"],"Image":"i","HighResImage":"h",` +
+			`"Rewards":{"Xp":10,"Intel":5,"Unlockables":["u1"]},` +
+			`"IsSpoiler":true,"SpoilerRequiredCheckpoint":"cp"}}]`)},
+		"unlockables.json": {Data: []byte(`[{` +
+			`"Title":"T","Description":"D","Image":"img","Comment":"","HighResImage":"",` +
+			`"FeaturedImage":"","IsFeatured":false,"IsNew":false,"RequiredCheckpoint":"",` +
+			`"IntelShop":true,` +
+			`"UnlockableState":{"Id":"unl-1","State":1},` +
+			`"RequiredLevel":2,"LevelOk":true,"PriceCurrency":"Intel","PriceValue":4000,` +
+			`"PriceOk":true,"GrantedItems":[],"CanBuy":false,"Unlocks":["x"],` +
+			`"Type":"gadget","Category":"gadget"}]`)},
 	}
 }
 
@@ -35,12 +48,8 @@ func TestLoadAndMenuContent(t *testing.T) {
 	}
 
 	// Missions are emitted in stable sorted-by-id order.
-	var first idHolder
-	if err := json.Unmarshal(mc.Missions[0], &first); err != nil {
-		t.Fatalf("decode mission: %v", err)
-	}
-	if first.ID != "aaaa" {
-		t.Errorf("first mission id = %q, want aaaa (sorted)", first.ID)
+	if mc.Missions[0].ID != "aaaa" {
+		t.Errorf("first mission id = %q, want aaaa (sorted)", mc.Missions[0].ID)
 	}
 
 	// MissionProgressions must serialize as null, matching the real response.
@@ -63,20 +72,75 @@ func TestContractLookup(t *testing.T) {
 		t.Fatalf("Load: %v", err)
 	}
 
-	raw, ok := s.Contract("bbbb")
+	mission, ok := s.Contract("bbbb")
 	if !ok {
 		t.Fatal("expected to find contract bbbb")
 	}
-	var h idHolder
-	if err := json.Unmarshal(raw, &h); err != nil {
-		t.Fatalf("decode: %v", err)
+	if mission.ID != "bbbb" {
+		t.Errorf("id = %q, want bbbb", mission.ID)
 	}
-	if h.ID != "bbbb" {
-		t.Errorf("id = %q, want bbbb", h.ID)
+	if mission.Ui.Title != "B" {
+		t.Errorf("title = %q, want B", mission.Ui.Title)
 	}
 
 	if _, ok := s.Contract("does-not-exist"); ok {
 		t.Error("expected missing contract to return ok=false")
+	}
+}
+
+func TestLoadChallenges(t *testing.T) {
+	s, err := Load(testFS())
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if s.ChallengeCount() != 1 {
+		t.Fatalf("ChallengeCount = %d, want 1", s.ChallengeCount())
+	}
+
+	c := s.Challenges()[0]
+	if c.Definition.Id != "chal-1" || c.Definition.Name != "N" {
+		t.Errorf("unexpected Definition: %+v", c.Definition)
+	}
+	if !c.KntDefinition.IsSpoiler || c.KntDefinition.SpoilerRequiredCheckpoint != "cp" {
+		t.Errorf("unexpected KntDefinition: %+v", c.KntDefinition)
+	}
+	if c.KntDefinition.Rewards.Xp != 10 || c.KntDefinition.Rewards.Intel != 5 {
+		t.Errorf("unexpected Rewards: %+v", c.KntDefinition.Rewards)
+	}
+}
+
+func TestLoadUnlockables(t *testing.T) {
+	s, err := Load(testFS())
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if s.UnlockablesCount() != 1 {
+		t.Fatalf("UnlockableCount = %d, want 1", s.UnlockablesCount())
+	}
+
+	u := s.Unlockables()[0]
+	if u.Title != "T" || u.Type != "gadget" || u.Category != "gadget" {
+		t.Errorf("unexpected static fields: %+v", u)
+	}
+	if u.PriceValue != 4000 || u.RequiredLevel != 2 || !u.IntelShop {
+		t.Errorf("unexpected numeric/bool fields: %+v", u)
+	}
+	if len(u.Unlocks) != 1 || u.Unlocks[0] != "x" {
+		t.Errorf("unexpected Unlocks: %+v", u.Unlocks)
+	}
+
+	// UnlockableWithState pairs the static catalog entry with per-user state.
+	ws := UnlockablesWithState{Unlockable: u, UnlockableState: UnlockableState{Id: "unl-1", State: 1}}
+	out, err := json.Marshal(ws)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	var got map[string]json.RawMessage
+	if err := json.Unmarshal(out, &got); err != nil {
+		t.Fatalf("unmarshal: %v", err)
+	}
+	if string(got["UnlockableState"]) != `{"Id":"unl-1","State":1}` {
+		t.Errorf("UnlockableState = %s", got["UnlockableState"])
 	}
 }
 

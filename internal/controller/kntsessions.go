@@ -3,6 +3,8 @@ package controller
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/thepeacockproject/Octopussy/internal/content"
 )
 
 type stopSessionPayload struct {
@@ -57,7 +59,7 @@ type getForPlayPayload struct {
 }
 
 type getForPlayStatic struct {
-	Mission json.RawMessage
+	Mission content.Mission
 }
 
 type getForPlayDynamic struct {

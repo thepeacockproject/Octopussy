@@ -55,7 +55,15 @@ func (c *Controller) registerRoutes() {
 
 	// Static documents the config discovery doc points at.
 	c.mux.HandleFunc("GET /files/onlineconfig.json", c.handleOnlineConfigFile)
+
+	// TODO: Add some sort of wildcard support for "_pc_en"
+	c.mux.HandleFunc("HEAD /files/privacypolicy/knt/privacypolicy_pc_en.json", c.handlePrivacyPolicy)
 	c.mux.HandleFunc("GET /files/privacypolicy/knt/privacypolicy_pc_en.json", c.handlePrivacyPolicy)
+
+	// Resources
+	// TODO: Add some sort of wildcard support for the version in the URL
+	c.mux.HandleFunc("GET /resources-1-0/{path...}", c.handleResources)
+	c.mux.HandleFunc("GET /resources-1-1/{path...}", c.handleResources)
 
 	// Metrics ingest: a no-op telemetry sink (config discovery points here).
 	c.mux.HandleFunc("POST /ingest", c.handleMetricsIngest)
@@ -63,6 +71,10 @@ func (c *Controller) registerRoutes() {
 	// Authentication configuration: the game's post-login bootstrap call.
 	c.mux.Handle("GET /authentication/api/configuration/Init",
 		c.JWT.Middleware(http.HandlerFunc(c.handleAuthConfigInit)))
+
+	// AuthenticationService
+	c.mux.Handle("POST services/AuthenticationService/GetBlobOfflineCacheDatabaseDiff",
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetBlobOfflineCacheDatabaseDiff)))
 
 	// KntAggregateService: serves the aggregated menu content (mission catalog).
 	c.mux.Handle("POST /services/KntAggregateService/GetMenuContent",
@@ -91,12 +103,30 @@ func (c *Controller) registerRoutes() {
 	// KntProgressionService: challenges.
 	c.mux.Handle("POST /services/KntProgressionService/GetChallenges",
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetChallenges)))
+	c.mux.Handle("POST /services/KntProgressionService/GetChallengeMosaic",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
 
 	// KntSessionService: sessions.
 	c.mux.Handle("POST /services/KntSessionService/GetForPlay",
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetForPlay)))
 	c.mux.Handle("POST /services/KntSessionService/StopSession",
 		c.JWT.Middleware(http.HandlerFunc(c.handleStopSession)))
+	c.mux.Handle("POST /services/KntSessionService/CompleteActiveChallenge",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
+
+	// KntInventoryService
+	c.mux.Handle("POST /services/KntInventoryService/GetInventory",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
+	c.mux.Handle("POST /services/KntInventoryService/GetUnlockables",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
+	c.mux.Handle("POST /services/KntInventoryService/AcquireUnlockable",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
+
+	// KntLeaderboardService
+	c.mux.Handle("POST /services/KntLeaderboardService/GetLeaderboards",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
+	c.mux.Handle("POST /services/KntLeaderboardService/GetFriendLeaderboards",
+		c.JWT.Middleware(http.HandlerFunc(c.handleHealth)))
 }
 
 // requestBaseURL reconstructs the scheme://host this server was reached at,
