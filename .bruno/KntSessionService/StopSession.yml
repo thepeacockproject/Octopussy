@@ -1,0 +1,33 @@
+info:
+  name: StopSession
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/services/KntSessionService/StopSession"
+  body:
+    type: json
+    data: |-
+      {
+        "gameTime": 13.37,
+        "score": 0,
+        "sessionId": "{{sessionId}}",
+        "scoreDetails": {
+          "Time": 0,
+          "Precision": 0,
+          "Flair": 0
+        }
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: missionId
+      value: 11ba6d05-0a5c-42a8-a53b-766e845d2404
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

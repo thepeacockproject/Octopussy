@@ -9,22 +9,32 @@ import (
 
 func (s *Store) GetSessionByID(ctx context.Context, sessionID string) (UserSession, error) {
 	var row UserSession
-	if err := s.db.WithContext(ctx).
+
+	err := s.db.WithContext(ctx).
 		Where("session_id = ?", sessionID).
-		First(&row).Error; err != nil {
+		First(&row).
+		Error
+
+	if err != nil {
 		return UserSession{}, fmt.Errorf("read session by id: %w", err)
 	}
+
 	return row, nil
 }
 
 func (s *Store) GetCurrentSessionByUser(ctx context.Context, userID string) (UserSession, error) {
 	var row UserSession
-	if err := s.db.WithContext(ctx).
+
+	err := s.db.WithContext(ctx).
 		Where("user_id = ?", userID).
 		Order("created_at DESC").
-		Find(&row).Error; err != nil {
+		Find(&row).
+		Error
+
+	if err != nil {
 		return row, fmt.Errorf("read current user session: %w", err)
 	}
+
 	return row, nil
 }
 
@@ -43,8 +53,12 @@ func (s *Store) CreateSession(ctx context.Context, user User, contractID string)
 		RankWas:          user.Rank,
 	}
 
-	if s.db.WithContext(ctx).
-		Create(&row).Error != nil {
+	err = s.db.
+		WithContext(ctx).
+		Create(&row).
+		Error
+
+	if err != nil {
 		return row, fmt.Errorf("create session: %w", err)
 	}
 

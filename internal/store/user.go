@@ -13,13 +13,17 @@ import (
 
 // SetUserXP sets a user's accumulated XP to an absolute value.
 func (s *Store) SetUserXP(ctx context.Context, userID string, xp int64) error {
-	err := s.db.WithContext(ctx).
+	err := s.db.
+		WithContext(ctx).
 		Model(&User{}).
 		Where("id = ?", userID).
-		Update("xp_earned", xp).Error
+		Update("xp_earned", xp).
+		Error
+
 	if err != nil {
 		return fmt.Errorf("set user xp: %w", err)
 	}
+
 	return nil
 }
 
@@ -27,18 +31,27 @@ func (s *Store) SetUserXP(ctx context.Context, userID string, xp int64) error {
 // than an error, matching a brand-new profile with no progression yet.
 func (s *Store) UserXP(ctx context.Context, userID string) (int64, error) {
 	var user User
-	err := s.db.WithContext(ctx).Select("xp_earned").First(&user, "id = ?", userID).Error
+
+	err := s.db.
+		WithContext(ctx).
+		Select("xp_earned").
+		First(&user, "id = ?", userID).
+		Error
+
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		return 0, nil
 	}
+
 	if err != nil {
 		return 0, fmt.Errorf("read user xp: %w", err)
 	}
+
 	return user.XPEarned, nil
 }
 
 func (s *Store) UpdateUser(ctx context.Context, user *User) error {
-	err := s.db.WithContext(ctx).
+	err := s.db.
+		WithContext(ctx).
 		Model(&User{}).
 		Where("id = ?", user.ID).
 		Updates(User{
@@ -46,17 +59,26 @@ func (s *Store) UpdateUser(ctx context.Context, user *User) error {
 			XPEarned:      user.XPEarned,
 			IntelCurrency: user.IntelCurrency,
 			Rank:          user.Rank,
-		}).Error
+		}).
+		Error
+
 	if err != nil {
 		return fmt.Errorf("update user: %w", err)
 	}
+
 	return nil
 }
 
 // User loads a user by ID.
 func (s *Store) User(ctx context.Context, userID string) (*User, error) {
 	var user User
-	return &user, s.db.WithContext(ctx).First(&user, "id = ?", userID).Error
+
+	err := s.db.
+		WithContext(ctx).
+		First(&user, "id = ?", userID).
+		Error
+
+	return &user, err
 }
 
 // EnsureUser makes sure a user and the given platform identity both exist,
@@ -78,6 +100,7 @@ func (s *Store) EnsureUser(ctx context.Context, userID, gamertag, platform, plat
 		if err := tx.Omit("User").Clauses(clause.OnConflict{DoNothing: true}).Create(&identity).Error; err != nil {
 			return fmt.Errorf("ensure user identity: %w", err)
 		}
+
 		return nil
 	})
 }
@@ -141,5 +164,6 @@ func (s *Store) ResolveProfiles(ctx context.Context, ids []string) ([]ResolvedPr
 			LinkedAccounts: accounts,
 		})
 	}
+
 	return out, nil
 }

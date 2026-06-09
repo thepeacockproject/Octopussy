@@ -1,11 +1,11 @@
 info:
-  name: GetChallengeMosaic
+  name: GetInventory
   type: http
-  seq: 4
+  seq: 1
 
 http:
   method: POST
-  url: "{{baseUrl}}/services/KntProgressionService/GetChallengeMosaic"
+  url: "{{baseUrl}}/services/KntInventoryService/GetInventory"
   body:
     type: json
     data: "{}"

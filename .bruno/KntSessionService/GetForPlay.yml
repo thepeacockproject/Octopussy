@@ -1,7 +1,7 @@
 info:
   name: GetForPlay
   type: http
-  seq: 2
+  seq: 4
 
 http:
   method: POST
@@ -18,6 +18,9 @@ runtime:
   variables:
     - name: missionId
       value: 11ba6d05-0a5c-42a8-a53b-766e845d2404
+  scripts:
+    - type: after-response
+      code: bru.setVar("sessionId",res.body.Dynamic.NewSessionId)
 
 settings:
   encodeUrl: true

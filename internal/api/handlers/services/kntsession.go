@@ -69,27 +69,24 @@ type getForPlayStatic struct {
 }
 
 type getForPlayDynamic struct {
-	NewSessionId  string                `json:"NewSessionId"`
-	SessionResult interface{}           `json:"SessionResult"`
-	Progression   getForPlayProgression `json:"Progression"`
+	NewSessionId  string                 `json:"NewSessionId"`
+	SessionResult interface{}            `json:"SessionResult"`
+	Progression   *getForPlayProgression `json:"Progression"`
 }
 
 type getForPlayProgression struct {
-	Group interface{} `json:"Group"`
-	Hub   struct {
-		Previous intelAndRank `json:"Previous"`
-		Current  intelAndRank `json:"Current"`
-	} `json:"Hub"`
+	Group interface{}    `json:"Group"`
+	Hub   *getForPlayHub `json:"Hub"`
+}
+
+type getForPlayHub struct {
+	Previous intelAndRank `json:"Previous"`
+	Current  intelAndRank `json:"Current"`
 }
 
 type getForPlayResponse struct {
 	Static  getForPlayStatic  `json:"Static"`
 	Dynamic getForPlayDynamic `json:"Dynamic"`
-}
-
-type getForPlayProgressionWithFuture struct {
-	Previous intelAndRank `json:"Previous"`
-	Current  intelAndRank `json:"Current"`
 }
 
 type completeActiveChallengeRequest struct {
@@ -145,9 +142,12 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 		Dynamic: getForPlayDynamic{
 			NewSessionId:  session.SessionID,
 			SessionResult: nil, // TODO?
-			Progression: getForPlayProgression{
+			Progression: &getForPlayProgression{
 				Group: nil,
-				Hub:   getForPlayProgressionWithFuture{Current: ir, Previous: ir},
+				Hub: &getForPlayHub{
+					Current:  ir,
+					Previous: ir,
+				},
 			},
 		},
 	})
@@ -161,10 +161,12 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// TODO: If sessionId is 00000000-0000-0000-0000-000000000000, don't grants unlocks?
+
 	ctx := r.Context()
 	profileId := profileIDFor(r)
 
-	session, err := c.Store.GetSessionByID(ctx, body.SessionID)
+	session, err := c.Store.GetCurrentSessionByUser(ctx, profileId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -192,12 +194,10 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 		c.Store.CreateUnlockable(ctx, profileId, unlockable)
 	}
 
-	// TODO: This should be the state before the session, since challenges are applied immediately.
-	// Or we should apply challenges later. Figure out what the real game does.
 	oldProgression := stopSessionProgressionItem{
-		user.XPEarned,
-		user.Rank,
-		user.IntelCurrency,
+		int64(session.XpWas),
+		session.RankWas,
+		session.IntelCurrencyWas,
 	}
 
 	user.XPEarned += rewards.Xp
@@ -214,7 +214,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 
 	// TODO: Get previous score from leaderboards
 	c.WriteJSON(w, http.StatusOK, stopSessionResponse{
-		SessionID:              body.SessionID,
+		SessionID:              session.SessionID,
 		Rewards:                rewards,
 		AnyChallengesCompleted: false,
 		MissionId:              session.ContractID,

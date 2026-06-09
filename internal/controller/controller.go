@@ -11,7 +11,6 @@ import (
 
 	"github.com/thepeacockproject/Octopussy/internal/content"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
-	"github.com/thepeacockproject/Octopussy/internal/logging"
 	"github.com/thepeacockproject/Octopussy/internal/store"
 )
 
@@ -24,6 +23,8 @@ type Controller struct {
 
 	mux *http.ServeMux
 }
+
+type middleware func(http.Handler) http.Handler
 
 // New builds a Controller and registers its routes.
 func New(log *slog.Logger, jwtMgr *jwt.Manager, st *store.Store, gameContent *content.Store) *Controller {
@@ -44,10 +45,18 @@ func (c *Controller) Mux() *http.ServeMux {
 	return c.mux
 }
 
-// Handler returns the fully wrapped http.Handler, with request logging and
-// panic recovery applied to every route.
-func (c *Controller) Handler() http.Handler {
-	return logging.HTTPMiddleware(c.Log)(c.mux)
+func (c *Controller) Handler(middlewares ...middleware) http.Handler {
+	var handler http.Handler = c.mux
+
+	for i := len(middlewares) - 1; i >= 0; i-- {
+		if middlewares[i] == nil {
+			continue
+		}
+
+		handler = middlewares[i](handler)
+	}
+
+	return handler
 }
 
 // WriteJSON serializes v as JSON with the given status code.

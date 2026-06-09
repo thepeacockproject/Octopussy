@@ -1,10 +1,15 @@
 package logging
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"log/slog"
 	"net/http"
+	"strings"
 	"time"
+
+	"github.com/thepeacockproject/Octopussy/internal/shared"
 )
 
 // statusRecorder wraps http.ResponseWriter to capture the status code and the
@@ -12,17 +17,18 @@ import (
 type statusRecorder struct {
 	http.ResponseWriter
 	status int
-	bytes  int
+	bytes  []byte
 }
 
-func (r *statusRecorder) WriteStatus(code int) {
+func (r *statusRecorder) WriteHeader(code int) {
 	r.status = code
 	r.ResponseWriter.WriteHeader(code)
 }
 
 func (r *statusRecorder) Write(b []byte) (int, error) {
 	n, err := r.ResponseWriter.Write(b)
-	r.bytes += n
+	r.bytes = append(r.bytes, b...)
+
 	return n, err
 }
 
@@ -33,23 +39,31 @@ func (r *statusRecorder) Flush() {
 	}
 }
 
-// HTTPMiddleware logs every request once it finishes, reporting the method,
-// path, status code, byte count, and duration.
-func HTTPMiddleware(logger *slog.Logger) func(http.Handler) http.Handler {
+func HTTPMiddleware() func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			rec := &statusRecorder{ResponseWriter: w}
+
+			next.ServeHTTP(rec, r)
+		})
+	}
+}
+
+func HTTPMiddlewareSimple(logger *slog.Logger) func(http.Handler) http.Handler {
 	// Detect color once from the handler so request logs match the logger.
 	colored := isColorLogger(logger)
 
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			rec := w.(*statusRecorder)
 			start := time.Now()
-			rec := &statusRecorder{ResponseWriter: w}
 
 			defer func() {
 				if rv := recover(); rv != nil {
 					if rec.status == 0 {
-						// TODO: Throw error instead? Endpoint should properly set a status code.
-						rec.WriteStatus(http.StatusInternalServerError)
+						rec.WriteHeader(http.StatusInternalServerError)
 					}
+
 					logger.Error("panic recovered while serving request",
 						slog.String("method", r.Method),
 						slog.String("path", r.URL.Path),
@@ -60,18 +74,58 @@ func HTTPMiddleware(logger *slog.Logger) func(http.Handler) http.Handler {
 				method := colorize(methodColor(r.Method), r.Method, colored)
 				path := colorize(colUnderline, r.URL.Path, colored)
 
-				logger.LogAttrs(r.Context(), statusLevel(rec.status),
+				logger.LogAttrs(
+					r.Context(),
+					statusLevel(rec.status),
 					fmt.Sprintf("%s %s", method, path),
 					slog.Int("status", rec.status),
-					slog.Int("bytes", rec.bytes),
+					slog.Int("bytes", len(rec.bytes)),
 					slog.String("remote", r.RemoteAddr),
 					slog.Duration("duration", time.Since(start)),
 				)
 			}()
 
-			next.ServeHTTP(rec, r)
+			next.ServeHTTP(w, r)
 		})
 	}
+}
+
+func HTTPMiddlewareDetailed(logger *slog.Logger) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			rec := w.(*statusRecorder)
+
+			// TODO: Make this smarter
+			requestBody, _ := io.ReadAll(r.Body)
+			r.Body = io.NopCloser(bytes.NewBuffer(requestBody))
+
+			next.ServeHTTP(w, r)
+
+			logger.DebugContext(
+				r.Context(),
+				fmt.Sprintf(
+					"%s %s\r\n%s%s\r\n\r\n[Response: %d]\r\n%s%s",
+					r.Method,
+					r.URL.Path,
+					printHeaders(r.Header),
+					shared.ShortHandIf(len(requestBody) == 0, "<empty>", string(requestBody)),
+					rec.status,
+					printHeaders(w.Header()),
+					shared.ShortHandIf(len(rec.bytes) == 0, "<empty>", string(rec.bytes)),
+				),
+			)
+		})
+	}
+}
+
+func printHeaders(headers http.Header) string {
+	var b strings.Builder
+
+	for k, v := range headers {
+		b.WriteString(fmt.Sprintf("%s: %s\r\n", k, strings.Join(v, ", ")))
+	}
+
+	return b.String()
 }
 
 // statusLevel maps an HTTP status to a log level so 5xx surfaces as errors.

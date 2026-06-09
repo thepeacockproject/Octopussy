@@ -16,9 +16,13 @@ import (
 // defaults via SeedCustomProfileDefaults.
 func (s *Store) ReadCustomProfileData(ctx context.Context, userID string) (map[string]string, error) {
 	var rows []CustomProfileData
-	if err := s.db.WithContext(ctx).
+
+	err := s.db.WithContext(ctx).
 		Where("user_id = ?", userID).
-		Find(&rows).Error; err != nil {
+		Find(&rows).
+		Error
+
+	if err != nil {
 		return nil, fmt.Errorf("read custom profile data: %w", err)
 	}
 
@@ -26,13 +30,15 @@ func (s *Store) ReadCustomProfileData(ctx context.Context, userID string) (map[s
 	for _, row := range rows {
 		out[row.Key] = row.Data
 	}
+
 	return out, nil
 }
 
 // WriteCustomProfileData upserts a single key/value pair for a user. This is the
 // persistence behind CustomProfileDataService/Write.
 func (s *Store) WriteCustomProfileData(ctx context.Context, userID, key, data string) error {
-	rec := CustomProfileData{UserID: userID, Key: key, Data: data}
+	row := CustomProfileData{UserID: userID, Key: key, Data: data}
+
 	// Omit the User association so the upsert never touches the users table.
 	err := s.db.WithContext(ctx).
 		Omit("User").
@@ -40,24 +46,33 @@ func (s *Store) WriteCustomProfileData(ctx context.Context, userID, key, data st
 			Columns:   []clause.Column{{Name: "user_id"}, {Name: "key"}},
 			DoUpdates: clause.AssignmentColumns([]string{"data"}),
 		}).
-		Create(&rec).Error
+		Create(&row).
+		Error
+
 	if err != nil {
 		return fmt.Errorf("write custom profile data: %w", err)
 	}
+
 	return nil
 }
 
 // CountCustomProfileData reports how many key/value pairs a user has stored. It
 // is used to decide whether a profile is brand new and needs default seeding.
 func (s *Store) CountCustomProfileData(ctx context.Context, userID string) (int, error) {
-	var n int64
-	if err := s.db.WithContext(ctx).
+	var count int64
+
+	err := s.db.
+		WithContext(ctx).
 		Model(&CustomProfileData{}).
 		Where("user_id = ?", userID).
-		Count(&n).Error; err != nil {
+		Count(&count).
+		Error
+
+	if err != nil {
 		return 0, fmt.Errorf("count custom profile data: %w", err)
 	}
-	return int(n), nil
+
+	return int(count), nil
 }
 
 // SeedCustomProfileDefaults writes the given defaults for a user, but only for
@@ -77,9 +92,12 @@ func (s *Store) SeedCustomProfileDefaults(ctx context.Context, userID string, de
 	err := s.db.WithContext(ctx).
 		Omit("User").
 		Clauses(clause.OnConflict{DoNothing: true}).
-		Create(&recs).Error
+		Create(&recs).
+		Error
+
 	if err != nil {
 		return fmt.Errorf("seed custom profile defaults: %w", err)
 	}
+
 	return nil
 }

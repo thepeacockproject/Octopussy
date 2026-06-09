@@ -11,7 +11,12 @@ func (s *Store) CreateUnlockable(ctx context.Context, userId string, unlockableI
 		UnlockableID: unlockableId,
 	}
 
-	if s.db.WithContext(ctx).Create(&row).Error != nil {
+	err := s.db.
+		WithContext(ctx).
+		Create(&row).
+		Error
+
+	if err != nil {
 		return row, fmt.Errorf("failed to create unlockableId %s for userId %s", unlockableId, userId)
 	}
 
@@ -20,10 +25,12 @@ func (s *Store) CreateUnlockable(ctx context.Context, userId string, unlockableI
 
 func (s *Store) GetUnlockables(ctx context.Context, userId string) ([]UserUnlockable, error) {
 	var rows []UserUnlockable
+
 	err := s.db.
 		WithContext(ctx).
 		Where("user_id = ?", userId).
-		Find(&rows)
+		Find(&rows).
+		Error
 
 	if err != nil {
 		return rows, fmt.Errorf("failed to retrieve any unlockables for userId %s", userId)
@@ -34,10 +41,12 @@ func (s *Store) GetUnlockables(ctx context.Context, userId string) ([]UserUnlock
 
 func (s *Store) GetUnlockableById(ctx context.Context, userId string, unlockableId string) (UserUnlockable, error) {
 	var row UserUnlockable
+
 	err := s.db.
 		WithContext(ctx).
 		Where("user_id = ? AND unlockable_id", userId, unlockableId).
-		First(&row)
+		First(&row).
+		Error
 
 	if err != nil {
 		return row, fmt.Errorf("failed to retrieve unlockable %s for userId %s", unlockableId, userId)

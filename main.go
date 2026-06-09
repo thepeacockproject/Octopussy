@@ -6,6 +6,8 @@ import (
 	"context"
 	"embed"
 	"errors"
+	"fmt"
+	"io"
 	"io/fs"
 	"log/slog"
 	"net/http"
@@ -20,6 +22,7 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 	"github.com/thepeacockproject/Octopussy/internal/logging"
+	"github.com/thepeacockproject/Octopussy/internal/shared"
 	"github.com/thepeacockproject/Octopussy/internal/store"
 )
 
@@ -45,7 +48,16 @@ func run() error {
 		level = slog.LevelDebug
 	}
 
-	log := logging.New(logging.Options{Level: level})
+	logOptions := logging.Options{
+		Level: level,
+	}
+
+	if dev {
+		logFile, _ := newLogFile()
+		logOptions.Writers = []io.Writer{logFile}
+	}
+
+	log := logging.New(logOptions)
 
 	// An RSA signing key may be provided as a PEM file for a stable kid across
 	// restarts; otherwise an ephemeral key is generated.
@@ -112,8 +124,12 @@ func run() error {
 	}
 
 	srv := &http.Server{
-		Addr:              addr,
-		Handler:           ctrl.Handler(),
+		Addr: addr,
+		Handler: ctrl.Handler(
+			logging.HTTPMiddleware(),
+			logging.HTTPMiddlewareSimple(log),
+			shared.ShortHandIf(dev, logging.HTTPMiddlewareDetailed(log), nil),
+		),
 		ReadHeaderTimeout: 10 * time.Second,
 		ReadTimeout:       30 * time.Second,
 		WriteTimeout:      30 * time.Second,
@@ -162,4 +178,19 @@ func envBool(key string, def bool) bool {
 	default:
 		return def
 	}
+}
+
+func newLogFile() (*os.File, error) {
+	filename := fmt.Sprintf(
+		"logs/debug-%s.log",
+		time.Now().Format("2006-01-02_15-04-05"),
+	)
+
+	os.Mkdir("logs", 0755)
+
+	return os.OpenFile(
+		filename,
+		os.O_CREATE|os.O_WRONLY,
+		0644,
+	)
 }

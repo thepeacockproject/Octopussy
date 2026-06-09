@@ -35,15 +35,14 @@ type Options struct {
 	// Level is the minimum level that will be emitted. Defaults to LevelInfo.
 	Level slog.Level
 	// Writer is where log lines are written. Defaults to os.Stdout.
-	Writer io.Writer
+	Writers []io.Writer
 }
 
-// New returns a *slog.Logger backed by the pretty console handler.
 func New(opts Options) *slog.Logger {
-	w := opts.Writer
-	if w == nil {
-		w = os.Stdout
-	}
+	writers := []io.Writer{os.Stdout}
+	writers = append(writers, opts.Writers...)
+
+	w := io.MultiWriter(writers...)
 
 	return slog.New(&prettyHandler{
 		w:     w,

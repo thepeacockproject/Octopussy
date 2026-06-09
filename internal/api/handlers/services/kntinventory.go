@@ -10,13 +10,13 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/store"
 )
 
-//type getInventoryRequest struct {
-//	ProfileID string `json:"profileId"`
-//}
+type getInventoryRequest struct {
+	ProfileID string `json:"profileId"`
+}
 
 type getInventoryResponse struct {
 	UnlockableItems []unlockableItem `json:"UnlockableItems"`
-	Wallet          wallet           `json:"wallet"`
+	Wallet          wallet           `json:"Wallet"`
 }
 
 type unlockableItem struct {
@@ -27,16 +27,16 @@ type unlockableItem struct {
 }
 
 type wallet struct {
-	Currency currency `json:"currency"`
+	Currency currency `json:"Currency"`
 }
 
 type currency struct {
 	Intel int `json:"Intel"`
 }
 
-//type getUnlockablesRequest struct {
-//	ProfileID string `json:"profileId"`
-//}
+type getUnlockablesRequest struct {
+	ProfileID string `json:"profileId"`
+}
 
 //type getUnlockablesResponse = []content.UnlockableWithState
 
@@ -48,6 +48,12 @@ type acquireUnlockableRequest struct {
 }
 
 func (c *Handler) handleGetInventory(w http.ResponseWriter, r *http.Request) {
+	_, ok := shared.ParseBody[getInventoryRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	ctx := r.Context()
 	profileId := profileIDFor(r)
 
@@ -83,6 +89,12 @@ func (c *Handler) handleGetInventory(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *Handler) handleGetUnlockables(w http.ResponseWriter, r *http.Request) {
+	_, ok := shared.ParseBody[getUnlockablesRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	ctx := r.Context()
 	profileId := profileIDFor(r)
 
