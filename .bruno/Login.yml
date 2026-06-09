@@ -1,0 +1,26 @@
+info:
+  name: Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/oauth/token?grant_type=external_steam&steam_userid=1337"
+  params:
+    - name: grant_type
+      value: external_steam
+      type: query
+    - name: steam_userid
+      value: "1337"
+      type: query
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setVar("authorizationToken", res.body.access_token)
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

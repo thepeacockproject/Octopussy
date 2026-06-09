@@ -37,6 +37,22 @@ func (s *Store) UserXP(ctx context.Context, userID string) (int64, error) {
 	return user.XPEarned, nil
 }
 
+func (s *Store) UpdateUser(ctx context.Context, user *User) error {
+	err := s.db.WithContext(ctx).
+		Model(&User{}).
+		Where("id = ?", user.ID).
+		Updates(User{
+			Gamertag:      user.Gamertag,
+			XPEarned:      user.XPEarned,
+			IntelCurrency: user.IntelCurrency,
+			Rank:          user.Rank,
+		}).Error
+	if err != nil {
+		return fmt.Errorf("update user: %w", err)
+	}
+	return nil
+}
+
 // User loads a user by ID.
 func (s *Store) User(ctx context.Context, userID string) (*User, error) {
 	var user User

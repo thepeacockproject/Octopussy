@@ -1,10 +1,10 @@
 package services
 
 import (
-	"encoding/json"
 	"log/slog"
 	"net/http"
 
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 )
 
@@ -93,12 +93,13 @@ func (c *Handler) handleCustomProfileReadAll(w http.ResponseWriter, r *http.Requ
 // handleCustomProfileWrite upserts a single key/value pair and answers 200 OK
 // with an empty body, matching the game's expectation.
 func (c *Handler) handleCustomProfileWrite(w http.ResponseWriter, r *http.Request) {
-	var req customProfileWriteRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+	body, ok := shared.ParseBody[customProfileWriteRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	if req.Key == "" {
+
+	if body.Key == "" {
 		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "missing key"})
 		return
 	}
@@ -106,11 +107,11 @@ func (c *Handler) handleCustomProfileWrite(w http.ResponseWriter, r *http.Reques
 	// The token is authoritative for the profile id; the body also carries one,
 	// but we only trust it as a fallback when the token has none (dev).
 	profileID := profileIDFor(r)
-	if profileID == defaultProfileID && req.ProfileID != "" {
-		profileID = req.ProfileID
+	if profileID == defaultProfileID && body.ProfileID != "" {
+		profileID = body.ProfileID
 	}
 
-	if err := c.Store.WriteCustomProfileData(r.Context(), profileID, req.Key, req.Data); err != nil {
+	if err := c.Store.WriteCustomProfileData(r.Context(), profileID, body.Key, body.Data); err != nil {
 		c.Log.Error("custom profile write failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
@@ -118,7 +119,8 @@ func (c *Handler) handleCustomProfileWrite(w http.ResponseWriter, r *http.Reques
 
 	c.Log.Debug("custom profile write",
 		slog.String("profileId", profileID),
-		slog.String("key", req.Key),
+		slog.String("key", body.Key),
 	)
+
 	w.WriteHeader(http.StatusOK)
 }

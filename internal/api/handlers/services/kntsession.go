@@ -1,9 +1,9 @@
 package services
 
 import (
-	"encoding/json"
 	"net/http"
 
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/content"
 )
 
@@ -12,7 +12,7 @@ type intelAndRank struct {
 	Rank  int `json:"Rank"`
 }
 
-type stopSessionPayload struct {
+type stopSessionRequest struct {
 	GameTime     float64                 `json:"gameTime"`
 	Score        int                     `json:"score"`
 	SessionID    string                  `json:"sessionId"`
@@ -20,20 +20,21 @@ type stopSessionPayload struct {
 }
 
 type stopSessionResponse struct {
-	SessionID              string                 `json:"SessionId"`
-	Rewards                stopSessionRewards     `json:"Rewards"`
-	AnyChallengesCompleted bool                   `json:"AnyChallengesCompleted"`
-	TotalRewards           stopSessionRewards     `json:"TotalRewards"`
-	CompletionTime         float64                `json:"CompletionTime"`
-	SessionProgression     stopSessionProgression `json:"SessionProgression"`
-	StopReason             int                    `json:"StopReason"`
-	MissionType            interface{}            `json:"MissionType"`
-	MissionTier            int                    `json:"MissionTier"`
-	MissionProgressions    []interface{}          `json:"MissionProgressions"`
-	Score                  int                    `json:"Score"`
-	ScoreDetails           interface{}            `json:"ScoreDetails"`
-	ScoreDetailsDiff       interface{}            `json:"ScoreDetailsDiff"`
-	PreviousScore          int                    `json:"PreviousScore"`
+	SessionID              string                   `json:"SessionId"`
+	Rewards                stopSessionRewards       `json:"Rewards"`
+	AnyChallengesCompleted bool                     `json:"AnyChallengesCompleted"`
+	MissionId              string                   `json:"MissionId"`
+	TotalRewards           stopSessionRewards       `json:"TotalRewards"`
+	CompletionTime         float64                  `json:"CompletionTime"`
+	SessionProgression     stopSessionProgression   `json:"SessionProgression"`
+	StopReason             int                      `json:"StopReason"`
+	MissionType            *interface{}             `json:"MissionType"`
+	MissionTier            int                      `json:"MissionTier"`
+	MissionProgressions    []interface{}            `json:"MissionProgressions"`
+	Score                  int                      `json:"Score"`
+	ScoreDetails           *stopSessionScoreDetails `json:"ScoreDetails"`
+	ScoreDetailsDiff       *stopSessionScoreDetails `json:"ScoreDetailsDiff"`
+	PreviousScore          int                      `json:"PreviousScore"`
 }
 
 type stopSessionScoreDetails struct {
@@ -43,15 +44,15 @@ type stopSessionScoreDetails struct {
 }
 
 type stopSessionRewards struct {
-	Xp          int      `json:"Xp"`
+	Xp          int64    `json:"Xp"`
 	Intel       int      `json:"Intel"`
 	Unlockables []string `json:"Unlockables"` // TODO: THIS TYPE IS ALMOST CERTAINLY WRONG!!
 }
 
 type stopSessionProgressionItem struct {
-	Xp    int `json:"Xp"`
-	Level int `json:"Level"`
-	Intel int `json:"Intel"`
+	Xp    int64 `json:"Xp"`
+	Level int   `json:"Level"`
+	Intel int   `json:"Intel"`
 }
 
 type stopSessionProgression struct {
@@ -59,7 +60,7 @@ type stopSessionProgression struct {
 	New stopSessionProgressionItem `json:"New"`
 }
 
-type getForPlayPayload struct {
+type getForPlayRequest struct {
 	MissionId string `json:"missionId"`
 }
 
@@ -91,16 +92,33 @@ type getForPlayProgressionWithFuture struct {
 	Current  intelAndRank `json:"Current"`
 }
 
+type completeActiveChallengeRequest struct {
+	ProfileId   string `json:"profileId"`
+	ChallengeId string `json:"challengeId"`
+}
+
+type completeActiveChallengeResponse struct {
+	CompletedChallengeIds  []string                `json:"CompletedChallengeIds"`
+	UpdatedChallengeStates []updatedChallengeState `json:"UpdatedChallengeStates"`
+}
+
+type updatedChallengeState struct {
+	Id              string `json:"Id"`
+	CompletionState string `json:"CompletionState"`
+	ProgressCurrent string `json:"ProgressCurrent"`
+	ProgressMax     string `json:"ProgressMax"`
+}
+
 func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
-	var params getForPlayPayload
-	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
-		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+	body, ok := shared.ParseBody[getForPlayRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	mission, contractFound := c.Content.Contract(params.MissionId)
+	mission, contractFound := c.Content.Contract(body.MissionId)
 	if !contractFound {
-		c.WriteJSON(w, http.StatusNotFound, map[string]string{"error": "could not find mission" + params.MissionId})
+		c.WriteJSON(w, http.StatusNotFound, map[string]string{"error": "could not find mission" + body.MissionId})
 		return
 	}
 
@@ -111,7 +129,7 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := r.Context()
-	session, err := c.Store.CreateSession(ctx, *user, params.MissionId)
+	session, err := c.Store.CreateSession(ctx, *user, body.MissionId)
 
 	if err != nil {
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
@@ -135,30 +153,129 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// TODO: Cleanup
 func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
-	var params stopSessionPayload
-	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
-		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+	body, ok := shared.ParseBody[stopSessionRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
+	ctx := r.Context()
+	profileId := profileIDFor(r)
+
+	session, err := c.Store.GetSessionByID(ctx, body.SessionID)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	mission, found := c.Content.Contract(session.ContractID)
+	if !found {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	user, err := c.Store.User(ctx, profileId)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	rewards := stopSessionRewards{
+		Xp:          mission.Gameplay.Rewards.Xp,
+		Intel:       mission.Gameplay.Rewards.Intel,
+		Unlockables: mission.Gameplay.Rewards.Unlockables,
+	}
+
+	for _, unlockable := range rewards.Unlockables {
+		c.Store.CreateUnlockable(ctx, profileId, unlockable)
+	}
+
+	// TODO: This should be the state before the session, since challenges are applied immediately.
+	// Or we should apply challenges later. Figure out what the real game does.
+	oldProgression := stopSessionProgressionItem{
+		user.XPEarned,
+		user.Rank,
+		user.IntelCurrency,
+	}
+
+	user.XPEarned += rewards.Xp
+	user.IntelCurrency += rewards.Intel
+	user.Rank = c.Content.LevelForXP(user.XPEarned)
+
+	c.Store.UpdateUser(ctx, user)
+
+	newProgression := stopSessionProgressionItem{
+		user.XPEarned,
+		user.Rank,
+		user.IntelCurrency,
+	}
+
+	// TODO: Get previous score from leaderboards
 	c.WriteJSON(w, http.StatusOK, stopSessionResponse{
-		SessionID: params.SessionID,
-		// Rewards
+		SessionID:              body.SessionID,
+		Rewards:                rewards,
 		AnyChallengesCompleted: false,
-		// TotalRewards?
-		CompletionTime: params.GameTime,
+		MissionId:              session.ContractID,
+		TotalRewards:           rewards,
+		CompletionTime:         body.GameTime,
 		SessionProgression: stopSessionProgression{
-			Old: stopSessionProgressionItem{}, // TODO
-			New: stopSessionProgressionItem{}, // TODO
+			Old: oldProgression,
+			New: newProgression,
 		},
 		StopReason:          0,
 		MissionType:         nil,
 		MissionTier:         0,
 		MissionProgressions: nil,
-		Score:               params.Score,
-		ScoreDetails:        nil,
+		Score:               body.Score,
+		ScoreDetails:        &body.ScoreDetails,
 		ScoreDetailsDiff:    nil,
 		PreviousScore:       0,
+	})
+}
+
+func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.Request) {
+	body, ok := shared.ParseBody[completeActiveChallengeRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	ctx := r.Context()
+	profileId := profileIDFor(r)
+
+	_, err := c.Store.CreateChallenge(ctx, profileId, body.ChallengeId)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	challenge, ok := c.Content.Challenge(body.ChallengeId)
+	if !ok {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	for _, unlockable := range challenge.KntDefinition.Rewards.Unlockables {
+		c.Store.CreateUnlockable(ctx, profileId, unlockable)
+	}
+
+	user, err := c.Store.User(ctx, profileId)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	user.XPEarned += challenge.KntDefinition.Rewards.Xp
+	user.IntelCurrency += challenge.KntDefinition.Rewards.Intel
+	user.Rank = c.Content.LevelForXP(user.XPEarned)
+
+	c.Store.UpdateUser(ctx, user)
+
+	// TODO: Server-side has information about related challenges not in JSON, eg. completionist, infiltration and global challenges.
+	c.WriteJSON(w, http.StatusOK, completeActiveChallengeResponse{
+		CompletedChallengeIds:  []string{},
+		UpdatedChallengeStates: []updatedChallengeState{},
 	})
 }

@@ -1,9 +1,10 @@
 package services
 
 import (
-	"encoding/json"
 	"log/slog"
 	"net/http"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 )
 
 // SharedProfileService exposes public-facing profile data (gamertag and linked
@@ -33,13 +34,13 @@ type resolvedProfileResponse struct {
 // each requested profile id, preserving request order and skipping ids that
 // don't resolve to a known user.
 func (c *Handler) handleResolveProfiles(w http.ResponseWriter, r *http.Request) {
-	var req resolveProfilesRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+	body, ok := shared.ParseBody[resolveProfilesRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	profiles, err := c.Store.ResolveProfiles(r.Context(), req.ProfileIDs)
+	profiles, err := c.Store.ResolveProfiles(r.Context(), body.ProfileIDs)
 	if err != nil {
 		c.Log.Error("resolve profiles failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
@@ -56,7 +57,7 @@ func (c *Handler) handleResolveProfiles(w http.ResponseWriter, r *http.Request) 
 	}
 
 	c.Log.Debug("resolve profiles",
-		slog.Int("requested", len(req.ProfileIDs)),
+		slog.Int("requested", len(body.ProfileIDs)),
 		slog.Int("resolved", len(out)),
 	)
 	c.WriteJSON(w, http.StatusOK, out)

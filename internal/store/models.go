@@ -6,6 +6,19 @@ import "time"
 // in migrations.go - AutoMigrate is only ever invoked from inside a versioned
 // migration, never implicitly at startup, so the schema stays reproducible.
 
+type UserUnlockable struct {
+	UserID       string `gorm:"primaryKey;column:user_id"`
+	UnlockableID string `gorm:"primaryKey;column:unlockable_id"`
+	User         User   `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
+}
+
+type UserChallenge struct {
+	UserID      string `gorm:"primaryKey;column:user_id"`
+	ChallengeID string `gorm:"primaryKey;column:challenge_id"`
+	Progress    int    `gorm:"column:progress_current"`
+	User        User   `gorm:"foreignKey:UserID;references:ID;constraint:OnDelete:CASCADE"`
+}
+
 // CustomProfileData is one entry in a profile's CustomProfileDataService bag: an
 // opaque string value stored under a key, scoped to a user. The primary key is
 // the (user_id, key) pair, and user_id is a foreign key into users.id.

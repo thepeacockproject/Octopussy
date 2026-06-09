@@ -1,6 +1,19 @@
 package shared
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
+
+func ParseBody[T any](r *http.Request) (T, bool) {
+	var v T
+
+	if err := json.NewDecoder(r.Body).Decode(&v); err != nil {
+		return v, false
+	}
+
+	return v, true
+}
 
 // RequestBaseURL reconstructs the scheme://host this server was reached at,
 // honoring reverse-proxy headers. It is used to point config responses back at

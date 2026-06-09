@@ -51,7 +51,7 @@ func (c *Handler) RegisterRoutes() {
 	mux.Handle("POST /services/KntProgressionService/GetChallenges",
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetChallenges)))
 	mux.Handle("POST /services/KntProgressionService/GetChallengeMosaic",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetChallengeMosaic)))
 
 	// KntSessionService: sessions.
 	mux.Handle("POST /services/KntSessionService/GetForPlay",
@@ -59,15 +59,15 @@ func (c *Handler) RegisterRoutes() {
 	mux.Handle("POST /services/KntSessionService/StopSession",
 		c.JWT.Middleware(http.HandlerFunc(c.handleStopSession)))
 	mux.Handle("POST /services/KntSessionService/CompleteActiveChallenge",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleCompleteActiveChallenge)))
 
 	// KntInventoryService
 	mux.Handle("POST /services/KntInventoryService/GetInventory",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetInventory)))
 	mux.Handle("POST /services/KntInventoryService/GetUnlockables",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetUnlockables)))
 	mux.Handle("POST /services/KntInventoryService/AcquireUnlockable",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleAcquireUnlockable)))
 
 	// KntLeaderboardService
 	mux.Handle("POST /services/KntLeaderboardService/GetLeaderboards",

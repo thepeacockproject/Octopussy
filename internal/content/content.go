@@ -18,6 +18,8 @@ import (
 	"path"
 	"sort"
 	"strings"
+
+	"github.com/samber/lo"
 )
 
 // MissionList groups mission ids under a named menu list (e.g. "KNT_Missions").
@@ -91,14 +93,15 @@ type MissionGroup struct {
 // expected shape of a freshly loaded Challenge.
 type Challenge struct {
 	Definition    Definition    `json:"Definition"`
+	State         State         `json:"State"`
 	KntDefinition KntDefinition `json:"KntDefinition"`
 }
 
 // TODO: Move this to another file?
 type ChallengeWithState struct {
 	Challenge
-	State    State    `json:"State"`
-	KntState KntState `json:"KntState"`
+	State    StateWithState `json:"State"`
+	KntState KntState       `json:"KntState"`
 }
 
 // Definition is the static, user-agnostic description of a challenge.
@@ -108,13 +111,31 @@ type Definition struct {
 	Description string `json:"Description"`
 }
 
+type CompletionState int
+
+const (
+	CompletionState_NotCompleted CompletionState = 1
+	CompletionState_Completed    CompletionState = 2
+)
+
+type UnlockState int
+
+const (
+	UnlockState_Locked   UnlockState = 0
+	UnlockState_Unlocked UnlockState = 1
+)
+
 // State is the per-user progress on a challenge. It is not part of the static
 // data and is populated for the requesting player.
 type State struct {
-	Id              string `json:"Id"`
-	CompletionState int    `json:"CompletionState"`
-	ProgressCurrent int    `json:"ProgressCurrent"`
-	ProgressMax     int    `json:"ProgressMax"`
+	Id          string `json:"Id"`
+	ProgressMax int    `json:"ProgressMax"`
+}
+
+type StateWithState struct {
+	State
+	CompletionState CompletionState `json:"CompletionState"`
+	ProgressCurrent int             `json:"ProgressCurrent"`
 }
 
 // KntDefinition is the KNT-specific static metadata for a challenge: tags,
@@ -147,42 +168,41 @@ type KntState struct {
 // holds only the static, user-agnostic fields; the per-user UnlockableState is
 // absent here and carried by UnlockablesWithState.
 type Unlockable struct {
-	Title              string   `json:"Title"`
-	Description        string   `json:"Description"`
-	Image              string   `json:"Image"`
-	Comment            string   `json:"Comment"`
-	HighResImage       string   `json:"HighResImage"`
-	FeaturedImage      string   `json:"FeaturedImage"`
-	IsFeatured         bool     `json:"IsFeatured"`
-	IsNew              bool     `json:"IsNew"`
-	RequiredCheckpoint string   `json:"RequiredCheckpoint"`
-	IntelShop          bool     `json:"IntelShop"`
-	RequiredLevel      int      `json:"RequiredLevel"`
-	PriceCurrency      string   `json:"PriceCurrency"`
-	PriceValue         int      `json:"PriceValue"`
-	GrantedItems       []string `json:"GrantedItems"`
-	Unlocks            []string `json:"Unlocks"`
-	Type               string   `json:"Type"`
-	Category           string   `json:"Category"`
+	Title              string          `json:"Title"`
+	Description        string          `json:"Description"`
+	Image              string          `json:"Image"`
+	Comment            string          `json:"Comment"`
+	HighResImage       string          `json:"HighResImage"`
+	FeaturedImage      string          `json:"FeaturedImage"`
+	IsFeatured         bool            `json:"IsFeatured"`
+	IsNew              bool            `json:"IsNew"`
+	RequiredCheckpoint string          `json:"RequiredCheckpoint"`
+	IntelShop          bool            `json:"IntelShop"`
+	UnlockableState    UnlockableState `json:"UnlockableState"`
+	RequiredLevel      int             `json:"RequiredLevel"`
+	PriceCurrency      string          `json:"PriceCurrency"`
+	PriceValue         int             `json:"PriceValue"`
+	GrantedItems       []string        `json:"GrantedItems"`
+	Unlocks            []string        `json:"Unlocks"`
+	Type               string          `json:"Type"`
+	Category           string          `json:"Category"`
 }
 
-// UnlockableState is the per-user state of an unlockable: its id and a numeric
-// ownership/unlock state. Like the challenge State, it is user-specific and is
-// populated for the requesting player rather than coming from the static file.
-// TODO: Move this to another file?
 type UnlockableState struct {
-	Id    string `json:"Id"`
-	State int    `json:"State"`
+	Id string `json:"Id"`
 }
 
-// UnlockablesWithState is an Unlockable paired with its per-user state, the
-// shape returned to the client.
-type UnlockablesWithState struct {
+type UnlockableWithState struct {
 	Unlockable
-	LevelOk         bool            `json:"LevelOk"`
-	PriceOk         bool            `json:"PriceOk"`
-	CanBuy          bool            `json:"CanBuy"` // Checks LevelOk, PriceOk and ownership.
-	UnlockableState UnlockableState `json:"UnlockableState"`
+	LevelOk         bool                     `json:"LevelOk"`
+	PriceOk         bool                     `json:"PriceOk"`
+	CanBuy          bool                     `json:"CanBuy"` // Checks LevelOk, PriceOk and ownership.
+	UnlockableState UnlockableStateWithState `json:"UnlockableState"`
+}
+
+type UnlockableStateWithState struct {
+	UnlockableState
+	State UnlockState `json:"State"`
 }
 
 // Store holds the parsed game data in memory.
@@ -375,6 +395,13 @@ func (s *Store) Contract(id string) (Mission, bool) {
 // MissionCount reports how many missions were loaded, for startup logging.
 func (s *Store) MissionCount() int { return len(s.missionOrder) }
 
+// TODO: Create lookup map?
+func (s *Store) Challenge(challengeId string) (Challenge, bool) {
+	return lo.Find(s.challenges, func(item Challenge) bool {
+		return item.Definition.Id == challengeId
+	})
+}
+
 // Challenges returns the static challenge catalog in file order. The State and
 // KntState on each returned Challenge are zero-valued; callers copy the entries
 // and fill those fields in for the requesting player.
@@ -382,6 +409,13 @@ func (s *Store) Challenges() []Challenge { return s.challenges }
 
 // ChallengeCount reports how many challenges were loaded, for startup logging.
 func (s *Store) ChallengeCount() int { return len(s.challenges) }
+
+// TODO: Create lookup map?
+func (s *Store) Unlockable(unlockableId string) (Unlockable, bool) {
+	return lo.Find(s.unlockables, func(item Unlockable) bool {
+		return item.UnlockableState.Id == unlockableId
+	})
+}
 
 // Unlockables returns the static unlockable catalog in file order. Callers pair
 // each entry with a per-user UnlockableState (see UnlockablesWithState).

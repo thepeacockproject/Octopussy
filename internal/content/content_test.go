@@ -130,7 +130,13 @@ func TestLoadUnlockables(t *testing.T) {
 	}
 
 	// UnlockableWithState pairs the static catalog entry with per-user state.
-	ws := UnlockablesWithState{Unlockable: u, UnlockableState: UnlockableState{Id: "unl-1", State: 1}}
+	ws := UnlockableWithState{
+		Unlockable: u,
+		UnlockableState: UnlockableStateWithState{
+			UnlockableState: u.UnlockableState,
+			State:           1,
+		},
+	}
 	out, err := json.Marshal(ws)
 	if err != nil {
 		t.Fatalf("marshal: %v", err)

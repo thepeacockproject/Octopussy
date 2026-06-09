@@ -98,5 +98,15 @@ func migrations() []*gormigrate.Migration {
 				return tx.Migrator().DropColumn(&UserSession{}, "xp_was")
 			},
 		},
+		{
+			// Add challenges and unlockables
+			ID: "0008_challenges_unlockables",
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&UserChallenge{}, &UserUnlockable{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				return tx.Migrator().DropTable(&UserChallenge{}, &UserUnlockable{})
+			},
+		},
 	}
 }

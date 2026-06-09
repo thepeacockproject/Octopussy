@@ -5,6 +5,10 @@
       "Name": "PEPPER_CHALLENGE_00_TITLE",
       "Description": "PEPPER_CHALLENGE_00_DESC"
     },
+    "State": {
+      "Id": "0ec4b652-c1b2-4c7e-b8b3-b3c2d538dcec",
+      "ProgressMax": 29
+    },
     "KntDefinition": {
       "Id": "0ec4b652-c1b2-4c7e-b8b3-b3c2d538dcec",
       "Tags": [
@@ -31,6 +35,10 @@
       "Name": "PEPPER_CHALLENGE_01_TITLE",
       "Description": "PEPPER_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "f1f12d80-e7e3-4bb6-8dc4-f1d100b2b024",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "f1f12d80-e7e3-4bb6-8dc4-f1d100b2b024",
       "Tags": [
@@ -54,6 +62,10 @@
       "Id": "e892900c-094b-4bde-9c5e-445ebcbdadb7",
       "Name": "PEPPER_CHALLENGE_02_TITLE",
       "Description": "PEPPER_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "e892900c-094b-4bde-9c5e-445ebcbdadb7",
+      "ProgressMax": 3
     },
     "KntDefinition": {
       "Id": "e892900c-094b-4bde-9c5e-445ebcbdadb7",
@@ -79,6 +91,10 @@
       "Name": "PEPPER_CHALLENGE_03_TITLE",
       "Description": "PEPPER_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "69650d45-e17c-4901-8e5d-027a991f6e25",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "69650d45-e17c-4901-8e5d-027a991f6e25",
       "Tags": [
@@ -102,6 +118,10 @@
       "Id": "c08f3239-0269-4f12-90d0-cdf71472f37b",
       "Name": "PEPPER_CHALLENGE_19_TITLE",
       "Description": "PEPPER_CHALLENGE_19_DESC"
+    },
+    "State": {
+      "Id": "c08f3239-0269-4f12-90d0-cdf71472f37b",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c08f3239-0269-4f12-90d0-cdf71472f37b",
@@ -127,6 +147,10 @@
       "Name": "PEPPER_CHALLENGE_18_TITLE",
       "Description": "PEPPER_CHALLENGE_18_DESC"
     },
+    "State": {
+      "Id": "5bbc009a-e493-4756-90ae-a4effd8b1d13",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "5bbc009a-e493-4756-90ae-a4effd8b1d13",
       "Tags": [
@@ -150,6 +174,10 @@
       "Id": "f7827775-545a-43af-bddc-22d9c7b89e5e",
       "Name": "PEPPER_CHALLENGE_11_TITLE",
       "Description": "PEPPER_CHALLENGE_11_DESC"
+    },
+    "State": {
+      "Id": "f7827775-545a-43af-bddc-22d9c7b89e5e",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "f7827775-545a-43af-bddc-22d9c7b89e5e",
@@ -175,6 +203,10 @@
       "Name": "PEPPER_CHALLENGE_06_TITLE",
       "Description": "PEPPER_CHALLENGE_06_DESC"
     },
+    "State": {
+      "Id": "43ff3247-0374-441a-8d1d-e7e92706ad47",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "43ff3247-0374-441a-8d1d-e7e92706ad47",
       "Tags": [
@@ -198,6 +230,10 @@
       "Id": "81c9f635-b03b-4c77-99bf-019349d650b9",
       "Name": "PEPPER_CHALLENGE_07_TITLE",
       "Description": "PEPPER_CHALLENGE_07_DESC"
+    },
+    "State": {
+      "Id": "81c9f635-b03b-4c77-99bf-019349d650b9",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "81c9f635-b03b-4c77-99bf-019349d650b9",
@@ -223,6 +259,10 @@
       "Name": "PEPPER_CHALLENGE_08_TITLE",
       "Description": "PEPPER_CHALLENGE_08_DESC"
     },
+    "State": {
+      "Id": "8a02fad1-7217-459a-9cd4-87e1a9844e92",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "8a02fad1-7217-459a-9cd4-87e1a9844e92",
       "Tags": [
@@ -246,6 +286,10 @@
       "Id": "3340296b-15a1-4f72-92ba-b9b27a2535b0",
       "Name": "PEPPER_CHALLENGE_09_TITLE",
       "Description": "PEPPER_CHALLENGE_09_DESC"
+    },
+    "State": {
+      "Id": "3340296b-15a1-4f72-92ba-b9b27a2535b0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3340296b-15a1-4f72-92ba-b9b27a2535b0",
@@ -271,6 +315,10 @@
       "Name": "PEPPER_CHALLENGE_25_TITLE",
       "Description": "PEPPER_CHALLENGE_25_DESC"
     },
+    "State": {
+      "Id": "9c738a41-02a7-474f-8fcd-20612796f53e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "9c738a41-02a7-474f-8fcd-20612796f53e",
       "Tags": [
@@ -294,6 +342,10 @@
       "Id": "6241bbf5-1d8f-4c55-a82f-f2e0ebd87975",
       "Name": "PEPPER_CHALLENGE_22_TITLE",
       "Description": "PEPPER_CHALLENGE_22_DESC"
+    },
+    "State": {
+      "Id": "6241bbf5-1d8f-4c55-a82f-f2e0ebd87975",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "6241bbf5-1d8f-4c55-a82f-f2e0ebd87975",
@@ -319,6 +371,10 @@
       "Name": "PEPPER_CHALLENGE_05_TITLE",
       "Description": "PEPPER_CHALLENGE_05_DESC"
     },
+    "State": {
+      "Id": "d1ad77ec-f649-4434-8eb3-48e4651a714b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "d1ad77ec-f649-4434-8eb3-48e4651a714b",
       "Tags": [
@@ -342,6 +398,10 @@
       "Id": "ce7a8f8e-ef32-4e16-bef7-6d27d60cb810",
       "Name": "PEPPER_CHALLENGE_28_TITLE",
       "Description": "PEPPER_CHALLENGE_28_DESC"
+    },
+    "State": {
+      "Id": "ce7a8f8e-ef32-4e16-bef7-6d27d60cb810",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "ce7a8f8e-ef32-4e16-bef7-6d27d60cb810",
@@ -367,6 +427,10 @@
       "Name": "PEPPER_CHALLENGE_12_TITLE",
       "Description": "PEPPER_CHALLENGE_12_DESC"
     },
+    "State": {
+      "Id": "62224890-6040-4c9c-bc7f-9fbbf844638a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "62224890-6040-4c9c-bc7f-9fbbf844638a",
       "Tags": [
@@ -390,6 +454,10 @@
       "Id": "38d62ed2-069f-484d-9d62-f8f27dea630f",
       "Name": "PEPPER_CHALLENGE_20_TITLE",
       "Description": "PEPPER_CHALLENGE_20_DESC"
+    },
+    "State": {
+      "Id": "38d62ed2-069f-484d-9d62-f8f27dea630f",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "38d62ed2-069f-484d-9d62-f8f27dea630f",
@@ -415,6 +483,10 @@
       "Name": "PEPPER_CHALLENGE_30_TITLE",
       "Description": "PEPPER_CHALLENGE_30_DESC"
     },
+    "State": {
+      "Id": "bbaefe75-a101-4d24-9630-0d1e03a42799",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "bbaefe75-a101-4d24-9630-0d1e03a42799",
       "Tags": [
@@ -438,6 +510,10 @@
       "Id": "7cc76412-e686-482a-8d3c-024699329217",
       "Name": "PEPPER_CHALLENGE_14_TITLE",
       "Description": "PEPPER_CHALLENGE_14_DESC"
+    },
+    "State": {
+      "Id": "7cc76412-e686-482a-8d3c-024699329217",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "7cc76412-e686-482a-8d3c-024699329217",
@@ -463,6 +539,10 @@
       "Name": "PEPPER_CHALLENGE_17_TITLE",
       "Description": "PEPPER_CHALLENGE_17_DESC"
     },
+    "State": {
+      "Id": "242ce2c0-db6a-4918-acf4-32ca3d9ec745",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "242ce2c0-db6a-4918-acf4-32ca3d9ec745",
       "Tags": [
@@ -486,6 +566,10 @@
       "Id": "79355664-d234-4eb8-9c05-9444b07909f7",
       "Name": "PEPPER_CHALLENGE_27_TITLE",
       "Description": "PEPPER_CHALLENGE_27_DESC"
+    },
+    "State": {
+      "Id": "79355664-d234-4eb8-9c05-9444b07909f7",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "79355664-d234-4eb8-9c05-9444b07909f7",
@@ -511,6 +595,10 @@
       "Name": "PEPPER_CHALLENGE_10_TITLE",
       "Description": "PEPPER_CHALLENGE_10_DESC"
     },
+    "State": {
+      "Id": "880e06b7-c2c7-4f41-8290-f29d7181d0fa",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "880e06b7-c2c7-4f41-8290-f29d7181d0fa",
       "Tags": [
@@ -534,6 +622,10 @@
       "Id": "0950afa5-7567-4f47-9ab1-aa2f4311ce20",
       "Name": "PEPPER_CHALLENGE_16_TITLE",
       "Description": "PEPPER_CHALLENGE_16_DESC"
+    },
+    "State": {
+      "Id": "0950afa5-7567-4f47-9ab1-aa2f4311ce20",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "0950afa5-7567-4f47-9ab1-aa2f4311ce20",
@@ -559,6 +651,10 @@
       "Name": "PEPPER_CHALLENGE_29_TITLE",
       "Description": "PEPPER_CHALLENGE_29_DESC"
     },
+    "State": {
+      "Id": "744e155d-d809-4d1b-8c55-b12eb442df76",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "744e155d-d809-4d1b-8c55-b12eb442df76",
       "Tags": [
@@ -582,6 +678,10 @@
       "Id": "3af91398-47c2-43f2-aecb-af2cc8867e2a",
       "Name": "PEPPER_CHALLENGE_13_TITLE",
       "Description": "PEPPER_CHALLENGE_13_DESC"
+    },
+    "State": {
+      "Id": "3af91398-47c2-43f2-aecb-af2cc8867e2a",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3af91398-47c2-43f2-aecb-af2cc8867e2a",
@@ -607,6 +707,10 @@
       "Name": "PEPPER_CHALLENGE_15_TITLE",
       "Description": "PEPPER_CHALLENGE_15_DESC"
     },
+    "State": {
+      "Id": "394cf547-1864-4ace-a9ae-98f7ae93578c",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "394cf547-1864-4ace-a9ae-98f7ae93578c",
       "Tags": [
@@ -630,6 +734,10 @@
       "Id": "bfa30451-943a-416e-ac64-63a25b8e9993",
       "Name": "PEPPER_CHALLENGE_24_TITLE",
       "Description": "PEPPER_CHALLENGE_24_DESC"
+    },
+    "State": {
+      "Id": "bfa30451-943a-416e-ac64-63a25b8e9993",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "bfa30451-943a-416e-ac64-63a25b8e9993",
@@ -655,6 +763,10 @@
       "Name": "PEPPER_CHALLENGE_21_TITLE",
       "Description": "PEPPER_CHALLENGE_21_DESC"
     },
+    "State": {
+      "Id": "16dd3da3-4e9c-4791-9afa-338dc8eaa7ba",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "16dd3da3-4e9c-4791-9afa-338dc8eaa7ba",
       "Tags": [
@@ -678,6 +790,10 @@
       "Id": "02c9fe61-8751-4020-904b-4b1771b360ad",
       "Name": "PEPPER_CHALLENGE_23_TITLE",
       "Description": "PEPPER_CHALLENGE_23_DESC"
+    },
+    "State": {
+      "Id": "02c9fe61-8751-4020-904b-4b1771b360ad",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "02c9fe61-8751-4020-904b-4b1771b360ad",
@@ -703,6 +819,10 @@
       "Name": "PEPPER_CHALLENGE_26_TITLE",
       "Description": "PEPPER_CHALLENGE_26_DESC"
     },
+    "State": {
+      "Id": "da3330a3-cfae-4b7a-951c-3c06318b05fa",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "da3330a3-cfae-4b7a-951c-3c06318b05fa",
       "Tags": [
@@ -727,6 +847,10 @@
       "Name": "PEPPER_ANT_CHALLENGE_01_TITLE",
       "Description": "PEPPER_ANT_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "112a663b-cc3e-43e6-bef2-c22fa2231f00",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "112a663b-cc3e-43e6-bef2-c22fa2231f00",
       "Tags": [
@@ -749,6 +873,10 @@
       "Id": "222115f9-b633-4c7b-a998-3976fc318d6d",
       "Name": "PEPPER_ANT_CHALLENGE_02_TITLE",
       "Description": "PEPPER_ANT_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "222115f9-b633-4c7b-a998-3976fc318d6d",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "222115f9-b633-4c7b-a998-3976fc318d6d",
@@ -773,6 +901,10 @@
       "Name": "PEPPER_ANT_CHALLENGE_03_TITLE",
       "Description": "PEPPER_ANT_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "d784a336-1a56-4e80-ba24-edc371dc7688",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "d784a336-1a56-4e80-ba24-edc371dc7688",
       "Tags": [
@@ -795,6 +927,10 @@
       "Id": "c72f9c5b-51a4-4585-bf14-1de615adf542",
       "Name": "PEPPER_ANT_WATCHTHIS_TITLE",
       "Description": "PEPPER_ANT_WATCHTHIS_DESC"
+    },
+    "State": {
+      "Id": "c72f9c5b-51a4-4585-bf14-1de615adf542",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c72f9c5b-51a4-4585-bf14-1de615adf542",
@@ -819,6 +955,10 @@
       "Name": "PEPPER_ANT_CHALLENGE_MASTERY_NAME",
       "Description": "PEPPER_ANT_CHALLENGE_MASTERY_DESC"
     },
+    "State": {
+      "Id": "90d5128b-6b83-4651-8de7-fcd6bc9ceaa5",
+      "ProgressMax": 7
+    },
     "KntDefinition": {
       "Id": "90d5128b-6b83-4651-8de7-fcd6bc9ceaa5",
       "Tags": [
@@ -841,6 +981,10 @@
       "Id": "3031aeb0-62eb-4854-8d9f-0ca5c45318aa",
       "Name": "PEPPER_ANT_CHALLENGE_SECRET_DATA_NAME",
       "Description": "PEPPER_ANT_CHALLENGE_SECRET_DATA_DESC"
+    },
+    "State": {
+      "Id": "3031aeb0-62eb-4854-8d9f-0ca5c45318aa",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3031aeb0-62eb-4854-8d9f-0ca5c45318aa",
@@ -865,6 +1009,10 @@
       "Name": "PEPPER_ANT_NOGADGETS_TITLE",
       "Description": "PEPPER_ANT_NOGADGETS_DESC"
     },
+    "State": {
+      "Id": "880cff86-749c-404d-9e2b-07ff13b53e7b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "880cff86-749c-404d-9e2b-07ff13b53e7b",
       "Tags": [
@@ -888,6 +1036,10 @@
       "Name": "PEPPER_ANT_WORKHAZARD_TITLE",
       "Description": "PEPPER_ANT_WORKHAZARD_DESC"
     },
+    "State": {
+      "Id": "5066abc1-44a1-470d-aea6-e5673c2465fe",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "5066abc1-44a1-470d-aea6-e5673c2465fe",
       "Tags": [
@@ -910,6 +1062,10 @@
       "Id": "73972fd3-8d5b-40c2-96e6-3ff33a334677",
       "Name": "ROSE_CHALLENGE_00_TITLE",
       "Description": "ROSE_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "73972fd3-8d5b-40c2-96e6-3ff33a334677",
+      "ProgressMax": 26
     },
     "KntDefinition": {
       "Id": "73972fd3-8d5b-40c2-96e6-3ff33a334677",
@@ -937,6 +1093,10 @@
       "Name": "ROSE_CHALLENGE_01_TITLE",
       "Description": "ROSE_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "a1425135-5da7-46d8-aeea-422bf145f785",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "a1425135-5da7-46d8-aeea-422bf145f785",
       "Tags": [
@@ -960,6 +1120,10 @@
       "Id": "1f9802bd-17d9-46b9-99db-52c8371b447d",
       "Name": "ROSE_CHALLENGE_02_TITLE",
       "Description": "ROSE_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "1f9802bd-17d9-46b9-99db-52c8371b447d",
+      "ProgressMax": 2
     },
     "KntDefinition": {
       "Id": "1f9802bd-17d9-46b9-99db-52c8371b447d",
@@ -985,6 +1149,10 @@
       "Name": "ROSE_CHALLENGE_03_TITLE",
       "Description": "ROSE_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "2d12bae3-40dd-4dd1-8231-1060a2445f7b",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "2d12bae3-40dd-4dd1-8231-1060a2445f7b",
       "Tags": [
@@ -1008,6 +1176,10 @@
       "Id": "77ff7b7a-97ab-4e2b-8856-b84111898902",
       "Name": "ROSE_CHALLENGE_04_TITLE",
       "Description": "ROSE_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "77ff7b7a-97ab-4e2b-8856-b84111898902",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "77ff7b7a-97ab-4e2b-8856-b84111898902",
@@ -1033,6 +1205,10 @@
       "Name": "ROSE_CHALLENGE_11_TITLE",
       "Description": "ROSE_CHALLENGE_11_DESC"
     },
+    "State": {
+      "Id": "94da165e-9be7-4dee-ba75-4ae54fe16de2",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "94da165e-9be7-4dee-ba75-4ae54fe16de2",
       "Tags": [
@@ -1056,6 +1232,10 @@
       "Id": "febbbcb3-cad5-44ef-8421-e707de0bb076",
       "Name": "ROSE_CHALLENGE_12_TITLE",
       "Description": "ROSE_CHALLENGE_12_DESC"
+    },
+    "State": {
+      "Id": "febbbcb3-cad5-44ef-8421-e707de0bb076",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "febbbcb3-cad5-44ef-8421-e707de0bb076",
@@ -1081,6 +1261,10 @@
       "Name": "ROSE_CHALLENGE_07_TITLE",
       "Description": "ROSE_CHALLENGE_07_DESC"
     },
+    "State": {
+      "Id": "785aefea-9bf7-43ca-b9f5-0965e0a5f15e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "785aefea-9bf7-43ca-b9f5-0965e0a5f15e",
       "Tags": [
@@ -1104,6 +1288,10 @@
       "Id": "a5df41c6-04f5-459c-bb4d-e43eb6f4ddee",
       "Name": "ROSE_CHALLENGE_05_TITLE",
       "Description": "ROSE_CHALLENGE_05_DESC"
+    },
+    "State": {
+      "Id": "a5df41c6-04f5-459c-bb4d-e43eb6f4ddee",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "a5df41c6-04f5-459c-bb4d-e43eb6f4ddee",
@@ -1129,6 +1317,10 @@
       "Name": "ROSE_CHALLENGE_26_TITLE",
       "Description": "ROSE_CHALLENGE_26_DESC"
     },
+    "State": {
+      "Id": "61716781-4682-8958-3949-733822821869",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "61716781-4682-8958-3949-733822821869",
       "Tags": [
@@ -1152,6 +1344,10 @@
       "Id": "56209843-5777-43de-9a48-8bb186f189de",
       "Name": "ROSE_CHALLENGE_16_TITLE",
       "Description": "ROSE_CHALLENGE_16_DESC"
+    },
+    "State": {
+      "Id": "56209843-5777-43de-9a48-8bb186f189de",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "56209843-5777-43de-9a48-8bb186f189de",
@@ -1177,6 +1373,10 @@
       "Name": "ROSE_CHALLENGE_21_TITLE",
       "Description": "ROSE_CHALLENGE_21_DESC"
     },
+    "State": {
+      "Id": "21928d0d-6eca-4c08-8470-dfefa58ef102",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "21928d0d-6eca-4c08-8470-dfefa58ef102",
       "Tags": [
@@ -1200,6 +1400,10 @@
       "Id": "359cbb06-f5cd-4a95-9cef-c387ffb051d8",
       "Name": "ROSE_CHALLENGE_17_TITLE",
       "Description": "ROSE_CHALLENGE_17_DESC"
+    },
+    "State": {
+      "Id": "359cbb06-f5cd-4a95-9cef-c387ffb051d8",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "359cbb06-f5cd-4a95-9cef-c387ffb051d8",
@@ -1225,6 +1429,10 @@
       "Name": "ROSE_CHALLENGE_15_TITLE",
       "Description": "ROSE_CHALLENGE_15_DESC"
     },
+    "State": {
+      "Id": "cbe3dcf4-b0ab-41a3-9767-667c8900fd51",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "cbe3dcf4-b0ab-41a3-9767-667c8900fd51",
       "Tags": [
@@ -1248,6 +1456,10 @@
       "Id": "b892f75f-d677-47c7-a444-e2222ef03159",
       "Name": "ROSE_CHALLENGE_10_TITLE",
       "Description": "ROSE_CHALLENGE_10_DESC"
+    },
+    "State": {
+      "Id": "b892f75f-d677-47c7-a444-e2222ef03159",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "b892f75f-d677-47c7-a444-e2222ef03159",
@@ -1273,6 +1485,10 @@
       "Name": "ROSE_CHALLENGE_09_TITLE",
       "Description": "ROSE_CHALLENGE_09_DESC"
     },
+    "State": {
+      "Id": "f2923669-8066-4916-b2d8-e0a65d71c31e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "f2923669-8066-4916-b2d8-e0a65d71c31e",
       "Tags": [
@@ -1296,6 +1512,10 @@
       "Id": "21444d53-87ac-4672-9d9d-97e6d040b364",
       "Name": "ROSE_CHALLENGE_06_TITLE",
       "Description": "ROSE_CHALLENGE_06_DESC"
+    },
+    "State": {
+      "Id": "21444d53-87ac-4672-9d9d-97e6d040b364",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "21444d53-87ac-4672-9d9d-97e6d040b364",
@@ -1321,6 +1541,10 @@
       "Name": "ROSE_CHALLENGE_13_TITLE",
       "Description": "ROSE_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "95c7706f-9eb9-4640-ad03-d19f4c7fc387",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "95c7706f-9eb9-4640-ad03-d19f4c7fc387",
       "Tags": [
@@ -1344,6 +1568,10 @@
       "Id": "07270228-9778-1192-5422-535253508057",
       "Name": "ROSE_CHALLENGE_25_TITLE",
       "Description": "ROSE_CHALLENGE_25_DESC"
+    },
+    "State": {
+      "Id": "07270228-9778-1192-5422-535253508057",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "07270228-9778-1192-5422-535253508057",
@@ -1369,6 +1597,10 @@
       "Name": "ROSE_CHALLENGE_14_TITLE",
       "Description": "ROSE_CHALLENGE_14_DESC"
     },
+    "State": {
+      "Id": "12a6129e-de3a-4c96-8754-6573b5f8bb0b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "12a6129e-de3a-4c96-8754-6573b5f8bb0b",
       "Tags": [
@@ -1392,6 +1624,10 @@
       "Id": "4932c42c-800a-40af-a73a-8af84651fd4c",
       "Name": "ROSE_CHALLENGE_18_TITLE",
       "Description": "ROSE_CHALLENGE_18_DESC"
+    },
+    "State": {
+      "Id": "4932c42c-800a-40af-a73a-8af84651fd4c",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "4932c42c-800a-40af-a73a-8af84651fd4c",
@@ -1417,6 +1653,10 @@
       "Name": "ROSE_CHALLENGE_08_TITLE",
       "Description": "ROSE_CHALLENGE_08_DESC"
     },
+    "State": {
+      "Id": "8aadc26a-5187-4f24-89f4-d97312bbb3bc",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "8aadc26a-5187-4f24-89f4-d97312bbb3bc",
       "Tags": [
@@ -1440,6 +1680,10 @@
       "Id": "363fafaa-0fd7-4f40-a722-45dc26d5f4de",
       "Name": "ROSE_CHALLENGE_20_TITLE",
       "Description": "ROSE_CHALLENGE_20_DESC"
+    },
+    "State": {
+      "Id": "363fafaa-0fd7-4f40-a722-45dc26d5f4de",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "363fafaa-0fd7-4f40-a722-45dc26d5f4de",
@@ -1465,6 +1709,10 @@
       "Name": "ROSE_CHALLENGE_19_TITLE",
       "Description": "ROSE_CHALLENGE_19_DESC"
     },
+    "State": {
+      "Id": "0a8f0c39-d2e6-4094-9daa-8702e24cb88a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "0a8f0c39-d2e6-4094-9daa-8702e24cb88a",
       "Tags": [
@@ -1488,6 +1736,10 @@
       "Id": "8b65b720-14b7-4a7d-b3a6-07abf43b3063",
       "Name": "ROSE_CHALLENGE_22_TITLE",
       "Description": "ROSE_CHALLENGE_22_DESC"
+    },
+    "State": {
+      "Id": "8b65b720-14b7-4a7d-b3a6-07abf43b3063",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "8b65b720-14b7-4a7d-b3a6-07abf43b3063",
@@ -1513,6 +1765,10 @@
       "Name": "ROSE_CHALLENGE_23_TITLE",
       "Description": "ROSE_CHALLENGE_23_DESC"
     },
+    "State": {
+      "Id": "321b7833-e861-4121-9c79-02e4498fdfb3",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "321b7833-e861-4121-9c79-02e4498fdfb3",
       "Tags": [
@@ -1537,6 +1793,10 @@
       "Name": "ROSE_CHALLENGE_24_TITLE",
       "Description": "ROSE_CHALLENGE_24_DESC"
     },
+    "State": {
+      "Id": "42b3f4a2-22c0-4f09-bd42-53cbe5667931",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "42b3f4a2-22c0-4f09-bd42-53cbe5667931",
       "Tags": [
@@ -1560,6 +1820,10 @@
       "Id": "7512aad9-b968-42cc-98b3-104d4097b6aa",
       "Name": "DAHLIA_CHALLENGE_00_TITLE",
       "Description": "DAHLIA_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "7512aad9-b968-42cc-98b3-104d4097b6aa",
+      "ProgressMax": 23
     },
     "KntDefinition": {
       "Id": "7512aad9-b968-42cc-98b3-104d4097b6aa",
@@ -1587,6 +1851,10 @@
       "Name": "DAHLIA_CHALLENGE_01_TITLE",
       "Description": "DAHLIA_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "004f1a40-00e3-483c-ac6e-e54f063cf6ed",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "004f1a40-00e3-483c-ac6e-e54f063cf6ed",
       "Tags": [
@@ -1610,6 +1878,10 @@
       "Id": "46dfbeb7-5afe-4652-840d-331a724d3d6a",
       "Name": "DAHLIA_CHALLENGE_02_TITLE",
       "Description": "DAHLIA_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "46dfbeb7-5afe-4652-840d-331a724d3d6a",
+      "ProgressMax": 3
     },
     "KntDefinition": {
       "Id": "46dfbeb7-5afe-4652-840d-331a724d3d6a",
@@ -1635,6 +1907,10 @@
       "Name": "DAHLIA_CHALLENGE_03_TITLE",
       "Description": "DAHLIA_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "b18ba21a-8a52-4aa6-9dfb-2383e9ad4189",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "b18ba21a-8a52-4aa6-9dfb-2383e9ad4189",
       "Tags": [
@@ -1658,6 +1934,10 @@
       "Id": "04b3ae63-aae6-4b2c-831b-62e1fc061a73",
       "Name": "DAHLIA_CHALLENGE_19_TITLE",
       "Description": "DAHLIA_CHALLENGE_19_DESC"
+    },
+    "State": {
+      "Id": "04b3ae63-aae6-4b2c-831b-62e1fc061a73",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "04b3ae63-aae6-4b2c-831b-62e1fc061a73",
@@ -1683,6 +1963,10 @@
       "Name": "DAHLIA_CHALLENGE_20_TITLE",
       "Description": "DAHLIA_CHALLENGE_20_DESC"
     },
+    "State": {
+      "Id": "44df5480-7095-4ddf-8fc2-0833bbed184b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "44df5480-7095-4ddf-8fc2-0833bbed184b",
       "Tags": [
@@ -1706,6 +1990,10 @@
       "Id": "bdcfad6f-3b29-4f56-9bf4-ff5dae0009cf",
       "Name": "DAHLIA_CHALLENGE_04_TITLE",
       "Description": "DAHLIA_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "bdcfad6f-3b29-4f56-9bf4-ff5dae0009cf",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "bdcfad6f-3b29-4f56-9bf4-ff5dae0009cf",
@@ -1731,6 +2019,10 @@
       "Name": "DAHLIA_CHALLENGE_15_TITLE",
       "Description": "DAHLIA_CHALLENGE_15_DESC"
     },
+    "State": {
+      "Id": "37c291b6-8e66-4933-a161-6a3149d9a032",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "37c291b6-8e66-4933-a161-6a3149d9a032",
       "Tags": [
@@ -1754,6 +2046,10 @@
       "Id": "eff76cb8-b4ed-44b8-865d-e39dc6aaadb8",
       "Name": "DAHLIA_CHALLENGE_11_TITLE",
       "Description": "DAHLIA_CHALLENGE_11_DESC"
+    },
+    "State": {
+      "Id": "eff76cb8-b4ed-44b8-865d-e39dc6aaadb8",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "eff76cb8-b4ed-44b8-865d-e39dc6aaadb8",
@@ -1779,6 +2075,10 @@
       "Name": "DAHLIA_CHALLENGE_05_TITLE",
       "Description": "DAHLIA_CHALLENGE_05_DESC"
     },
+    "State": {
+      "Id": "f7d4629f-7920-448d-a0b4-293c7da3dbed",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "f7d4629f-7920-448d-a0b4-293c7da3dbed",
       "Tags": [
@@ -1802,6 +2102,10 @@
       "Id": "e052d6b6-f45a-4ccc-a009-19aaea5b519d",
       "Name": "DAHLIA_CHALLENGE_14_TITLE",
       "Description": "DAHLIA_CHALLENGE_14_DESC"
+    },
+    "State": {
+      "Id": "e052d6b6-f45a-4ccc-a009-19aaea5b519d",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "e052d6b6-f45a-4ccc-a009-19aaea5b519d",
@@ -1827,6 +2131,10 @@
       "Name": "DAHLIA_CHALLENGE_06_TITLE",
       "Description": "DAHLIA_CHALLENGE_06_DESC"
     },
+    "State": {
+      "Id": "afbb5eae-47fa-4bc5-b71a-98c899605a91",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "afbb5eae-47fa-4bc5-b71a-98c899605a91",
       "Tags": [
@@ -1850,6 +2158,10 @@
       "Id": "ce0a6667-019b-420a-8cfd-27ea7b222d5d",
       "Name": "DAHLIA_CHALLENGE_08_TITLE",
       "Description": "DAHLIA_CHALLENGE_08_DESC"
+    },
+    "State": {
+      "Id": "ce0a6667-019b-420a-8cfd-27ea7b222d5d",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "ce0a6667-019b-420a-8cfd-27ea7b222d5d",
@@ -1875,6 +2187,10 @@
       "Name": "DAHLIA_CHALLENGE_22_TITLE",
       "Description": "DAHLIA_CHALLENGE_22_DESC"
     },
+    "State": {
+      "Id": "e168630b-0c19-42db-9773-7947ff02df87",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e168630b-0c19-42db-9773-7947ff02df87",
       "Tags": [
@@ -1898,6 +2214,10 @@
       "Id": "97b89f69-55e3-4207-b318-1cf3cc88e376",
       "Name": "DAHLIA_CHALLENGE_09_TITLE",
       "Description": "DAHLIA_CHALLENGE_09_DESC"
+    },
+    "State": {
+      "Id": "97b89f69-55e3-4207-b318-1cf3cc88e376",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "97b89f69-55e3-4207-b318-1cf3cc88e376",
@@ -1923,6 +2243,10 @@
       "Name": "DAHLIA_CHALLENGE_25_TITLE",
       "Description": "DAHLIA_CHALLENGE_25_DESC"
     },
+    "State": {
+      "Id": "9b780ef2-e875-4a21-b291-51c5c987ab21",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "9b780ef2-e875-4a21-b291-51c5c987ab21",
       "Tags": [
@@ -1945,6 +2269,10 @@
       "Id": "0896b971-7b35-4cab-a961-d8e075af62a0",
       "Name": "DAHLIA_CHALLENGE_10_TITLE",
       "Description": "DAHLIA_CHALLENGE_10_DESC"
+    },
+    "State": {
+      "Id": "0896b971-7b35-4cab-a961-d8e075af62a0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "0896b971-7b35-4cab-a961-d8e075af62a0",
@@ -1970,6 +2298,10 @@
       "Name": "DAHLIA_CHALLENGE_13_TITLE",
       "Description": "DAHLIA_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "f59a08ea-f22e-444b-9f81-90141a624d03",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "f59a08ea-f22e-444b-9f81-90141a624d03",
       "Tags": [
@@ -1993,6 +2325,10 @@
       "Id": "713e73b1-78d9-4b79-9498-7a1dd9fd5a44",
       "Name": "DAHLIA_CHALLENGE_12_TITLE",
       "Description": "DAHLIA_CHALLENGE_12_DESC"
+    },
+    "State": {
+      "Id": "713e73b1-78d9-4b79-9498-7a1dd9fd5a44",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "713e73b1-78d9-4b79-9498-7a1dd9fd5a44",
@@ -2018,6 +2354,10 @@
       "Name": "DAHLIA_CHALLENGE_16_TITLE",
       "Description": "DAHLIA_CHALLENGE_16_DESC"
     },
+    "State": {
+      "Id": "77c2c365-d685-429e-81ad-a0384ebc50d3",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "77c2c365-d685-429e-81ad-a0384ebc50d3",
       "Tags": [
@@ -2041,6 +2381,10 @@
       "Id": "02904e78-20aa-41b1-8883-415f73bee976",
       "Name": "DAHLIA_CHALLENGE_23_TITLE",
       "Description": "DAHLIA_CHALLENGE_23_DESC"
+    },
+    "State": {
+      "Id": "02904e78-20aa-41b1-8883-415f73bee976",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "02904e78-20aa-41b1-8883-415f73bee976",
@@ -2066,6 +2410,10 @@
       "Name": "DAHLIA_CHALLENGE_17_TITLE",
       "Description": "DAHLIA_CHALLENGE_17_DESC"
     },
+    "State": {
+      "Id": "d7822076-4dd3-4d06-86bb-c324d53d940b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "d7822076-4dd3-4d06-86bb-c324d53d940b",
       "Tags": [
@@ -2089,6 +2437,10 @@
       "Id": "578cc205-c305-42f4-b199-38d6dd24befe",
       "Name": "DAHLIA_CHALLENGE_18_TITLE",
       "Description": "DAHLIA_CHALLENGE_18_DESC"
+    },
+    "State": {
+      "Id": "578cc205-c305-42f4-b199-38d6dd24befe",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "578cc205-c305-42f4-b199-38d6dd24befe",
@@ -2114,6 +2466,10 @@
       "Name": "DAHLIA_CHALLENGE_21_TITLE",
       "Description": "DAHLIA_CHALLENGE_21_DESC"
     },
+    "State": {
+      "Id": "54209059-d2e1-4e25-9c96-5b072c01ad44",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "54209059-d2e1-4e25-9c96-5b072c01ad44",
       "Tags": [
@@ -2138,6 +2494,10 @@
       "Name": "ONLINE_HUB_CHALLENGE_01_TITLE",
       "Description": "ONLINE_HUB_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "64193cc5-6619-4024-920a-d3eb298bd973",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "64193cc5-6619-4024-920a-d3eb298bd973",
       "Tags": [
@@ -2160,6 +2520,10 @@
       "Id": "66cd8377-d48e-4b01-90f1-f0687df2e335",
       "Name": "DAHLIA_CICADA_CHALLENGE_01_TITLE",
       "Description": "DAHLIA_CICADA_CHALLENGE_01_DESC"
+    },
+    "State": {
+      "Id": "66cd8377-d48e-4b01-90f1-f0687df2e335",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "66cd8377-d48e-4b01-90f1-f0687df2e335",
@@ -2184,6 +2548,10 @@
       "Name": "DAHLIA_CICADA_CHALLENGE_02_TITLE",
       "Description": "DAHLIA_CICADA_CHALLENGE_02_DESC"
     },
+    "State": {
+      "Id": "d99e5407-3578-4081-be06-a099adf465ee",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "d99e5407-3578-4081-be06-a099adf465ee",
       "Tags": [
@@ -2206,6 +2574,10 @@
       "Id": "bd47bd15-aad0-459b-abb1-0661acbf6357",
       "Name": "DAHLIA_CICADA_CHALLENGE_03_TITLE",
       "Description": "DAHLIA_CICADA_CHALLENGE_03_DESC"
+    },
+    "State": {
+      "Id": "bd47bd15-aad0-459b-abb1-0661acbf6357",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "bd47bd15-aad0-459b-abb1-0661acbf6357",
@@ -2230,6 +2602,10 @@
       "Name": "PEPPER_ESCALATION_REDROOOM_CHALLENGE_01_TITLE",
       "Description": "PEPPER_ESCALATION_REDROOOM_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "773ab9a6-9ecc-4126-b5a2-120878e3dc66",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "773ab9a6-9ecc-4126-b5a2-120878e3dc66",
       "Tags": [
@@ -2252,6 +2628,10 @@
       "Id": "8637ef6b-5b04-4947-bfe0-3477b815c903",
       "Name": "PEPPER_ESCALATION_REDROOOM_CHALLENGE_02_TITLE",
       "Description": "PEPPER_ESCALATION_REDROOOM_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "8637ef6b-5b04-4947-bfe0-3477b815c903",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "8637ef6b-5b04-4947-bfe0-3477b815c903",
@@ -2276,6 +2656,10 @@
       "Name": "PEPPER_ESCALATION_REDROOOM_CHALLENGE_03_TITLE",
       "Description": "PEPPER_ESCALATION_REDROOOM_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "42794b00-9877-436e-8604-dbf27e94626c",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "42794b00-9877-436e-8604-dbf27e94626c",
       "Tags": [
@@ -2298,6 +2682,10 @@
       "Id": "6d6faa22-cfc0-490f-8393-e872535ddbb5",
       "Name": "CATTAIL_LAKEFLY_CHALLENGE_01_TITLE",
       "Description": "CATTAIL_LAKEFLY_CHALLENGE_01_DESC"
+    },
+    "State": {
+      "Id": "6d6faa22-cfc0-490f-8393-e872535ddbb5",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "6d6faa22-cfc0-490f-8393-e872535ddbb5",
@@ -2322,6 +2710,10 @@
       "Name": "CATTAIL_LAKEFLY_CHALLENGE_02_TITLE",
       "Description": "CATTAIL_LAKEFLY_CHALLENGE_02_DESC"
     },
+    "State": {
+      "Id": "06c87654-c248-4c78-baec-ae9853bab623",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "06c87654-c248-4c78-baec-ae9853bab623",
       "Tags": [
@@ -2345,6 +2737,10 @@
       "Name": "CATTAIL_LAKEFLY_CHALLENGE_03_TITLE",
       "Description": "CATTAIL_LAKEFLY_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "af65dd26-b3bd-418b-a7b3-a27f37482b32",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "af65dd26-b3bd-418b-a7b3-a27f37482b32",
       "Tags": [
@@ -2367,6 +2763,10 @@
       "Id": "4132067e-e993-4a50-9f11-3535afa5cbfd",
       "Name": "CLOVER_CHALLENGE_00_TITLE",
       "Description": "CLOVER_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "4132067e-e993-4a50-9f11-3535afa5cbfd",
+      "ProgressMax": 8
     },
     "KntDefinition": {
       "Id": "4132067e-e993-4a50-9f11-3535afa5cbfd",
@@ -2394,6 +2794,10 @@
       "Name": "CLOVER_CHALLENGE_01_TITLE",
       "Description": "CLOVER_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "6e83a223-4e70-4755-846f-d79f7109361d",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "6e83a223-4e70-4755-846f-d79f7109361d",
       "Tags": [
@@ -2416,6 +2820,10 @@
       "Id": "e0bbd6c5-8128-422f-84b3-a108d864cc45",
       "Name": "CLOVER_CHALLENGE_02_TITLE",
       "Description": "CLOVER_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "e0bbd6c5-8128-422f-84b3-a108d864cc45",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "e0bbd6c5-8128-422f-84b3-a108d864cc45",
@@ -2440,6 +2848,10 @@
       "Name": "CLOVER_CHALLENGE_03_TITLE",
       "Description": "CLOVER_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "dcf8c327-5b8f-416c-99f1-05505a50adef",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "dcf8c327-5b8f-416c-99f1-05505a50adef",
       "Tags": [
@@ -2462,6 +2874,10 @@
       "Id": "1458fdd1-7787-4a8e-8559-dd4c205e6f22",
       "Name": "CLOVER_CHALLENGE_04_TITLE",
       "Description": "CLOVER_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "1458fdd1-7787-4a8e-8559-dd4c205e6f22",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "1458fdd1-7787-4a8e-8559-dd4c205e6f22",
@@ -2487,6 +2903,10 @@
       "Name": "CLOVER_CHALLENGE_05_TITLE",
       "Description": "CLOVER_CHALLENGE_05_DESC"
     },
+    "State": {
+      "Id": "7e105354-61ff-4091-ad48-8e96602ebc7a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "7e105354-61ff-4091-ad48-8e96602ebc7a",
       "Tags": [
@@ -2510,6 +2930,10 @@
       "Id": "22df61c5-2efa-4261-835f-e6df1f9f1b4b",
       "Name": "CLOVER_CHALLENGE_07_TITLE",
       "Description": "CLOVER_CHALLENGE_07_DESC"
+    },
+    "State": {
+      "Id": "22df61c5-2efa-4261-835f-e6df1f9f1b4b",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "22df61c5-2efa-4261-835f-e6df1f9f1b4b",
@@ -2535,6 +2959,10 @@
       "Name": "CLOVER_CHALLENGE_08_TITLE",
       "Description": "CLOVER_CHALLENGE_08_DESC"
     },
+    "State": {
+      "Id": "9ba9ed79-f184-46d0-b4f4-3d9974f2c17d",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "9ba9ed79-f184-46d0-b4f4-3d9974f2c17d",
       "Tags": [
@@ -2559,6 +2987,10 @@
       "Name": "CLOVER_CHALLENGE_09_TITLE",
       "Description": "CLOVER_CHALLENGE_09_DESC"
     },
+    "State": {
+      "Id": "d857b99f-32ae-4809-b805-28780f75fe8a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "d857b99f-32ae-4809-b805-28780f75fe8a",
       "Tags": [
@@ -2582,6 +3014,10 @@
       "Id": "006e8432-2aee-47d7-8795-dfd6da58ed4f",
       "Name": "LOTUS_CHALLENGE_00_TITLE",
       "Description": "LOTUS_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "006e8432-2aee-47d7-8795-dfd6da58ed4f",
+      "ProgressMax": 11
     },
     "KntDefinition": {
       "Id": "006e8432-2aee-47d7-8795-dfd6da58ed4f",
@@ -2609,6 +3045,10 @@
       "Name": "LOTUS_CHALLENGE_01_TITLE",
       "Description": "LOTUS_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "131c2073-b0b7-4938-9176-c548bb989f1f",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "131c2073-b0b7-4938-9176-c548bb989f1f",
       "Tags": [
@@ -2632,6 +3072,10 @@
       "Id": "2e155658-25c4-41bc-a0e0-7f900e453726",
       "Name": "LOTUS_CHALLENGE_02_TITLE",
       "Description": "LOTUS_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "2e155658-25c4-41bc-a0e0-7f900e453726",
+      "ProgressMax": 2
     },
     "KntDefinition": {
       "Id": "2e155658-25c4-41bc-a0e0-7f900e453726",
@@ -2657,6 +3101,10 @@
       "Name": "LOTUS_CHALLENGE_03_TITLE",
       "Description": "LOTUS_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "63c6a197-7f9b-40d5-82cc-398f76e753da",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "63c6a197-7f9b-40d5-82cc-398f76e753da",
       "Tags": [
@@ -2680,6 +3128,10 @@
       "Id": "282a1068-11c1-437a-aee0-e6231ec3c949",
       "Name": "LOTUS_CHALLENGE_06_TITLE",
       "Description": "LOTUS_CHALLENGE_06_DESC"
+    },
+    "State": {
+      "Id": "282a1068-11c1-437a-aee0-e6231ec3c949",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "282a1068-11c1-437a-aee0-e6231ec3c949",
@@ -2705,6 +3157,10 @@
       "Name": "LOTUS_CHALLENGE_13_TITLE",
       "Description": "LOTUS_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "b4e15807-069c-4583-8257-185ce1d8b505",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "b4e15807-069c-4583-8257-185ce1d8b505",
       "Tags": [
@@ -2728,6 +3184,10 @@
       "Id": "29be66d8-23fd-4b70-aad9-4cb4d757b4d0",
       "Name": "LOTUS_CHALLENGE_08_TITLE",
       "Description": "LOTUS_CHALLENGE_08_DESC"
+    },
+    "State": {
+      "Id": "29be66d8-23fd-4b70-aad9-4cb4d757b4d0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "29be66d8-23fd-4b70-aad9-4cb4d757b4d0",
@@ -2753,6 +3213,10 @@
       "Name": "LOTUS_CHALLENGE_10_TITLE",
       "Description": "LOTUS_CHALLENGE_10_DESC"
     },
+    "State": {
+      "Id": "72183de9-ff68-4dc7-9021-57273ad301b0",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "72183de9-ff68-4dc7-9021-57273ad301b0",
       "Tags": [
@@ -2776,6 +3240,10 @@
       "Id": "40211eb7-7f35-4f38-b4f5-d026900735e0",
       "Name": "LOTUS_CHALLENGE_04_TITLE",
       "Description": "LOTUS_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "40211eb7-7f35-4f38-b4f5-d026900735e0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "40211eb7-7f35-4f38-b4f5-d026900735e0",
@@ -2801,6 +3269,10 @@
       "Name": "LOTUS_CHALLENGE_14_TITLE",
       "Description": "LOTUS_CHALLENGE_14_DESC"
     },
+    "State": {
+      "Id": "54737f64-89ba-467a-8144-520df8b7eb42",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "54737f64-89ba-467a-8144-520df8b7eb42",
       "Tags": [
@@ -2824,6 +3296,10 @@
       "Id": "4d67fc99-9f70-41e6-b3bf-0ad79a0f4f1d",
       "Name": "LOTUS_CHALLENGE_09_TITLE",
       "Description": "LOTUS_CHALLENGE_09_DESC"
+    },
+    "State": {
+      "Id": "4d67fc99-9f70-41e6-b3bf-0ad79a0f4f1d",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "4d67fc99-9f70-41e6-b3bf-0ad79a0f4f1d",
@@ -2849,6 +3325,10 @@
       "Name": "LOTUS_CHALLENGE_11_TITLE",
       "Description": "LOTUS_CHALLENGE_11_DESC"
     },
+    "State": {
+      "Id": "8726e0ac-22c9-41ad-bf15-dd22525f38aa",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "8726e0ac-22c9-41ad-bf15-dd22525f38aa",
       "Tags": [
@@ -2872,6 +3352,10 @@
       "Id": "68fc12fd-580c-4bf4-adee-cc750486718a",
       "Name": "BLUEBELL_CHALLENGE_00_TITLE",
       "Description": "BLUEBELL_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "68fc12fd-580c-4bf4-adee-cc750486718a",
+      "ProgressMax": 23
     },
     "KntDefinition": {
       "Id": "68fc12fd-580c-4bf4-adee-cc750486718a",
@@ -2899,6 +3383,10 @@
       "Name": "BLUEBELL_CHALLENGE_01_TITLE",
       "Description": "BLUEBELL_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "b98b0bd9-4432-4659-91a9-7199bfb3c33f",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "b98b0bd9-4432-4659-91a9-7199bfb3c33f",
       "Tags": [
@@ -2922,6 +3410,10 @@
       "Id": "603a8ec2-d346-4414-8f99-1989fe32608c",
       "Name": "BLUEBELL_CHALLENGE_02_TITLE",
       "Description": "BLUEBELL_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "603a8ec2-d346-4414-8f99-1989fe32608c",
+      "ProgressMax": 2
     },
     "KntDefinition": {
       "Id": "603a8ec2-d346-4414-8f99-1989fe32608c",
@@ -2947,6 +3439,10 @@
       "Name": "BLUEBELL_CHALLENGE_03_TITLE",
       "Description": "BLUEBELL_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "1c3d5a1d-7092-4c46-8c4d-2438d8942a66",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "1c3d5a1d-7092-4c46-8c4d-2438d8942a66",
       "Tags": [
@@ -2970,6 +3466,10 @@
       "Id": "df246efa-3d63-4c7c-93d4-972fffab76ba",
       "Name": "BLUEBELL_CHALLENGE_05_TITLE",
       "Description": "BLUEBELL_CHALLENGE_05_DESC"
+    },
+    "State": {
+      "Id": "df246efa-3d63-4c7c-93d4-972fffab76ba",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "df246efa-3d63-4c7c-93d4-972fffab76ba",
@@ -2995,6 +3495,10 @@
       "Name": "BLUEBELL_CHALLENGE_06_TITLE",
       "Description": "BLUEBELL_CHALLENGE_06_DESC"
     },
+    "State": {
+      "Id": "58784021-abfe-40b0-a8b1-2e59d6440190",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "58784021-abfe-40b0-a8b1-2e59d6440190",
       "Tags": [
@@ -3018,6 +3522,10 @@
       "Id": "3472190a-25b6-4c93-9510-76f8d5b96855",
       "Name": "BLUEBELL_CHALLENGE_17_TITLE",
       "Description": "BLUEBELL_CHALLENGE_17_DESC"
+    },
+    "State": {
+      "Id": "3472190a-25b6-4c93-9510-76f8d5b96855",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3472190a-25b6-4c93-9510-76f8d5b96855",
@@ -3043,6 +3551,10 @@
       "Name": "BLUEBELL_CHALLENGE_11_TITLE",
       "Description": "BLUEBELL_CHALLENGE_11_DESC"
     },
+    "State": {
+      "Id": "30e3be60-edde-4350-af76-80832d5ad5de",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "30e3be60-edde-4350-af76-80832d5ad5de",
       "Tags": [
@@ -3066,6 +3578,10 @@
       "Id": "a547ba6e-f572-4ef8-875e-6c1c4e5b27b4",
       "Name": "BLUEBELL_CHALLENGE_14_TITLE",
       "Description": "BLUEBELL_CHALLENGE_14_DESC"
+    },
+    "State": {
+      "Id": "a547ba6e-f572-4ef8-875e-6c1c4e5b27b4",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "a547ba6e-f572-4ef8-875e-6c1c4e5b27b4",
@@ -3091,6 +3607,10 @@
       "Name": "BLUEBELL_CHALLENGE_20_TITLE",
       "Description": "BLUEBELL_CHALLENGE_20_DESC"
     },
+    "State": {
+      "Id": "a920a72f-3176-4fbd-9bfd-6b505f4c9faf",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "a920a72f-3176-4fbd-9bfd-6b505f4c9faf",
       "Tags": [
@@ -3114,6 +3634,10 @@
       "Id": "0d4e2a46-7ad2-413d-8f00-dad2bdd1a0dc",
       "Name": "BLUEBELL_CHALLENGE_09_TITLE",
       "Description": "BLUEBELL_CHALLENGE_09_DESC"
+    },
+    "State": {
+      "Id": "0d4e2a46-7ad2-413d-8f00-dad2bdd1a0dc",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "0d4e2a46-7ad2-413d-8f00-dad2bdd1a0dc",
@@ -3139,6 +3663,10 @@
       "Name": "BLUEBELL_CHALLENGE_07_TITLE",
       "Description": "BLUEBELL_CHALLENGE_07_DESC"
     },
+    "State": {
+      "Id": "ce8e5c26-aad9-41bd-9ff7-a9257e98a107",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "ce8e5c26-aad9-41bd-9ff7-a9257e98a107",
       "Tags": [
@@ -3162,6 +3690,10 @@
       "Id": "9c6da2d2-cb09-4710-a159-8b6606030844",
       "Name": "BLUEBELL_CHALLENGE_10_TITLE",
       "Description": "BLUEBELL_CHALLENGE_10_DESC"
+    },
+    "State": {
+      "Id": "9c6da2d2-cb09-4710-a159-8b6606030844",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "9c6da2d2-cb09-4710-a159-8b6606030844",
@@ -3187,6 +3719,10 @@
       "Name": "BLUEBELL_CHALLENGE_22_TITLE",
       "Description": "BLUEBELL_CHALLENGE_22_DESC"
     },
+    "State": {
+      "Id": "6c37d1a0-c476-479d-bc42-292057133220",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "6c37d1a0-c476-479d-bc42-292057133220",
       "Tags": [
@@ -3210,6 +3746,10 @@
       "Id": "f04cd8ba-2adb-4dcb-bb24-bbafe68525dd",
       "Name": "BLUEBELL_CHALLENGE_16_TITLE",
       "Description": "BLUEBELL_CHALLENGE_16_DESC"
+    },
+    "State": {
+      "Id": "f04cd8ba-2adb-4dcb-bb24-bbafe68525dd",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "f04cd8ba-2adb-4dcb-bb24-bbafe68525dd",
@@ -3235,6 +3775,10 @@
       "Name": "BLUEBELL_CHALLENGE_04_TITLE",
       "Description": "BLUEBELL_CHALLENGE_04_DESC"
     },
+    "State": {
+      "Id": "5faa8275-715c-40d0-bf17-2a123718fe06",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "5faa8275-715c-40d0-bf17-2a123718fe06",
       "Tags": [
@@ -3258,6 +3802,10 @@
       "Id": "46eacc90-7d0d-478f-a064-b2a8f886ffdf",
       "Name": "BLUEBELL_CHALLENGE_12_TITLE",
       "Description": "BLUEBELL_CHALLENGE_12_DESC"
+    },
+    "State": {
+      "Id": "46eacc90-7d0d-478f-a064-b2a8f886ffdf",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "46eacc90-7d0d-478f-a064-b2a8f886ffdf",
@@ -3283,6 +3831,10 @@
       "Name": "BLUEBELL_CHALLENGE_13_TITLE",
       "Description": "BLUEBELL_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "2c0badba-2a22-47a5-9227-4d698dd8c842",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "2c0badba-2a22-47a5-9227-4d698dd8c842",
       "Tags": [
@@ -3306,6 +3858,10 @@
       "Id": "c547a182-d026-4d35-891a-6c066cacde3f",
       "Name": "BLUEBELL_CHALLENGE_18_TITLE",
       "Description": "BLUEBELL_CHALLENGE_18_DESC"
+    },
+    "State": {
+      "Id": "c547a182-d026-4d35-891a-6c066cacde3f",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c547a182-d026-4d35-891a-6c066cacde3f",
@@ -3331,6 +3887,10 @@
       "Name": "BLUEBELL_CHALLENGE_08_TITLE",
       "Description": "BLUEBELL_CHALLENGE_08_DESC"
     },
+    "State": {
+      "Id": "b88b5012-91e1-4e50-b0c1-6c33619db59b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "b88b5012-91e1-4e50-b0c1-6c33619db59b",
       "Tags": [
@@ -3354,6 +3914,10 @@
       "Id": "c5f63d96-ef71-4167-b855-9e33f5360bc0",
       "Name": "BLUEBELL_CHALLENGE_21_TITLE",
       "Description": "BLUEBELL_CHALLENGE_21_DESC"
+    },
+    "State": {
+      "Id": "c5f63d96-ef71-4167-b855-9e33f5360bc0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c5f63d96-ef71-4167-b855-9e33f5360bc0",
@@ -3379,6 +3943,10 @@
       "Name": "BLUEBELL_CHALLENGE_24_TITLE",
       "Description": "BLUEBELL_CHALLENGE_24_DESC"
     },
+    "State": {
+      "Id": "38097b3c-680e-4ce1-ab4b-882f44eb700b",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "38097b3c-680e-4ce1-ab4b-882f44eb700b",
       "Tags": [
@@ -3402,6 +3970,10 @@
       "Id": "2803d917-326d-4c35-9969-ea9834297f12",
       "Name": "BLUEBELL_CHALLENGE_19_TITLE",
       "Description": "BLUEBELL_CHALLENGE_19_DESC"
+    },
+    "State": {
+      "Id": "2803d917-326d-4c35-9969-ea9834297f12",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "2803d917-326d-4c35-9969-ea9834297f12",
@@ -3427,6 +3999,10 @@
       "Name": "BLUEBELL_CHALLENGE_23_TITLE",
       "Description": "BLUEBELL_CHALLENGE_23_DESC"
     },
+    "State": {
+      "Id": "a11b0bc5-a1ea-41e1-98f1-c4fa15690ad5",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "a11b0bc5-a1ea-41e1-98f1-c4fa15690ad5",
       "Tags": [
@@ -3450,6 +4026,10 @@
       "Id": "6f5ecf57-ec8f-45d8-912b-d49937f53328",
       "Name": "MAGNOLIA_CHALLENGE_00_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "6f5ecf57-ec8f-45d8-912b-d49937f53328",
+      "ProgressMax": 23
     },
     "KntDefinition": {
       "Id": "6f5ecf57-ec8f-45d8-912b-d49937f53328",
@@ -3477,6 +4057,10 @@
       "Name": "MAGNOLIA_CHALLENGE_01_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "b2f7942f-e803-4729-a9fb-a618bbc68b3b",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "b2f7942f-e803-4729-a9fb-a618bbc68b3b",
       "Tags": [
@@ -3500,6 +4084,10 @@
       "Id": "6e4f5ffb-5f28-468b-a200-9df59e2ce560",
       "Name": "MAGNOLIA_CHALLENGE_02_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "6e4f5ffb-5f28-468b-a200-9df59e2ce560",
+      "ProgressMax": 2
     },
     "KntDefinition": {
       "Id": "6e4f5ffb-5f28-468b-a200-9df59e2ce560",
@@ -3525,6 +4113,10 @@
       "Name": "MAGNOLIA_CHALLENGE_03_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "3a04d752-72db-405d-b3c6-bfed4bd6a0df",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "3a04d752-72db-405d-b3c6-bfed4bd6a0df",
       "Tags": [
@@ -3548,6 +4140,10 @@
       "Id": "e7fb475f-a35b-431d-be25-d49973f6da59",
       "Name": "MAGNOLIA_CHALLENGE_04_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "e7fb475f-a35b-431d-be25-d49973f6da59",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "e7fb475f-a35b-431d-be25-d49973f6da59",
@@ -3573,6 +4169,10 @@
       "Name": "MAGNOLIA_CHALLENGE_06_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_06_DESC"
     },
+    "State": {
+      "Id": "cea21ae0-52e0-4a91-bd1d-3d04072f6d86",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "cea21ae0-52e0-4a91-bd1d-3d04072f6d86",
       "Tags": [
@@ -3596,6 +4196,10 @@
       "Id": "fc8b7876-7953-4362-8873-de3491d023cb",
       "Name": "MAGNOLIA_CHALLENGE_07_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_07_DESC"
+    },
+    "State": {
+      "Id": "fc8b7876-7953-4362-8873-de3491d023cb",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "fc8b7876-7953-4362-8873-de3491d023cb",
@@ -3621,6 +4225,10 @@
       "Name": "MAGNOLIA_CHALLENGE_05_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_05_DESC"
     },
+    "State": {
+      "Id": "b9b1055d-01f7-40a3-adeb-6da1878e58b1",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "b9b1055d-01f7-40a3-adeb-6da1878e58b1",
       "Tags": [
@@ -3644,6 +4252,10 @@
       "Id": "c9e83b43-7411-4410-b5e9-7052c64ee738",
       "Name": "MAGNOLIA_CHALLENGE_08_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_08_DESC"
+    },
+    "State": {
+      "Id": "c9e83b43-7411-4410-b5e9-7052c64ee738",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c9e83b43-7411-4410-b5e9-7052c64ee738",
@@ -3669,6 +4281,10 @@
       "Name": "MAGNOLIA_CHALLENGE_17_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_17_DESC"
     },
+    "State": {
+      "Id": "6171f1d5-9a95-41eb-a3ad-9101e2866871",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "6171f1d5-9a95-41eb-a3ad-9101e2866871",
       "Tags": [
@@ -3692,6 +4308,10 @@
       "Id": "52408454-93de-48fc-9931-2d42be5485fa",
       "Name": "MAGNOLIA_CHALLENGE_11_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_11_DESC"
+    },
+    "State": {
+      "Id": "52408454-93de-48fc-9931-2d42be5485fa",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "52408454-93de-48fc-9931-2d42be5485fa",
@@ -3717,6 +4337,10 @@
       "Name": "MAGNOLIA_CHALLENGE_12_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_12_DESC"
     },
+    "State": {
+      "Id": "820e7264-4a0a-4425-86d3-3409bc5bb756",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "820e7264-4a0a-4425-86d3-3409bc5bb756",
       "Tags": [
@@ -3740,6 +4364,10 @@
       "Id": "b79de896-8d9e-4510-aaa0-4905f7609876",
       "Name": "MAGNOLIA_CHALLENGE_09_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_09_DESC"
+    },
+    "State": {
+      "Id": "b79de896-8d9e-4510-aaa0-4905f7609876",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "b79de896-8d9e-4510-aaa0-4905f7609876",
@@ -3765,6 +4393,10 @@
       "Name": "MAGNOLIA_CHALLENGE_13_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "d832ed0c-c1e0-4d8b-9f07-fd13e4059ac1",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "d832ed0c-c1e0-4d8b-9f07-fd13e4059ac1",
       "Tags": [
@@ -3788,6 +4420,10 @@
       "Id": "b737ace4-50d1-4240-a8e2-5fc703ab4dce",
       "Name": "MAGNOLIA_CHALLENGE_14_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_14_DESC"
+    },
+    "State": {
+      "Id": "b737ace4-50d1-4240-a8e2-5fc703ab4dce",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "b737ace4-50d1-4240-a8e2-5fc703ab4dce",
@@ -3813,6 +4449,10 @@
       "Name": "MAGNOLIA_CHALLENGE_16_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_16_DESC"
     },
+    "State": {
+      "Id": "e09f2b28-16c4-4a5d-82dc-68977142dee5",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e09f2b28-16c4-4a5d-82dc-68977142dee5",
       "Tags": [
@@ -3836,6 +4476,10 @@
       "Id": "768fdaf9-0567-47a8-b737-a352a3834b92",
       "Name": "MAGNOLIA_CHALLENGE_22_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_22_DESC"
+    },
+    "State": {
+      "Id": "768fdaf9-0567-47a8-b737-a352a3834b92",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "768fdaf9-0567-47a8-b737-a352a3834b92",
@@ -3861,6 +4505,10 @@
       "Name": "MAGNOLIA_CHALLENGE_15_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_15_DESC"
     },
+    "State": {
+      "Id": "7957ed55-7286-4787-bc31-65aeda4dc005",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "7957ed55-7286-4787-bc31-65aeda4dc005",
       "Tags": [
@@ -3884,6 +4532,10 @@
       "Id": "1c0abf89-d05d-4f93-9b02-5cb7870c15cd",
       "Name": "MAGNOLIA_CHALLENGE_18_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_18_DESC"
+    },
+    "State": {
+      "Id": "1c0abf89-d05d-4f93-9b02-5cb7870c15cd",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "1c0abf89-d05d-4f93-9b02-5cb7870c15cd",
@@ -3909,6 +4561,10 @@
       "Name": "MAGNOLIA_CHALLENGE_19_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_19_DESC"
     },
+    "State": {
+      "Id": "e8f0716c-8e70-4c3c-b63f-47b450722e9a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e8f0716c-8e70-4c3c-b63f-47b450722e9a",
       "Tags": [
@@ -3932,6 +4588,10 @@
       "Id": "2f579076-3351-49c1-9c95-ed6b2727d588",
       "Name": "MAGNOLIA_CHALLENGE_23_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_23_DESC"
+    },
+    "State": {
+      "Id": "2f579076-3351-49c1-9c95-ed6b2727d588",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "2f579076-3351-49c1-9c95-ed6b2727d588",
@@ -3957,6 +4617,10 @@
       "Name": "MAGNOLIA_CHALLENGE_21_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_21_DESC"
     },
+    "State": {
+      "Id": "def654e1-8f5b-4601-b86b-e3336a2a4a63",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "def654e1-8f5b-4601-b86b-e3336a2a4a63",
       "Tags": [
@@ -3980,6 +4644,10 @@
       "Id": "ad20418a-64f0-46b1-b49d-c5859d02db59",
       "Name": "MAGNOLIA_CHALLENGE_20_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_20_DESC"
+    },
+    "State": {
+      "Id": "ad20418a-64f0-46b1-b49d-c5859d02db59",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "ad20418a-64f0-46b1-b49d-c5859d02db59",
@@ -4005,6 +4673,10 @@
       "Name": "MAGNOLIA_CHALLENGE_10_TITLE",
       "Description": "MAGNOLIA_CHALLENGE_10_DESC"
     },
+    "State": {
+      "Id": "08b83ab4-e91d-48e8-a41e-f3adedfb9108",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "08b83ab4-e91d-48e8-a41e-f3adedfb9108",
       "Tags": [
@@ -4028,6 +4700,10 @@
       "Id": "e75ffaf6-8518-4e9d-8629-d4e7b72876c1",
       "Name": "ORCHID_CHALLENGE_00_TITLE",
       "Description": "ORCHID_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "e75ffaf6-8518-4e9d-8629-d4e7b72876c1",
+      "ProgressMax": 24
     },
     "KntDefinition": {
       "Id": "e75ffaf6-8518-4e9d-8629-d4e7b72876c1",
@@ -4055,6 +4731,10 @@
       "Name": "ORCHID_CHALLENGE_01_TITLE",
       "Description": "ORCHID_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "2281272b-ac30-4b35-8ea3-84a0aa98f1a0",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "2281272b-ac30-4b35-8ea3-84a0aa98f1a0",
       "Tags": [
@@ -4078,6 +4758,10 @@
       "Id": "9d67c8ae-1d12-470c-8122-db3fee315d6d",
       "Name": "ORCHID_CHALLENGE_02_TITLE",
       "Description": "ORCHID_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "9d67c8ae-1d12-470c-8122-db3fee315d6d",
+      "ProgressMax": 2
     },
     "KntDefinition": {
       "Id": "9d67c8ae-1d12-470c-8122-db3fee315d6d",
@@ -4103,6 +4787,10 @@
       "Name": "ORCHID_CHALLENGE_03_TITLE",
       "Description": "ORCHID_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "a571f176-13f4-44e8-bbbf-c2c630aea374",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "a571f176-13f4-44e8-bbbf-c2c630aea374",
       "Tags": [
@@ -4126,6 +4814,10 @@
       "Id": "98185fdf-33eb-4e55-a9d4-9bfbb387fd76",
       "Name": "ORCHID_CHALLENGE_15_TITLE",
       "Description": "ORCHID_CHALLENGE_15_DESC"
+    },
+    "State": {
+      "Id": "98185fdf-33eb-4e55-a9d4-9bfbb387fd76",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "98185fdf-33eb-4e55-a9d4-9bfbb387fd76",
@@ -4151,6 +4843,10 @@
       "Name": "ORCHID_CHALLENGE_11_TITLE",
       "Description": "ORCHID_CHALLENGE_11_DESC"
     },
+    "State": {
+      "Id": "daf8052a-3fd7-4c65-8923-51778e7018c5",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "daf8052a-3fd7-4c65-8923-51778e7018c5",
       "Tags": [
@@ -4174,6 +4870,10 @@
       "Id": "c2a3c345-324a-4cff-a6ae-77b4f847e4ab",
       "Name": "ORCHID_CHALLENGE_08_TITLE",
       "Description": "ORCHID_CHALLENGE_08_DESC"
+    },
+    "State": {
+      "Id": "c2a3c345-324a-4cff-a6ae-77b4f847e4ab",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c2a3c345-324a-4cff-a6ae-77b4f847e4ab",
@@ -4199,6 +4899,10 @@
       "Name": "ORCHID_CHALLENGE_05_TITLE",
       "Description": "ORCHID_CHALLENGE_05_DESC"
     },
+    "State": {
+      "Id": "05a17bb4-161d-474a-954a-20c98bc28d58",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "05a17bb4-161d-474a-954a-20c98bc28d58",
       "Tags": [
@@ -4222,6 +4926,10 @@
       "Id": "593d10de-1095-4d0a-b2b0-c5b06f3d19bb",
       "Name": "ORCHID_CHALLENGE_14_TITLE",
       "Description": "ORCHID_CHALLENGE_14_DESC"
+    },
+    "State": {
+      "Id": "593d10de-1095-4d0a-b2b0-c5b06f3d19bb",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "593d10de-1095-4d0a-b2b0-c5b06f3d19bb",
@@ -4247,6 +4955,10 @@
       "Name": "ORCHID_CHALLENGE_16_TITLE",
       "Description": "ORCHID_CHALLENGE_16_DESC"
     },
+    "State": {
+      "Id": "18dab87c-df40-4ad9-a2b6-cad21e011aad",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "18dab87c-df40-4ad9-a2b6-cad21e011aad",
       "Tags": [
@@ -4270,6 +4982,10 @@
       "Id": "c289faff-9de3-48ec-8cde-860ce2a43226",
       "Name": "ORCHID_CHALLENGE_19_TITLE",
       "Description": "ORCHID_CHALLENGE_19_DESC"
+    },
+    "State": {
+      "Id": "c289faff-9de3-48ec-8cde-860ce2a43226",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c289faff-9de3-48ec-8cde-860ce2a43226",
@@ -4295,6 +5011,10 @@
       "Name": "ORCHID_CHALLENGE_13_TITLE",
       "Description": "ORCHID_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "3071c4cd-5c33-45f3-8196-bff01e34c65e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "3071c4cd-5c33-45f3-8196-bff01e34c65e",
       "Tags": [
@@ -4318,6 +5038,10 @@
       "Id": "40a58c77-ef7b-4107-a378-d0075111b120",
       "Name": "ORCHID_CHALLENGE_04_TITLE",
       "Description": "ORCHID_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "40a58c77-ef7b-4107-a378-d0075111b120",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "40a58c77-ef7b-4107-a378-d0075111b120",
@@ -4343,6 +5067,10 @@
       "Name": "ORCHID_CHALLENGE_06_TITLE",
       "Description": "ORCHID_CHALLENGE_06_DESC"
     },
+    "State": {
+      "Id": "38646764-1845-4cc4-a60b-a1538f02dae9",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "38646764-1845-4cc4-a60b-a1538f02dae9",
       "Tags": [
@@ -4366,6 +5094,10 @@
       "Id": "3dffb2c1-e695-41da-b008-bd8497f4be38",
       "Name": "ORCHID_CHALLENGE_17_TITLE",
       "Description": "ORCHID_CHALLENGE_17_DESC"
+    },
+    "State": {
+      "Id": "3dffb2c1-e695-41da-b008-bd8497f4be38",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3dffb2c1-e695-41da-b008-bd8497f4be38",
@@ -4391,6 +5123,10 @@
       "Name": "ORCHID_CHALLENGE_24_TITLE",
       "Description": "ORCHID_CHALLENGE_24_DESC"
     },
+    "State": {
+      "Id": "e5b65899-7d8e-454f-a3fa-60bf36f6e717",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e5b65899-7d8e-454f-a3fa-60bf36f6e717",
       "Tags": [
@@ -4414,6 +5150,10 @@
       "Id": "e5fda647-cdf3-4d4f-bbaf-10eec844ca01",
       "Name": "ORCHID_CHALLENGE_07_TITLE",
       "Description": "ORCHID_CHALLENGE_07_DESC"
+    },
+    "State": {
+      "Id": "e5fda647-cdf3-4d4f-bbaf-10eec844ca01",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "e5fda647-cdf3-4d4f-bbaf-10eec844ca01",
@@ -4439,6 +5179,10 @@
       "Name": "ORCHID_CHALLENGE_12_TITLE",
       "Description": "ORCHID_CHALLENGE_12_DESC"
     },
+    "State": {
+      "Id": "415ebc68-d1ac-460d-9473-80ffc36634c1",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "415ebc68-d1ac-460d-9473-80ffc36634c1",
       "Tags": [
@@ -4462,6 +5206,10 @@
       "Id": "8c8b8945-4c04-4c2e-9851-37b52eefb0d8",
       "Name": "ORCHID_CHALLENGE_23_TITLE",
       "Description": "ORCHID_CHALLENGE_23_DESC"
+    },
+    "State": {
+      "Id": "8c8b8945-4c04-4c2e-9851-37b52eefb0d8",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "8c8b8945-4c04-4c2e-9851-37b52eefb0d8",
@@ -4487,6 +5235,10 @@
       "Name": "ORCHID_CHALLENGE_20_TITLE",
       "Description": "ORCHID_CHALLENGE_20_DESC"
     },
+    "State": {
+      "Id": "e2cc2ded-1fb5-4812-bdb7-a43d0fb7c2c3",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e2cc2ded-1fb5-4812-bdb7-a43d0fb7c2c3",
       "Tags": [
@@ -4510,6 +5262,10 @@
       "Id": "17e9076c-a7d9-4b5c-8615-7aad488dd476",
       "Name": "ORCHID_CHALLENGE_18_TITLE",
       "Description": "ORCHID_CHALLENGE_18_DESC"
+    },
+    "State": {
+      "Id": "17e9076c-a7d9-4b5c-8615-7aad488dd476",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "17e9076c-a7d9-4b5c-8615-7aad488dd476",
@@ -4535,6 +5291,10 @@
       "Name": "ORCHID_CHALLENGE_21_TITLE",
       "Description": "ORCHID_CHALLENGE_21_DESC"
     },
+    "State": {
+      "Id": "2a12ea36-fc4e-4040-bcbe-b1af39225609",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "2a12ea36-fc4e-4040-bcbe-b1af39225609",
       "Tags": [
@@ -4558,6 +5318,10 @@
       "Id": "56bd5c42-7835-4b24-a532-f90d5e908eff",
       "Name": "ORCHID_CHALLENGE_22_TITLE",
       "Description": "ORCHID_CHALLENGE_22_DESC"
+    },
+    "State": {
+      "Id": "56bd5c42-7835-4b24-a532-f90d5e908eff",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "56bd5c42-7835-4b24-a532-f90d5e908eff",
@@ -4583,6 +5347,10 @@
       "Name": "ORCHID_CHALLENGE_09_TITLE",
       "Description": "ORCHID_CHALLENGE_09_DESC"
     },
+    "State": {
+      "Id": "249b8821-16d1-44e1-92d9-c35474050d9a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "249b8821-16d1-44e1-92d9-c35474050d9a",
       "Tags": [
@@ -4607,6 +5375,10 @@
       "Name": "ORCHID_CHALLENGE_10_TITLE",
       "Description": "ORCHID_CHALLENGE_10_DESC"
     },
+    "State": {
+      "Id": "fcbc64b5-1562-4759-a110-9a1a207c6644",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "fcbc64b5-1562-4759-a110-9a1a207c6644",
       "Tags": [
@@ -4630,6 +5402,10 @@
       "Id": "c6e704bf-1e5e-43f1-a042-1e53dd50dc22",
       "Name": "IVY_CHALLENGE_00_TITLE",
       "Description": "IVY_CHALLENGE_00_DESC"
+    },
+    "State": {
+      "Id": "c6e704bf-1e5e-43f1-a042-1e53dd50dc22",
+      "ProgressMax": 15
     },
     "KntDefinition": {
       "Id": "c6e704bf-1e5e-43f1-a042-1e53dd50dc22",
@@ -4657,6 +5433,10 @@
       "Name": "IVY_CHALLENGE_01_TITLE",
       "Description": "IVY_CHALLENGE_01_DESC"
     },
+    "State": {
+      "Id": "3fccf326-556f-496f-b064-1f30b13ed764",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "3fccf326-556f-496f-b064-1f30b13ed764",
       "Tags": [
@@ -4680,6 +5460,10 @@
       "Id": "4fb4326c-8cf1-4bd7-a199-7f0c86611730",
       "Name": "IVY_CHALLENGE_02_TITLE",
       "Description": "IVY_CHALLENGE_02_DESC"
+    },
+    "State": {
+      "Id": "4fb4326c-8cf1-4bd7-a199-7f0c86611730",
+      "ProgressMax": 2
     },
     "KntDefinition": {
       "Id": "4fb4326c-8cf1-4bd7-a199-7f0c86611730",
@@ -4705,6 +5489,10 @@
       "Name": "IVY_CHALLENGE_03_TITLE",
       "Description": "IVY_CHALLENGE_03_DESC"
     },
+    "State": {
+      "Id": "18a64161-cc3d-468a-880f-ae7ddab4daa6",
+      "ProgressMax": 2
+    },
     "KntDefinition": {
       "Id": "18a64161-cc3d-468a-880f-ae7ddab4daa6",
       "Tags": [
@@ -4728,6 +5516,10 @@
       "Id": "a121c156-618e-49fa-aa60-32cfb1e34e22",
       "Name": "IVY_CHALLENGE_07_TITLE",
       "Description": "IVY_CHALLENGE_07_DESC"
+    },
+    "State": {
+      "Id": "a121c156-618e-49fa-aa60-32cfb1e34e22",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "a121c156-618e-49fa-aa60-32cfb1e34e22",
@@ -4753,6 +5545,10 @@
       "Name": "IVY_CHALLENGE_14_TITLE",
       "Description": "IVY_CHALLENGE_14_DESC"
     },
+    "State": {
+      "Id": "22636070-1d26-4a2c-8227-4f9c194db7cb",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "22636070-1d26-4a2c-8227-4f9c194db7cb",
       "Tags": [
@@ -4776,6 +5572,10 @@
       "Id": "7d2c94bb-f462-4dc9-95db-1506aa9323fd",
       "Name": "IVY_CHALLENGE_04_TITLE",
       "Description": "IVY_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "7d2c94bb-f462-4dc9-95db-1506aa9323fd",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "7d2c94bb-f462-4dc9-95db-1506aa9323fd",
@@ -4801,6 +5601,10 @@
       "Name": "IVY_CHALLENGE_13_TITLE",
       "Description": "IVY_CHALLENGE_13_DESC"
     },
+    "State": {
+      "Id": "ea20a989-6876-4b0d-9011-735160b130db",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "ea20a989-6876-4b0d-9011-735160b130db",
       "Tags": [
@@ -4824,6 +5628,10 @@
       "Id": "fcffd7ff-0dd9-426b-bf14-77e8f72c6674",
       "Name": "IVY_CHALLENGE_10_TITLE",
       "Description": "IVY_CHALLENGE_10_DESC"
+    },
+    "State": {
+      "Id": "fcffd7ff-0dd9-426b-bf14-77e8f72c6674",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "fcffd7ff-0dd9-426b-bf14-77e8f72c6674",
@@ -4849,6 +5657,10 @@
       "Name": "IVY_CHALLENGE_16_TITLE",
       "Description": "IVY_CHALLENGE_16_DESC"
     },
+    "State": {
+      "Id": "ced0cc8f-b61f-4df5-a589-a3be4bb7d23f",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "ced0cc8f-b61f-4df5-a589-a3be4bb7d23f",
       "Tags": [
@@ -4872,6 +5684,10 @@
       "Id": "539b6e7b-4a69-484e-80fd-f67419fde553",
       "Name": "IVY_CHALLENGE_08_TITLE",
       "Description": "IVY_CHALLENGE_08_DESC"
+    },
+    "State": {
+      "Id": "539b6e7b-4a69-484e-80fd-f67419fde553",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "539b6e7b-4a69-484e-80fd-f67419fde553",
@@ -4897,6 +5713,10 @@
       "Name": "IVY_CHALLENGE_12_TITLE",
       "Description": "IVY_CHALLENGE_12_DESC"
     },
+    "State": {
+      "Id": "523bffa4-b9ba-4fa1-b16f-e204b2b6636f",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "523bffa4-b9ba-4fa1-b16f-e204b2b6636f",
       "Tags": [
@@ -4920,6 +5740,10 @@
       "Id": "c51e9d3c-6365-48bd-b31d-054a3f3a83b4",
       "Name": "IVY_CHALLENGE_15_TITLE",
       "Description": "IVY_CHALLENGE_15_DESC"
+    },
+    "State": {
+      "Id": "c51e9d3c-6365-48bd-b31d-054a3f3a83b4",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c51e9d3c-6365-48bd-b31d-054a3f3a83b4",
@@ -4945,6 +5769,10 @@
       "Name": "IVY_CHALLENGE_17_TITLE",
       "Description": "IVY_CHALLENGE_17_DESC"
     },
+    "State": {
+      "Id": "17eae961-fea7-4f52-8944-03d0f73c3957",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "17eae961-fea7-4f52-8944-03d0f73c3957",
       "Tags": [
@@ -4968,6 +5796,10 @@
       "Id": "3799aa5d-1133-496d-92f6-5c30315ce046",
       "Name": "IVY_CHALLENGE_09_TITLE",
       "Description": "IVY_CHALLENGE_09_DESC"
+    },
+    "State": {
+      "Id": "3799aa5d-1133-496d-92f6-5c30315ce046",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3799aa5d-1133-496d-92f6-5c30315ce046",
@@ -4993,6 +5825,10 @@
       "Name": "IVY_CHALLENGE_11_TITLE",
       "Description": "IVY_CHALLENGE_11_DESC"
     },
+    "State": {
+      "Id": "6f03c2ad-261c-4798-9bd5-8fb18061d8fa",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "6f03c2ad-261c-4798-9bd5-8fb18061d8fa",
       "Tags": [
@@ -5017,6 +5853,10 @@
       "Name": "ROSE_FIREFLY_CHALLENGE_COMPLETEOPERATION_NAME",
       "Description": "ROSE_FIREFLY_CHALLENGE_COMPLETEOPERATION_DESC"
     },
+    "State": {
+      "Id": "e22b7da1-fd79-462e-bf44-c1d2ba9f7b04",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e22b7da1-fd79-462e-bf44-c1d2ba9f7b04",
       "Tags": [
@@ -5039,6 +5879,10 @@
       "Id": "033bb130-5a99-4125-92fa-bf2cb5304966",
       "Name": "ROSE_FIREFLY_CHALLENGE_06_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_06_DESC"
+    },
+    "State": {
+      "Id": "033bb130-5a99-4125-92fa-bf2cb5304966",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "033bb130-5a99-4125-92fa-bf2cb5304966",
@@ -5063,6 +5907,10 @@
       "Name": "ROSE_FIREFLY_CHALLENGE_05_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_05_DESC"
     },
+    "State": {
+      "Id": "be5c5678-3972-4572-a924-e383e557162a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "be5c5678-3972-4572-a924-e383e557162a",
       "Tags": [
@@ -5085,6 +5933,10 @@
       "Id": "9b8daded-3d23-40ef-92c2-6bbb4c3d1652",
       "Name": "ROSE_FIREFLY_CHALLENGE_04_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_04_DESC"
+    },
+    "State": {
+      "Id": "9b8daded-3d23-40ef-92c2-6bbb4c3d1652",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "9b8daded-3d23-40ef-92c2-6bbb4c3d1652",
@@ -5109,6 +5961,10 @@
       "Name": "ROSE_FIREFLY_CHALLENGE_09_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_09_DESC"
     },
+    "State": {
+      "Id": "523572ef-8378-4520-9ca0-84003fd1648f",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "523572ef-8378-4520-9ca0-84003fd1648f",
       "Tags": [
@@ -5131,6 +5987,10 @@
       "Id": "6d2ea9a2-42a7-4f17-9875-a62f38943de5",
       "Name": "ROSE_FIREFLY_CHALLENGE_10_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_10_DESC"
+    },
+    "State": {
+      "Id": "6d2ea9a2-42a7-4f17-9875-a62f38943de5",
+      "ProgressMax": 7
     },
     "KntDefinition": {
       "Id": "6d2ea9a2-42a7-4f17-9875-a62f38943de5",
@@ -5157,6 +6017,10 @@
       "Name": "ROSE_FIREFLY_CHALLENGE_NOBULLETS_NAME",
       "Description": "ROSE_FIREFLY_CHALLENGE_NOBULLETS_DESC"
     },
+    "State": {
+      "Id": "0553ab42-afcc-4f81-ba54-c9badb462c92",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "0553ab42-afcc-4f81-ba54-c9badb462c92",
       "Tags": [
@@ -5179,6 +6043,10 @@
       "Id": "32773b01-c244-4be7-843a-b3ba54f1ff87",
       "Name": "ROSE_FIREFLY_CHALLENGE_NOGADGETS_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_NOGADGETS_DESC"
+    },
+    "State": {
+      "Id": "32773b01-c244-4be7-843a-b3ba54f1ff87",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "32773b01-c244-4be7-843a-b3ba54f1ff87",
@@ -5203,6 +6071,10 @@
       "Name": "PEPPER_CRICKET_COMPLETETIER_01_TITLE",
       "Description": "PEPPER_CRICKET_COMPLETETIER_01_DESC"
     },
+    "State": {
+      "Id": "6f4253bc-97a4-438a-b736-db3daf4a228e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "6f4253bc-97a4-438a-b736-db3daf4a228e",
       "Tags": [
@@ -5225,6 +6097,10 @@
       "Id": "0a8ea117-cf9a-430c-949c-2bb3d5abf753",
       "Name": "PEPPER_CRICKET_COMPLETETIER_02_TITLE",
       "Description": "PEPPER_CRICKET_COMPLETETIER_02_DESC"
+    },
+    "State": {
+      "Id": "0a8ea117-cf9a-430c-949c-2bb3d5abf753",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "0a8ea117-cf9a-430c-949c-2bb3d5abf753",
@@ -5249,6 +6125,10 @@
       "Name": "PEPPER_CRICKET_COMPLETETIER_03_TITLE",
       "Description": "PEPPER_CRICKET_COMPLETETIER_03_DESC"
     },
+    "State": {
+      "Id": "be029198-c120-4982-82cc-1d50a639986c",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "be029198-c120-4982-82cc-1d50a639986c",
       "Tags": [
@@ -5271,6 +6151,10 @@
       "Id": "869a579c-f18f-4c02-8170-765a0d23a4db",
       "Name": "PEPPER_CRICKET_FLYINGTAKEDOWN_TITLE",
       "Description": "PEPPER_CRICKET_FLYINGTAKEDOWN_DESC"
+    },
+    "State": {
+      "Id": "869a579c-f18f-4c02-8170-765a0d23a4db",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "869a579c-f18f-4c02-8170-765a0d23a4db",
@@ -5295,6 +6179,10 @@
       "Name": "PEPPER_CRICKET_COMPLETEESCALATION_TITLE",
       "Description": "PEPPER_CRICKET_COMPLETEESCALATION_DESC"
     },
+    "State": {
+      "Id": "81391326-6ec7-482c-b691-4a711e29fb11",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "81391326-6ec7-482c-b691-4a711e29fb11",
       "Tags": [
@@ -5317,6 +6205,10 @@
       "Id": "ef8f610e-f06b-427f-abc4-721be52eedf5",
       "Name": "PEPPER_CRICKET_UNARMED_TITLE",
       "Description": "PEPPER_CRICKET_UNARMED_DESC"
+    },
+    "State": {
+      "Id": "ef8f610e-f06b-427f-abc4-721be52eedf5",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "ef8f610e-f06b-427f-abc4-721be52eedf5",
@@ -5341,6 +6233,10 @@
       "Name": "PEPPER_CRICKET_UNSCATHED_TITLE",
       "Description": "PEPPER_CRICKET_UNSCATHED_DESC"
     },
+    "State": {
+      "Id": "4356e90a-e662-4c08-8ff2-2e30167f0770",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "4356e90a-e662-4c08-8ff2-2e30167f0770",
       "Tags": [
@@ -5363,6 +6259,10 @@
       "Id": "c1656c21-ce8b-46e3-8e09-272b43564ad2",
       "Name": "PEPPER_CRICKET_NOGADGETS_TITLE",
       "Description": "PEPPER_CRICKET_NOGADGETS_DESC"
+    },
+    "State": {
+      "Id": "c1656c21-ce8b-46e3-8e09-272b43564ad2",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c1656c21-ce8b-46e3-8e09-272b43564ad2",
@@ -5387,6 +6287,10 @@
       "Name": "PEPPER_CRICKET_DISCONNECTED_TITLE",
       "Description": "PEPPER_CRICKET_DISCONNECTED_DESC"
     },
+    "State": {
+      "Id": "93d029dc-4f97-4ee3-a7ec-5490dc472152",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "93d029dc-4f97-4ee3-a7ec-5490dc472152",
       "Tags": [
@@ -5409,6 +6313,10 @@
       "Id": "1757a1f1-24a6-4144-830a-5d8237b70140",
       "Name": "PEPPER_CRICKET_COPYTHAT_TITLE",
       "Description": "PEPPER_CRICKET_COPYTHAT_DESC"
+    },
+    "State": {
+      "Id": "1757a1f1-24a6-4144-830a-5d8237b70140",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "1757a1f1-24a6-4144-830a-5d8237b70140",
@@ -5433,6 +6341,10 @@
       "Name": "PEPPER_CRICKET_FIREHAZARD_TITLE",
       "Description": "PEPPER_CRICKET_FIREHAZARD_DESC"
     },
+    "State": {
+      "Id": "b8b65c84-af98-44a4-a841-6fe4a4162adf",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "b8b65c84-af98-44a4-a841-6fe4a4162adf",
       "Tags": [
@@ -5455,6 +6367,10 @@
       "Id": "0fe3052a-79ba-4f84-9c75-24690ba8e491",
       "Name": "PEPPER_PILLBUG_COMPLETETIER_01_TITLE",
       "Description": "PEPPER_PILLBUG_COMPLETETIER_01_DESC"
+    },
+    "State": {
+      "Id": "0fe3052a-79ba-4f84-9c75-24690ba8e491",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "0fe3052a-79ba-4f84-9c75-24690ba8e491",
@@ -5479,6 +6395,10 @@
       "Name": "PEPPER_PILLBUG_COMPLETETIER_02_TITLE",
       "Description": "PEPPER_PILLBUG_COMPLETETIER_02_DESC"
     },
+    "State": {
+      "Id": "5f330a38-988a-4536-b390-15bb6a79f335",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "5f330a38-988a-4536-b390-15bb6a79f335",
       "Tags": [
@@ -5501,6 +6421,10 @@
       "Id": "57f0577e-8630-41ff-9f93-fa6aaa421374",
       "Name": "PEPPER_PILLBUG_COMPLETETIER_03_TITLE",
       "Description": "PEPPER_PILLBUG_COMPLETETIER_03_DESC"
+    },
+    "State": {
+      "Id": "57f0577e-8630-41ff-9f93-fa6aaa421374",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "57f0577e-8630-41ff-9f93-fa6aaa421374",
@@ -5525,6 +6449,10 @@
       "Name": "PEPPER_PILLBUG_DOORS_TITLE",
       "Description": "PEPPER_PILLBUG_DOORS_DESC"
     },
+    "State": {
+      "Id": "1204932b-c0e0-4b63-84a8-fe32c39f036f",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "1204932b-c0e0-4b63-84a8-fe32c39f036f",
       "Tags": [
@@ -5547,6 +6475,10 @@
       "Id": "38e53891-3d34-425c-98f6-f8e0f1abce49",
       "Name": "PEPPER_PILLBUG_COMPLETEESCALATION_TITLE",
       "Description": "PEPPER_PILLBUG_COMPLETEESCALATION_DESC"
+    },
+    "State": {
+      "Id": "38e53891-3d34-425c-98f6-f8e0f1abce49",
+      "ProgressMax": 3
     },
     "KntDefinition": {
       "Id": "38e53891-3d34-425c-98f6-f8e0f1abce49",
@@ -5571,6 +6503,10 @@
       "Name": "PEPPER_PILLBUG_RECEPTION_TITLE",
       "Description": "PEPPER_PILLBUG_RECEPTION_DESC"
     },
+    "State": {
+      "Id": "2bc5575a-d2ba-4fa8-be20-c8a2b4c413d0",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "2bc5575a-d2ba-4fa8-be20-c8a2b4c413d0",
       "Tags": [
@@ -5593,6 +6529,10 @@
       "Id": "e37cf338-0568-43a0-bba7-874f44bae1b1",
       "Name": "PEPPER_PILLBUG_CAMERAS_TITLE",
       "Description": "PEPPER_PILLBUG_CAMERAS_DESC"
+    },
+    "State": {
+      "Id": "e37cf338-0568-43a0-bba7-874f44bae1b1",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "e37cf338-0568-43a0-bba7-874f44bae1b1",
@@ -5617,6 +6557,10 @@
       "Name": "PEPPER_PILLBUG_ARMEDFORCES_TITLE",
       "Description": "PEPPER_PILLBUG_ARMEDFORCES_DESC"
     },
+    "State": {
+      "Id": "009abd94-090d-49dc-bfe6-f8633d52eb76",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "009abd94-090d-49dc-bfe6-f8633d52eb76",
       "Tags": [
@@ -5639,6 +6583,10 @@
       "Id": "f601dea9-90aa-442a-b953-e1ab29fe8eab",
       "Name": "PEPPER_PILLBUG_ONEMANARMY_TITLE",
       "Description": "PEPPER_PILLBUG_ONEMANARMY_DESC"
+    },
+    "State": {
+      "Id": "f601dea9-90aa-442a-b953-e1ab29fe8eab",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "f601dea9-90aa-442a-b953-e1ab29fe8eab",
@@ -5663,6 +6611,10 @@
       "Name": "BLUEBELL_BUTTERFLY_COMPLETETIER1_NAME",
       "Description": "BLUEBELL_BUTTERFLY_COMPLETETIER1_DESC"
     },
+    "State": {
+      "Id": "5ad5298e-7968-4e7a-9540-79f145f540aa",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "5ad5298e-7968-4e7a-9540-79f145f540aa",
       "Tags": [
@@ -5685,6 +6637,10 @@
       "Id": "65159f72-aa6d-4421-9fd3-30a41df5be4f",
       "Name": "BLUEBELL_BUTTERFLY_COMPLETETIER2_NAME",
       "Description": "BLUEBELL_BUTTERFLY_COMPLETETIER2_DESC"
+    },
+    "State": {
+      "Id": "65159f72-aa6d-4421-9fd3-30a41df5be4f",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "65159f72-aa6d-4421-9fd3-30a41df5be4f",
@@ -5709,6 +6665,10 @@
       "Name": "BLUEBELL_BUTTERFLY_COMPLETETIER3_NAME",
       "Description": "BLUEBELL_BUTTERFLY_COMPLETETIER3_DESC"
     },
+    "State": {
+      "Id": "c67b4180-fdc9-4b63-bc67-089cc05d999e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "c67b4180-fdc9-4b63-bc67-089cc05d999e",
       "Tags": [
@@ -5731,6 +6691,10 @@
       "Id": "809abdc6-dcfb-4ec5-84f1-697607927b24",
       "Name": "BLUEBELL_BUTTERFLY_COMPLETEALLTIERS_NAME",
       "Description": "BLUEBELL_BUTTERFLY_COMPLETEALLTIERS_DESC"
+    },
+    "State": {
+      "Id": "809abdc6-dcfb-4ec5-84f1-697607927b24",
+      "ProgressMax": 3
     },
     "KntDefinition": {
       "Id": "809abdc6-dcfb-4ec5-84f1-697607927b24",
@@ -5755,6 +6719,10 @@
       "Name": "BLUEBELL_BUTTERFLY_EYESURGERY_NAME",
       "Description": "BLUEBELL_BUTTERFLY_EYESURGERY_DESC"
     },
+    "State": {
+      "Id": "72b52f8a-3daf-45a4-8cca-733624685b92",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "72b52f8a-3daf-45a4-8cca-733624685b92",
       "Tags": [
@@ -5777,6 +6745,10 @@
       "Id": "7e5d4a45-1384-43c0-8c4c-d7d5cced1dae",
       "Name": "BLUEBELL_BUTTERFLY_EXPLOSIVE_NAME",
       "Description": "BLUEBELL_BUTTERFLY_EXPLOSIVE_DESC"
+    },
+    "State": {
+      "Id": "7e5d4a45-1384-43c0-8c4c-d7d5cced1dae",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "7e5d4a45-1384-43c0-8c4c-d7d5cced1dae",
@@ -5801,6 +6773,10 @@
       "Name": "BLUEBELL_BUTTERFLY_CRATERED_NAME",
       "Description": "BLUEBELL_BUTTERFLY_CRATERED_DESC"
     },
+    "State": {
+      "Id": "7df88e43-2504-4dc3-9065-69f966c68ef9",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "7df88e43-2504-4dc3-9065-69f966c68ef9",
       "Tags": [
@@ -5823,6 +6799,10 @@
       "Id": "555bc92e-263e-450b-ab28-602f6e25f73f",
       "Name": "BLUEBELL_BUTTERFLY_DEFENESTRATION_NAME",
       "Description": "BLUEBELL_BUTTERFLY_DEFENESTRATION_DESC"
+    },
+    "State": {
+      "Id": "555bc92e-263e-450b-ab28-602f6e25f73f",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "555bc92e-263e-450b-ab28-602f6e25f73f",
@@ -5847,6 +6827,10 @@
       "Name": "CLOVER_MIDGE_COMPLETETIER1_TITLE",
       "Description": "CLOVER_MIDGE_COMPLETETIER1_DESC"
     },
+    "State": {
+      "Id": "493f8eca-38ec-4a07-8031-5a4d70982c4a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "493f8eca-38ec-4a07-8031-5a4d70982c4a",
       "Tags": [
@@ -5869,6 +6853,10 @@
       "Id": "2b9cbb21-858a-414a-9bec-c474b6e5f402",
       "Name": "CLOVER_MIDGE_COMPLETETIER2_TITLE",
       "Description": "CLOVER_MIDGE_COMPLETETIER2_DESC"
+    },
+    "State": {
+      "Id": "2b9cbb21-858a-414a-9bec-c474b6e5f402",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "2b9cbb21-858a-414a-9bec-c474b6e5f402",
@@ -5893,6 +6881,10 @@
       "Name": "CLOVER_MIDGE_COMPLETETIER3_TITLE",
       "Description": "CLOVER_MIDGE_COMPLETETIER3_DESC"
     },
+    "State": {
+      "Id": "e34d1f73-c528-4bd3-abaf-db5a8e1c39a9",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "e34d1f73-c528-4bd3-abaf-db5a8e1c39a9",
       "Tags": [
@@ -5915,6 +6907,10 @@
       "Id": "19e90a5e-1fee-4239-8d5a-0668d9b0c5d5",
       "Name": "CLOVER_MIDGE_COMPLETEALL_TITLE",
       "Description": "CLOVER_MIDGE_COMPLETEALL_DESC"
+    },
+    "State": {
+      "Id": "19e90a5e-1fee-4239-8d5a-0668d9b0c5d5",
+      "ProgressMax": 3
     },
     "KntDefinition": {
       "Id": "19e90a5e-1fee-4239-8d5a-0668d9b0c5d5",
@@ -5939,6 +6935,10 @@
       "Name": "CLOVER_MIDGE_FOUREYES_TITLE",
       "Description": "CLOVER_MIDGE_FOUREYES_DESC"
     },
+    "State": {
+      "Id": "222584a7-4d50-41a0-99bc-caefa0b5901d",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "222584a7-4d50-41a0-99bc-caefa0b5901d",
       "Tags": [
@@ -5961,6 +6961,10 @@
       "Id": "08ca8848-2db0-4ee0-bd58-8bbf85f694f8",
       "Name": "CLOVER_MIDGE_EXPOSIONKILL_TITLE",
       "Description": "CLOVER_MIDGE_EXPOSIONKILL_DESC"
+    },
+    "State": {
+      "Id": "08ca8848-2db0-4ee0-bd58-8bbf85f694f8",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "08ca8848-2db0-4ee0-bd58-8bbf85f694f8",
@@ -5985,6 +6989,10 @@
       "Name": "CLOVER_MIDGE_MINDTHEGAP_TITLE",
       "Description": "CLOVER_MIDGE_MINDTHEGAP_DESC"
     },
+    "State": {
+      "Id": "0f03c7c4-00fd-4fa2-b652-616d5c782912",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "0f03c7c4-00fd-4fa2-b652-616d5c782912",
       "Tags": [
@@ -6007,6 +7015,10 @@
       "Id": "aba57cbe-d153-4869-b664-7f29111eb040",
       "Name": "CLOVER_MIDGE_NOGADGETS_TITLE",
       "Description": "CLOVER_MIDGE_NOGADGETS_DESC"
+    },
+    "State": {
+      "Id": "aba57cbe-d153-4869-b664-7f29111eb040",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "aba57cbe-d153-4869-b664-7f29111eb040",
@@ -6031,6 +7043,10 @@
       "Name": "CLOVER_MIDGE_FASTLEARNER_TITLE",
       "Description": "CLOVER_MIDGE_FASTLEARNER_DESC"
     },
+    "State": {
+      "Id": "f06e78e7-b354-4b09-91d4-918d3bfca218",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "f06e78e7-b354-4b09-91d4-918d3bfca218",
       "Tags": [
@@ -6053,6 +7069,10 @@
       "Id": "781df73c-269d-4c2e-9a21-2def556a3f23",
       "Name": "CLOVER_MIDGE_SLOWLEARNER_TITLE",
       "Description": "CLOVER_MIDGE_SLOWLEARNER_DESC"
+    },
+    "State": {
+      "Id": "781df73c-269d-4c2e-9a21-2def556a3f23",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "781df73c-269d-4c2e-9a21-2def556a3f23",
@@ -6077,6 +7097,10 @@
       "Name": "CLOVER_MIDGE_TIER3NOSHOTS_TITLE",
       "Description": "CLOVER_MIDGE_TIER3NOSHOTS_DESC"
     },
+    "State": {
+      "Id": "697f052d-3019-4180-97cc-00a1ec74b6cb",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "697f052d-3019-4180-97cc-00a1ec74b6cb",
       "Tags": [
@@ -6099,6 +7123,10 @@
       "Id": "40652c76-ed6b-4999-b9dd-7f77cc2d84a9",
       "Name": "LOTUS_BEE_COMPLETETIER1_TITLE",
       "Description": "LOTUS_BEE_COMPLETETIER1_DESCRIPTION"
+    },
+    "State": {
+      "Id": "40652c76-ed6b-4999-b9dd-7f77cc2d84a9",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "40652c76-ed6b-4999-b9dd-7f77cc2d84a9",
@@ -6123,6 +7151,10 @@
       "Name": "LOTUS_BEE_COMPLETETIER2_TITLE",
       "Description": "LOTUS_BEE_COMPLETETIER2_DESCRIPTION"
     },
+    "State": {
+      "Id": "433fce76-9290-47ab-a420-8dbf07055ed3",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "433fce76-9290-47ab-a420-8dbf07055ed3",
       "Tags": [
@@ -6145,6 +7177,10 @@
       "Id": "417057a3-3627-4020-96cf-17d693467a6c",
       "Name": "LOTUS_BEE_COMPLETETIER3_TITLE",
       "Description": "LOTUS_BEE_COMPLETETIER3_DESCRIPTION"
+    },
+    "State": {
+      "Id": "417057a3-3627-4020-96cf-17d693467a6c",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "417057a3-3627-4020-96cf-17d693467a6c",
@@ -6169,6 +7205,10 @@
       "Name": "LOTUS_BEE_COMPLETEALL_TITLE",
       "Description": "LOTUS_BEE_COMPLETEALL_DESCRIPTION"
     },
+    "State": {
+      "Id": "0b9111cd-36e4-4c9b-a6a8-570947219411",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "0b9111cd-36e4-4c9b-a6a8-570947219411",
       "Tags": [
@@ -6191,6 +7231,10 @@
       "Id": "63bee349-9b82-4609-a07a-230df280fb8f",
       "Name": "LOTUS_BEE_THECRUSHER_TITLE",
       "Description": "LOTUS_BEE_THECRUSHER_DESC"
+    },
+    "State": {
+      "Id": "63bee349-9b82-4609-a07a-230df280fb8f",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "63bee349-9b82-4609-a07a-230df280fb8f",
@@ -6215,6 +7259,10 @@
       "Name": "LOTUS_BEE_BUZZIN_TITLE",
       "Description": "LOTUS_BEE_BUZZIN_DESC"
     },
+    "State": {
+      "Id": "01b2d632-152d-42ed-abc6-a8ddf248d36f",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "01b2d632-152d-42ed-abc6-a8ddf248d36f",
       "Tags": [
@@ -6237,6 +7285,10 @@
       "Id": "818468fe-0b91-4a00-ac41-a35bf110c658",
       "Name": "LOTUS_BEE_FLYLIKEABUTTERFLY_TITLE",
       "Description": "LOTUS_BEE_FLYLIKEABUTTERFLY_DESC"
+    },
+    "State": {
+      "Id": "818468fe-0b91-4a00-ac41-a35bf110c658",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "818468fe-0b91-4a00-ac41-a35bf110c658",
@@ -6261,6 +7313,10 @@
       "Name": "LOTUS_BEE_STINGLIKEABEE_TITLE",
       "Description": "LOTUS_BEE_STINGLIKEABEE_DESC"
     },
+    "State": {
+      "Id": "eea5ae84-6151-4732-996c-cd90a19ac49a",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "eea5ae84-6151-4732-996c-cd90a19ac49a",
       "Tags": [
@@ -6283,6 +7339,10 @@
       "Id": "7db37439-5820-4745-95fb-138c01d7aafd",
       "Name": "LOTUS_BEE_DISTANTIMPACT_TITLE",
       "Description": "LOTUS_BEE_DISTANTIMPACT_DESC"
+    },
+    "State": {
+      "Id": "7db37439-5820-4745-95fb-138c01d7aafd",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "7db37439-5820-4745-95fb-138c01d7aafd",
@@ -6307,6 +7367,10 @@
       "Name": "LOTUS_BEE_THERUNNER_TITLE",
       "Description": "LOTUS_BEE_THERUNNER_DESC"
     },
+    "State": {
+      "Id": "646e194f-116c-40f9-bd2c-ed38c9a04e46",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "646e194f-116c-40f9-bd2c-ed38c9a04e46",
       "Tags": [
@@ -6329,6 +7393,10 @@
       "Id": "c880ad71-1c1f-4ddf-bdec-b6f8b39ad912",
       "Name": "DAHLIA_RINGLEG_COMPLETETIER01_TITLE",
       "Description": "DAHLIA_RINGLEG_COMPLETETIER01_DESC"
+    },
+    "State": {
+      "Id": "c880ad71-1c1f-4ddf-bdec-b6f8b39ad912",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "c880ad71-1c1f-4ddf-bdec-b6f8b39ad912",
@@ -6353,6 +7421,10 @@
       "Name": "DAHLIA_RINGLEG_COMPLETETIER02_TITLE",
       "Description": "DAHLIA_RINGLEG_COMPLETETIER02_DESC"
     },
+    "State": {
+      "Id": "fcc19c4a-9b36-4f2c-a45e-1a741a57e847",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "fcc19c4a-9b36-4f2c-a45e-1a741a57e847",
       "Tags": [
@@ -6375,6 +7447,10 @@
       "Id": "692b3a27-5d02-4b6c-949f-650b1d38d433",
       "Name": "DAHLIA_RINGLEG_COMPLETETIER03_TITLE",
       "Description": "DAHLIA_RINGLEG_COMPLETETIER03_DESC"
+    },
+    "State": {
+      "Id": "692b3a27-5d02-4b6c-949f-650b1d38d433",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "692b3a27-5d02-4b6c-949f-650b1d38d433",
@@ -6399,6 +7475,10 @@
       "Name": "DAHLIA_RINGLEG_COMPLETEALLTIERS_TITLE",
       "Description": "DAHLIA_RINGLEG_COMPLETEALLTIERS_DESC"
     },
+    "State": {
+      "Id": "3303d5aa-176d-43bf-8a8f-9134c1ac5f0d",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "3303d5aa-176d-43bf-8a8f-9134c1ac5f0d",
       "Tags": [
@@ -6421,6 +7501,10 @@
       "Id": "fb8fd21c-7a96-4b1c-a9fe-4a9899436802",
       "Name": "DAHLIA_RINGLEG_LOOSECARGO_TITLE",
       "Description": "DAHLIA_RINGLEG_LOOSECARGO_DESC"
+    },
+    "State": {
+      "Id": "fb8fd21c-7a96-4b1c-a9fe-4a9899436802",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "fb8fd21c-7a96-4b1c-a9fe-4a9899436802",
@@ -6445,6 +7529,10 @@
       "Name": "DAHLIA_RINGLEG_DEADINWATER_TITLE",
       "Description": "DAHLIA_RINGLEG_DEADINWATER_DESC"
     },
+    "State": {
+      "Id": "a585a43e-f1f4-4e4f-b813-29e3d80ee371",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "a585a43e-f1f4-4e4f-b813-29e3d80ee371",
       "Tags": [
@@ -6467,6 +7555,10 @@
       "Id": "abe12ed2-38e6-473e-ab9c-7c19cac8b9d6",
       "Name": "DAHLIA_RINGLEG_SILENTRUNNING_TITLE",
       "Description": "DAHLIA_RINGLEG_SILENTRUNNING_DESC"
+    },
+    "State": {
+      "Id": "abe12ed2-38e6-473e-ab9c-7c19cac8b9d6",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "abe12ed2-38e6-473e-ab9c-7c19cac8b9d6",
@@ -6491,6 +7583,10 @@
       "Name": "DAHLIA_RINGLEG_BLOWUPCHEF_TITLE",
       "Description": "DAHLIA_RINGLEG_BLOWUPCHEF_DESC"
     },
+    "State": {
+      "Id": "f0f609ed-141e-4973-b4b2-bb57aa825140",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "f0f609ed-141e-4973-b4b2-bb57aa825140",
       "Tags": [
@@ -6513,6 +7609,10 @@
       "Id": "9d9471be-1d65-43b1-9b7a-be10a5c17cd4",
       "Name": "ORCHID_SPRINGTAIL_TIER1_COMPLETION_NAME",
       "Description": "ORCHID_SPRINGTAIL_TIER1_COMPLETION_DESC"
+    },
+    "State": {
+      "Id": "9d9471be-1d65-43b1-9b7a-be10a5c17cd4",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "9d9471be-1d65-43b1-9b7a-be10a5c17cd4",
@@ -6537,6 +7637,10 @@
       "Name": "ORCHID_SPRINGTAIL_TIER2_COMPLETION_NAME",
       "Description": "ORCHID_SPRINGTAIL_TIER2_COMPLETION_DESC"
     },
+    "State": {
+      "Id": "29633821-995c-4fd0-952e-d43ac9a1b709",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "29633821-995c-4fd0-952e-d43ac9a1b709",
       "Tags": [
@@ -6559,6 +7663,10 @@
       "Id": "3db271e1-98de-4f42-b487-8a258866ebb0",
       "Name": "ORCHID_SPRINGTAIL_TIER3_COMPLETION_NAME",
       "Description": "ORCHID_SPRINGTAIL_TIER3_COMPLETION_DESC"
+    },
+    "State": {
+      "Id": "3db271e1-98de-4f42-b487-8a258866ebb0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "3db271e1-98de-4f42-b487-8a258866ebb0",
@@ -6583,6 +7691,10 @@
       "Name": "ORCHID_SPRINGTAIL_COMPLETION_NAME",
       "Description": "ORCHID_SPRINGTAIL_COMPLETION_DESC"
     },
+    "State": {
+      "Id": "09097815-69db-4e4b-b647-6ec9707bc073",
+      "ProgressMax": 3
+    },
     "KntDefinition": {
       "Id": "09097815-69db-4e4b-b647-6ec9707bc073",
       "Tags": [
@@ -6605,6 +7717,10 @@
       "Id": "fea045ca-b559-4db0-a0dc-a7837c63d079",
       "Name": "ORCHID_SPRINGTAIL_WINDFAN_NAME",
       "Description": "ORCHID_SPRINGTAIL_WINDFAN_DESC"
+    },
+    "State": {
+      "Id": "fea045ca-b559-4db0-a0dc-a7837c63d079",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "fea045ca-b559-4db0-a0dc-a7837c63d079",
@@ -6629,6 +7745,10 @@
       "Name": "ORCHID_SPRINGTAIL_SHOCKWAVE_NAME",
       "Description": "ORCHID_SPRINGTAIL_SHOCKWAVE_DESC"
     },
+    "State": {
+      "Id": "82f834c8-0a70-413e-8a65-8cf119b73444",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "82f834c8-0a70-413e-8a65-8cf119b73444",
       "Tags": [
@@ -6651,6 +7771,10 @@
       "Id": "2891191d-ecf4-4487-9dfc-60827fc8fec2",
       "Name": "ORCHID_SPRINGTAIL_COMBATRUSH_NAME",
       "Description": "ORCHID_SPRINGTAIL_COMBATRUSH_DESC"
+    },
+    "State": {
+      "Id": "2891191d-ecf4-4487-9dfc-60827fc8fec2",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "2891191d-ecf4-4487-9dfc-60827fc8fec2",
@@ -6675,6 +7799,10 @@
       "Name": "ORCHID_SPRINGTAIL_KICK_NAME",
       "Description": "ORCHID_SPRINGTAIL_KICK_DESC"
     },
+    "State": {
+      "Id": "8279e394-3ae0-4fd5-8802-aa9fc15aebcf",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "8279e394-3ae0-4fd5-8802-aa9fc15aebcf",
       "Tags": [
@@ -6697,6 +7825,10 @@
       "Id": "6c345cc2-ee84-4241-a370-47bc93a27ec0",
       "Name": "ORCHID_SPRINGTAIL_NOMISTAKES_NAME",
       "Description": "ORCHID_SPRINGTAIL_NOMISTAKES_DESC"
+    },
+    "State": {
+      "Id": "6c345cc2-ee84-4241-a370-47bc93a27ec0",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "6c345cc2-ee84-4241-a370-47bc93a27ec0",
@@ -6721,6 +7853,10 @@
       "Name": "ORCHID_SPRINGTAIL_MASTERY_NAME",
       "Description": "ORCHID_SPRINGTAIL_MASTERY_DESC"
     },
+    "State": {
+      "Id": "9c4657df-1ce0-4ba8-9d4c-3a9560300038",
+      "ProgressMax": 6
+    },
     "KntDefinition": {
       "Id": "9c4657df-1ce0-4ba8-9d4c-3a9560300038",
       "Tags": [
@@ -6743,6 +7879,10 @@
       "Id": "5119cd9c-370e-43cd-9ae9-cdcb3bc1197b",
       "Name": "MAGNOLIA_JEWELBEETLE_UNSEEN_NAME",
       "Description": "MAGNOLIA_JEWELBEETLE_UNSEEN_DESC"
+    },
+    "State": {
+      "Id": "5119cd9c-370e-43cd-9ae9-cdcb3bc1197b",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "5119cd9c-370e-43cd-9ae9-cdcb3bc1197b",
@@ -6767,6 +7907,10 @@
       "Name": "MAGNOLIA_JEWELBEETLE_PACIFIST_NAME",
       "Description": "MAGNOLIA_JEWELBEETLE_PACIFIST_DESC"
     },
+    "State": {
+      "Id": "4e8d4b53-47e9-4b24-9417-4f7f553cbcb0",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "4e8d4b53-47e9-4b24-9417-4f7f553cbcb0",
       "Tags": [
@@ -6789,6 +7933,10 @@
       "Id": "bbbd36f5-194c-40e4-9c10-2583b95cc79f",
       "Name": "MAGNOLIA_JEWELBEETLE_GREENFINGERS_NAME",
       "Description": "MAGNOLIA_JEWELBEETLE_GREENFINGERS_DESC"
+    },
+    "State": {
+      "Id": "bbbd36f5-194c-40e4-9c10-2583b95cc79f",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "bbbd36f5-194c-40e4-9c10-2583b95cc79f",
@@ -6813,6 +7961,10 @@
       "Name": "MAGNOLIA_JEWELBEETLE_LOOKWHATYOUDID_NAME",
       "Description": "MAGNOLIA_JEWELBEETLE_LOOKWHATYOUDID_DESC"
     },
+    "State": {
+      "Id": "2c38a480-0e6b-4786-9b95-574b474c4b2d",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "2c38a480-0e6b-4786-9b95-574b474c4b2d",
       "Tags": [
@@ -6835,6 +7987,10 @@
       "Id": "4c564f61-66cc-4430-a3d8-14d647febc41",
       "Name": "MAGNOLIA_JEWELBEETLE_FALSEALARM_NAME",
       "Description": "MAGNOLIA_JEWELBEETLE_FALSEALARM_DESC"
+    },
+    "State": {
+      "Id": "4c564f61-66cc-4430-a3d8-14d647febc41",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "4c564f61-66cc-4430-a3d8-14d647febc41",
@@ -6859,6 +8015,10 @@
       "Name": "MAGNOLIA_JEWELBEETLE_COMPLETION_NAME",
       "Description": "MAGNOLIA_JEWELBEETLE_COMPLETION_DESC"
     },
+    "State": {
+      "Id": "fb3a1944-824f-4c12-9873-6b8d09d948e9",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "fb3a1944-824f-4c12-9873-6b8d09d948e9",
       "Tags": [
@@ -6881,6 +8041,10 @@
       "Id": "8ce1262b-6040-4daa-bd19-a336bac20632",
       "Name": "ORCHID_SPRINGTAIL_MASTERY_NAME",
       "Description": "ORCHID_SPRINGTAIL_MASTERY_DESC"
+    },
+    "State": {
+      "Id": "8ce1262b-6040-4daa-bd19-a336bac20632",
+      "ProgressMax": 6
     },
     "KntDefinition": {
       "Id": "8ce1262b-6040-4daa-bd19-a336bac20632",
@@ -6905,6 +8069,10 @@
       "Name": "ONLINE_GLOBAL_CHALLENGE_02_TITLE",
       "Description": "ONLINE_GLOBAL_CHALLENGE_02_DESC"
     },
+    "State": {
+      "Id": "188d5660-8f55-44d3-9d1f-67dba843954d",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "188d5660-8f55-44d3-9d1f-67dba843954d",
       "Tags": [
@@ -6927,6 +8095,10 @@
       "Id": "d7193b83-908e-499d-8c79-8f7a40ee569b",
       "Name": "ONLINE_GLOBAL_CHALLENGE_06_TITLE",
       "Description": "ONLINE_GLOBAL_CHALLENGE_06_DESC"
+    },
+    "State": {
+      "Id": "d7193b83-908e-499d-8c79-8f7a40ee569b",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "d7193b83-908e-499d-8c79-8f7a40ee569b",
@@ -6951,6 +8123,10 @@
       "Name": "ONLINE_GLOBAL_CHALLENGE_HUB_TUTORIAL_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_HUB_TUTORIAL_DESC"
     },
+    "State": {
+      "Id": "580a4ee3-1887-46bc-a58c-c72a30ee5cc1",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "580a4ee3-1887-46bc-a58c-c72a30ee5cc1",
       "Tags": [
@@ -6973,6 +8149,10 @@
       "Id": "5eb0db7d-52a3-4af6-80c4-6f183e074fd7",
       "Name": "ONLINE_GLOBAL_CHALLENGE_SHOTGUN_SPECIALIST_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_SHOTGUN_SPECIALIST_DESC"
+    },
+    "State": {
+      "Id": "5eb0db7d-52a3-4af6-80c4-6f183e074fd7",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "5eb0db7d-52a3-4af6-80c4-6f183e074fd7",
@@ -6997,6 +8177,10 @@
       "Name": "ONLINE_GLOBAL_CHALLENGE_PISTOL_SPECIALIST_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_PISTOL_SPECIALIST_DESC"
     },
+    "State": {
+      "Id": "ff982038-ded0-45dd-b258-a0bfb29f2e5e",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "ff982038-ded0-45dd-b258-a0bfb29f2e5e",
       "Tags": [
@@ -7019,6 +8203,10 @@
       "Id": "b18dbc5b-e715-4f37-abba-e0b381c17194",
       "Name": "ONLINE_GLOBAL_CHALLENGE_SKYFALL_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_SKYFALL_DESC"
+    },
+    "State": {
+      "Id": "b18dbc5b-e715-4f37-abba-e0b381c17194",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "b18dbc5b-e715-4f37-abba-e0b381c17194",
@@ -7043,6 +8231,10 @@
       "Name": "ONLINE_GLOBAL_CHALLENGE_THE_CHEMIST_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_THE_CHEMIST_DESC"
     },
+    "State": {
+      "Id": "79332e68-8ed1-4621-b50a-6b1e15281957",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "79332e68-8ed1-4621-b50a-6b1e15281957",
       "Tags": [
@@ -7065,6 +8257,10 @@
       "Id": "44c55a35-15c5-4140-a010-052d50d1f028",
       "Name": "ONLINE_GLOBAL_CHALLENGE_THE_TECHNOLOGIST_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_THE_TECHNOLOGIST_DESC"
+    },
+    "State": {
+      "Id": "44c55a35-15c5-4140-a010-052d50d1f028",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "44c55a35-15c5-4140-a010-052d50d1f028",
@@ -7089,6 +8285,10 @@
       "Name": "ONLINE_GLOBAL_CHALLENGE_ALL_IN_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_ALL_IN_DESC"
     },
+    "State": {
+      "Id": "b5bd0cbb-e51a-4a68-a7e6-a96a5bdda32c",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "b5bd0cbb-e51a-4a68-a7e6-a96a5bdda32c",
       "Tags": [
@@ -7111,6 +8311,10 @@
       "Id": "363a4f6f-6a6f-4089-9711-c0e4fa3b724a",
       "Name": "ONLINE_GLOBAL_CHALLENGE_WIDE_HOLSTERS_NAME",
       "Description": "ONLINE_GLOBAL_CHALLENGE_WIDE_HOLSTERS_DESC"
+    },
+    "State": {
+      "Id": "363a4f6f-6a6f-4089-9711-c0e4fa3b724a",
+      "ProgressMax": 1
     },
     "KntDefinition": {
       "Id": "363a4f6f-6a6f-4089-9711-c0e4fa3b724a",
@@ -7135,6 +8339,10 @@
       "Name": "ROSE_FIREFLY_CHALLENGE_08_TITLE",
       "Description": "ROSE_FIREFLY_CHALLENGE_08_DESC"
     },
+    "State": {
+      "Id": "adf01d2f-dcc7-43b4-995c-3fae75d4b8a4",
+      "ProgressMax": 1
+    },
     "KntDefinition": {
       "Id": "adf01d2f-dcc7-43b4-995c-3fae75d4b8a4",
       "Tags": [
@@ -7157,6 +8365,10 @@
       "Id": "2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d",
       "Name": "GLOBAL_CHALLENGE_01_TITLE",
       "Description": "GLOBAL_CHALLENGE_01_DESC"
+    },
+    "State": {
+      "Id": "2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d",
+      "ProgressMax": 19
     },
     "KntDefinition": {
       "Id": "2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d",
@@ -7183,6 +8395,10 @@
       "Name": "GLOBAL_CHALLENGE_02_TITLE",
       "Description": "GLOBAL_CHALLENGE_02_DESC"
     },
+    "State": {
+      "Id": "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f",
+      "ProgressMax": 9
+    },
     "KntDefinition": {
       "Id": "5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f",
       "Tags": [
@@ -7205,6 +8421,10 @@
       "Id": "0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
       "Name": "GLOBAL_CHALLENGE_03_TITLE",
       "Description": "GLOBAL_CHALLENGE_03_DESC"
+    },
+    "State": {
+      "Id": "0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+      "ProgressMax": 9
     },
     "KntDefinition": {
       "Id": "0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
@@ -7229,6 +8449,10 @@
       "Name": "GLOBAL_CHALLENGE_04_TITLE",
       "Description": "GLOBAL_CHALLENGE_04_DESC"
     },
+    "State": {
+      "Id": "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b",
+      "ProgressMax": 9
+    },
     "KntDefinition": {
       "Id": "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b",
       "Tags": [
@@ -7251,6 +8475,10 @@
       "Id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
       "Name": "GLOBAL_CHALLENGE_13_TITLE",
       "Description": "GLOBAL_CHALLENGE_13_DESC"
+    },
+    "State": {
+      "Id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+      "ProgressMax": 100
     },
     "KntDefinition": {
       "Id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -7275,6 +8503,10 @@
       "Name": "GLOBAL_CHALLENGE_14_TITLE",
       "Description": "GLOBAL_CHALLENGE_14_DESC"
     },
+    "State": {
+      "Id": "2b4d6f8a-1c3e-5f9a-8b0c-7d9e0f1a2b3c",
+      "ProgressMax": 50
+    },
     "KntDefinition": {
       "Id": "2b4d6f8a-1c3e-5f9a-8b0c-7d9e0f1a2b3c",
       "Tags": [
@@ -7297,6 +8529,10 @@
       "Id": "3e5f7a9b-2c4d-6e8f-0a1b-3c5d7e9f0a1b",
       "Name": "GLOBAL_CHALLENGE_12_TITLE",
       "Description": "GLOBAL_CHALLENGE_12_DESC"
+    },
+    "State": {
+      "Id": "3e5f7a9b-2c4d-6e8f-0a1b-3c5d7e9f0a1b",
+      "ProgressMax": 150
     },
     "KntDefinition": {
       "Id": "3e5f7a9b-2c4d-6e8f-0a1b-3c5d7e9f0a1b",
@@ -7321,6 +8557,10 @@
       "Name": "GLOBAL_CHALLENGE_19_TITLE",
       "Description": "GLOBAL_CHALLENGE_19_DESC"
     },
+    "State": {
+      "Id": "0cca687e-c997-454e-b4f0-51fb4aa2d2c8",
+      "ProgressMax": 15
+    },
     "KntDefinition": {
       "Id": "0cca687e-c997-454e-b4f0-51fb4aa2d2c8",
       "Tags": [
@@ -7343,6 +8583,10 @@
       "Id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
       "Name": "GLOBAL_CHALLENGE_06_TITLE",
       "Description": "GLOBAL_CHALLENGE_06_DESC"
+    },
+    "State": {
+      "Id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+      "ProgressMax": 25
     },
     "KntDefinition": {
       "Id": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
@@ -7367,6 +8611,10 @@
       "Name": "GLOBAL_CHALLENGE_07_TITLE",
       "Description": "GLOBAL_CHALLENGE_07_DESC"
     },
+    "State": {
+      "Id": "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b",
+      "ProgressMax": 15
+    },
     "KntDefinition": {
       "Id": "7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b",
       "Tags": [
@@ -7389,6 +8637,10 @@
       "Id": "813a7a41-7e1f-4148-91e2-0ac3c9392399",
       "Name": "GLOBAL_CHALLENGE_08_TITLE",
       "Description": "GLOBAL_CHALLENGE_08_DESC"
+    },
+    "State": {
+      "Id": "813a7a41-7e1f-4148-91e2-0ac3c9392399",
+      "ProgressMax": 15
     },
     "KntDefinition": {
       "Id": "813a7a41-7e1f-4148-91e2-0ac3c9392399",
@@ -7413,6 +8665,10 @@
       "Name": "GLOBAL_CHALLENGE_09_TITLE",
       "Description": "GLOBAL_CHALLENGE_09_DESC"
     },
+    "State": {
+      "Id": "e4410ecd-30c8-40e5-aada-8e599684fc82",
+      "ProgressMax": 10
+    },
     "KntDefinition": {
       "Id": "e4410ecd-30c8-40e5-aada-8e599684fc82",
       "Tags": [
@@ -7435,6 +8691,10 @@
       "Id": "4f005fc4-56f0-41ca-a463-702b1cc1f81d",
       "Name": "GLOBAL_CHALLENGE_16_TITLE",
       "Description": "GLOBAL_CHALLENGE_16_DESC"
+    },
+    "State": {
+      "Id": "4f005fc4-56f0-41ca-a463-702b1cc1f81d",
+      "ProgressMax": 10
     },
     "KntDefinition": {
       "Id": "4f005fc4-56f0-41ca-a463-702b1cc1f81d",
@@ -7459,6 +8719,10 @@
       "Name": "GLOBAL_CHALLENGE_17_TITLE",
       "Description": "GLOBAL_CHALLENGE_17_DESC"
     },
+    "State": {
+      "Id": "b71706f8-2793-42d3-8f35-aa71f61fb5ad",
+      "ProgressMax": 10
+    },
     "KntDefinition": {
       "Id": "b71706f8-2793-42d3-8f35-aa71f61fb5ad",
       "Tags": [
@@ -7481,6 +8745,10 @@
       "Id": "36054a6f-5a0e-4b6a-88f1-328065b68858",
       "Name": "GLOBAL_CHALLENGE_18_TITLE",
       "Description": "GLOBAL_CHALLENGE_18_DESC"
+    },
+    "State": {
+      "Id": "36054a6f-5a0e-4b6a-88f1-328065b68858",
+      "ProgressMax": 10
     },
     "KntDefinition": {
       "Id": "36054a6f-5a0e-4b6a-88f1-328065b68858",

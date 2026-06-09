@@ -1,9 +1,10 @@
 package other
 
 import (
-	"encoding/json"
 	"log/slog"
 	"net/http"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 )
 
 // metricsEvent is the envelope the game POSTs to the metrics ingest endpoint.
@@ -18,12 +19,12 @@ type metricsEvent struct {
 // discovery doc points the game's metrics host here; we acknowledge events so
 // the client is happy, but persist nothing.
 func (c *Handler) handleMetricsIngest(w http.ResponseWriter, r *http.Request) {
-	// Peek at the event name for observability without keeping the payload.
-	var evt metricsEvent
-	if err := json.NewDecoder(r.Body).Decode(&evt); err == nil && evt.Name != "" {
+	body, ok := shared.ParseBody[metricsEvent](r)
+
+	if ok {
 		c.Log.Debug("metrics event ignored",
-			slog.String("event", evt.Name),
-			slog.Int64("hash", evt.EventTypeHash),
+			slog.String("event", body.Name),
+			slog.Int64("hash", body.EventTypeHash),
 		)
 	}
 

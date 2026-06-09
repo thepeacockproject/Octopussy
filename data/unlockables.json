@@ -10,6 +10,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "5bc1c19a-aa63-4007-a112-ab18b2e95b6b"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -29,6 +32,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "567bfdc5-5450-4cda-ab48-12d8672c195a"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -48,6 +54,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "7e28e5cc-3f63-462a-9f06-20dc1e1a6c7b"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -67,6 +76,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "0ba8a183-f36b-42e4-acc6-16ab95950ec2"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -86,6 +98,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "775ce544-4896-472e-b8b4-e0d6d1907507"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -105,6 +120,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "f385e8ec-8e49-4c88-b3ae-ffdfca7d979d"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -124,6 +142,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "b1e05de9-018a-473c-9182-e9631419428f"
+    },
     "RequiredLevel": 15,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -143,6 +164,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "047b6003-b1e8-4447-b083-483b273a9aae"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -162,6 +186,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "7fd13f30-7911-4cff-86f1-917f5c6e8b39"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -181,6 +208,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "12a7764c-f6c8-43c6-932c-fe2c1f130651"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -200,6 +230,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "978cf29a-7f74-45e2-9bb8-331b9083f3a6"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -219,6 +252,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "e18c82e5-b884-4753-a06d-70ae15750e02"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 1250,
@@ -238,6 +274,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "13886ef1-bd40-47cc-94a4-2ba8b75fca25"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 1250,
@@ -257,6 +296,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "b6f68809-fd15-4dcb-adef-289f331e1d58"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 1250,
@@ -276,6 +318,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "e5cad12b-329e-476e-b798-313378db6a13"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -297,6 +342,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "d4070e3a-96db-4c43-98aa-5e3c601767f7"
+    },
     "RequiredLevel": 8,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -318,6 +366,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "239b6376-090e-443f-bf68-f778f013cb97"
+    },
     "RequiredLevel": 15,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -339,6 +390,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "e2f3db79-87e4-48fa-882e-8965b360fb13"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -360,6 +414,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "d61f27b0-57f4-47d3-80aa-1c2adc3f0360"
+    },
     "RequiredLevel": 8,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -381,6 +438,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "fa85e33b-36ca-40ed-8b01-8f9433c2e406"
+    },
     "RequiredLevel": 15,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -402,6 +462,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "f31e4ad7-6f64-4863-bb84-56f02b0bb928"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -423,6 +486,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "15e0525f-f86c-4071-883e-a2705592a65c"
+    },
     "RequiredLevel": 8,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -444,6 +510,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "ceb6061c-613b-4338-91cc-af428e785065"
+    },
     "RequiredLevel": 15,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -465,6 +534,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "1cadb801-dcaa-47f3-b8b8-b98879294248"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -486,6 +558,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "8a4e15c0-04eb-4ed7-806e-3eaa95f9eb2e"
+    },
     "RequiredLevel": 8,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -507,6 +582,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "a07a1c3f-e6b0-4455-8561-10ae92b7eabc"
+    },
     "RequiredLevel": 15,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -528,6 +606,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "5c9b9ea5-15e3-4645-a5d3-917152f597e9"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -549,6 +630,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "7c492b5b-249e-45c1-b901-93cf200d73c7"
+    },
     "RequiredLevel": 9,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -570,6 +654,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "4be09484-4e84-47e1-b00e-d96a70376edf"
+    },
     "RequiredLevel": 15,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -591,6 +678,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "4abbc2b0-a8ed-487f-a64a-e00ab1e07f5e"
+    },
     "RequiredLevel": 5,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -610,6 +700,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "20c6d6aa-a72c-4cc3-a7e2-60e8752bddbd"
+    },
     "RequiredLevel": 5,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -629,6 +722,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "eddace85-eb34-4313-8e7c-27cc08373bdc"
+    },
     "RequiredLevel": 5,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -648,6 +744,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "779cd650-ce0c-4def-b721-db5b6ef139e5"
+    },
     "RequiredLevel": 5,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -667,6 +766,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "29aed965-7a7e-40d9-95fc-b5018f7fdbaa"
+    },
     "RequiredLevel": 5,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -686,6 +788,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "eb11cc6d-eb81-4ff1-8da1-eb2d1d83c52d"
+    },
     "RequiredLevel": 9,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -705,6 +810,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "7a164f5d-318d-4e3e-9ac1-cdb539ff9f0f"
+    },
     "RequiredLevel": 9,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -724,6 +832,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "6d9cac88-d252-4c35-a77c-c8b3ce6325b2"
+    },
     "RequiredLevel": 9,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -743,6 +854,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "df2b22b1-9ea9-42c2-9d7d-f1d0c0a25c57"
+    },
     "RequiredLevel": 9,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -762,6 +876,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "30ebe91d-06df-4281-a35c-f6fa91c518e2"
+    },
     "RequiredLevel": 9,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -781,6 +898,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "ded2c8fd-1261-47ea-a146-e2d6cb15bc24"
+    },
     "RequiredLevel": 14,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -800,6 +920,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "e8033cc7-4145-4582-9128-602c405984f1"
+    },
     "RequiredLevel": 14,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -819,6 +942,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "eb55e306-8a7f-443c-928e-6c164dc31cce"
+    },
     "RequiredLevel": 14,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -838,6 +964,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "5a6ac651-8dc7-4b53-9785-544be5ca5a22"
+    },
     "RequiredLevel": 14,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -857,6 +986,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "b4124dfd-8d58-4166-bd33-1fa9aecc88f5"
+    },
     "RequiredLevel": 14,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -876,6 +1008,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "7d8c054e-1d6e-4ca2-8501-1698c3053526"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -895,6 +1030,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "ad611a06-7db7-458b-937f-155ef36ccf92"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -914,6 +1052,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "02aad469-7221-427c-b142-b58be249925c"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -933,6 +1074,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "fd9a3ff5-2825-4bb2-820b-7a76cb8271ea"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -952,6 +1096,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "c863b965-95fb-4272-83e3-4d3b45444fb2"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -971,6 +1118,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "cd8b3dd7-a119-431c-9e9e-1a384fed6cfb"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -990,6 +1140,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "5cc895a8-9c21-4cbf-8fd5-247186121c1e"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1009,6 +1162,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "38d3a714-19cc-4088-b90c-9e5fd08a7c4f"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1028,6 +1184,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "4f0bb3d7-bbcf-4c22-9319-68a6b6d748f3"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1047,6 +1206,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "b3526d0a-5cfd-4e66-a353-717acb8ed844"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -1066,6 +1228,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "59c9809e-7d22-4504-b7b5-4af440e5e506"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1085,6 +1250,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "5ca72313-a598-48f9-9c42-ee479ebf8d4c"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1104,6 +1272,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "03ffa27f-d57d-46f1-9074-8a23befcf22e"
+    },
     "RequiredLevel": 6,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -1123,6 +1294,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "ad67cb81-313c-48b4-8973-ab97f6f65513"
+    },
     "RequiredLevel": 12,
     "PriceCurrency": "Intel",
     "PriceValue": 3000,
@@ -1142,6 +1316,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "e51e45aa-24ae-4ee3-a2a6-21ed561e2e73"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1161,6 +1338,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "a41a7588-0adf-4377-ac88-a54947fdc933"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -1180,6 +1360,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "65b1f89f-9cb0-4081-b61d-6fa8c5766851"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 1,
@@ -1199,6 +1382,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "cd751eec-5079-46e3-9d9c-fc4f6f7af057"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 1000,
@@ -1218,6 +1404,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "5f1b0355-cc5d-49b3-9ae2-52e7131352c9"
+    },
     "RequiredLevel": 10,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -1237,6 +1426,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "9e9a8b14-4ad4-4174-8e42-c09ebad2c6e1"
+    },
     "RequiredLevel": 10,
     "PriceCurrency": "Intel",
     "PriceValue": 6000,
@@ -1256,6 +1448,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "1971e8bb-ed1a-441e-a14a-ca63ad625839"
+    },
     "RequiredLevel": 7,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -1275,6 +1470,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "639bd0f2-86a5-457f-ab01-e8d5af636037"
+    },
     "RequiredLevel": 2,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -1294,6 +1492,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "9a49ff07-690c-42e9-b6e0-cbc6187c0d73"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -1313,6 +1514,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "b94205a2-3bf0-4ebe-8506-7e28c2473489"
+    },
     "RequiredLevel": 3,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -1332,6 +1536,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "Sunflower_Cine_Start",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "51d63131-041a-4506-8d55-636f6345ed81"
+    },
     "RequiredLevel": 6,
     "PriceCurrency": "Intel",
     "PriceValue": 4000,
@@ -1351,6 +1558,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "0cbc0139-d56a-4feb-ad0c-942827ec1bed"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 2000,
@@ -1370,6 +1580,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": false,
+    "UnlockableState": {
+      "Id": "f73400e4-f285-4d80-bec0-77e2342b0c55"
+    },
     "RequiredLevel": 0,
     "PriceCurrency": "Intel",
     "PriceValue": 0,
@@ -1389,6 +1602,9 @@
     "IsNew": false,
     "RequiredCheckpoint": "",
     "IntelShop": true,
+    "UnlockableState": {
+      "Id": "31d3d54d-7c49-4a90-a317-21d6b89aa258"
+    },
     "RequiredLevel": 1,
     "PriceCurrency": "Intel",
     "PriceValue": 1000,

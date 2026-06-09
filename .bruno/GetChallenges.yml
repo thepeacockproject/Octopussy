@@ -1,0 +1,26 @@
+info:
+  name: GetChallenges
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/services/KntProgressionService/GetChallenges"
+  body:
+    type: json
+    data: |-
+      {
+        "query": "{{query}}"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: query
+      value: dahlia_ringleg|online_global
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,9 +1,10 @@
 package services
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 )
 
 type getBlobOfflineCacheDatabaseDiffRequest struct {
@@ -11,11 +12,11 @@ type getBlobOfflineCacheDatabaseDiffRequest struct {
 }
 
 func (c *Handler) handleGetBlobOfflineCacheDatabaseDiff(w http.ResponseWriter, r *http.Request) {
-	var req getBlobOfflineCacheDatabaseDiffRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+	body, ok := shared.ParseBody[getBlobOfflineCacheDatabaseDiffRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	c.WriteJSON(w, http.StatusOK, fmt.Sprintf("Unknown product version %s", req.ProductVersion))
+	c.WriteJSON(w, http.StatusOK, fmt.Sprintf("Unknown product version %s", body.ProductVersion))
 }

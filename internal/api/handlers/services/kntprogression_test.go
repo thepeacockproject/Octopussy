@@ -3,6 +3,7 @@ package services_test
 import (
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
@@ -27,7 +28,7 @@ func TestGetChallengesReturnsEmptyArray(t *testing.T) {
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
-		"/services/KntProgressionService/GetChallenges", nil)
+		"/services/KntProgressionService/GetChallenges", strings.NewReader(`{"query":""}`))
 	req.Header.Set("Authorization", "Bearer "+token(profileID))
 	c.Handler().ServeHTTP(rr, req)
 
