@@ -1,4 +1,4 @@
-package controller
+package services
 
 import (
 	"encoding/json"
@@ -6,6 +6,11 @@ import (
 
 	"github.com/thepeacockproject/Octopussy/internal/content"
 )
+
+type intelAndRank struct {
+	Intel int `json:"Intel"`
+	Rank  int `json:"Rank"`
+}
 
 type stopSessionPayload struct {
 	GameTime     float64                 `json:"gameTime"`
@@ -86,22 +91,22 @@ type getForPlayProgressionWithFuture struct {
 	Current  intelAndRank `json:"Current"`
 }
 
-func (c *Controller) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 	var params getForPlayPayload
 	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
 		return
 	}
 
 	mission, contractFound := c.Content.Contract(params.MissionId)
 	if !contractFound {
-		c.writeJSON(w, http.StatusNotFound, map[string]string{"error": "could not find mission" + params.MissionId})
+		c.WriteJSON(w, http.StatusNotFound, map[string]string{"error": "could not find mission" + params.MissionId})
 		return
 	}
 
 	user, err := c.Store.User(r.Context(), profileIDFor(r))
 	if err != nil {
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		return
 	}
 
@@ -109,13 +114,13 @@ func (c *Controller) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 	session, err := c.Store.CreateSession(ctx, *user, params.MissionId)
 
 	if err != nil {
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		return
 	}
 
 	ir := intelAndRank{Intel: user.IntelCurrency, Rank: user.Rank}
 
-	c.writeJSON(w, http.StatusOK, getForPlayResponse{
+	c.WriteJSON(w, http.StatusOK, getForPlayResponse{
 		Static: getForPlayStatic{
 			Mission: mission,
 		},
@@ -130,14 +135,14 @@ func (c *Controller) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func (c *Controller) handleStopSession(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 	var params stopSessionPayload
 	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
 		return
 	}
 
-	c.writeJSON(w, http.StatusOK, stopSessionResponse{
+	c.WriteJSON(w, http.StatusOK, stopSessionResponse{
 		SessionID: params.SessionID,
 		// Rewards
 		AnyChallengesCompleted: false,

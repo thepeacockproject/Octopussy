@@ -1,4 +1,4 @@
-package controller
+package services_test
 
 import (
 	"context"
@@ -7,10 +7,13 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
+	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
 )
 
 func TestSetClientEntitlementsRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
@@ -23,7 +26,7 @@ func TestSetClientEntitlementsRequiresToken(t *testing.T) {
 }
 
 func TestSetClientEntitlementsNoop(t *testing.T) {
-	c, token := newTestController(t)
+	c, token := apitest.NewTestController(t)
 	const profileID = "00000000-0000-4000-8000-000000000001"
 
 	rr := httptest.NewRecorder()
@@ -42,7 +45,7 @@ func TestSetClientEntitlementsNoop(t *testing.T) {
 }
 
 func TestGetPlayerProgressionRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
@@ -55,7 +58,7 @@ func TestGetPlayerProgressionRequiresToken(t *testing.T) {
 }
 
 func TestGetPlayerProgression(t *testing.T) {
-	c, token := newTestController(t)
+	c, token := apitest.NewTestController(t)
 	const profileID = "00000000-0000-4000-8000-000000000001"
 
 	// Seed the user, then give them enough XP to be level 2 under the test
@@ -78,7 +81,7 @@ func TestGetPlayerProgression(t *testing.T) {
 		t.Fatalf("status = %d, want 200 (body %s)", rr.Code, rr.Body.String())
 	}
 
-	var resp playerProgressionResponse
+	var resp services.PlayerProgressionResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
@@ -91,7 +94,7 @@ func TestGetPlayerProgression(t *testing.T) {
 }
 
 func TestGetEntitlementsRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
@@ -104,7 +107,7 @@ func TestGetEntitlementsRequiresToken(t *testing.T) {
 }
 
 func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
-	c, token := newTestController(t)
+	c, token := apitest.NewTestController(t)
 	const profileID = "00000000-0000-4000-8000-000000000001"
 
 	rr := httptest.NewRecorder()
@@ -117,13 +120,13 @@ func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
 		t.Fatalf("status = %d, want 200", rr.Code)
 	}
 
-	var resp getEntitlementsResponse
+	var resp services.GetEntitlementsResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
-	if len(resp.PlatformEntitlements) != len(platformEntitlements) {
+	if len(resp.PlatformEntitlements) != len(services.PlatformEntitlements) {
 		t.Errorf("PlatformEntitlements len = %d, want %d",
-			len(resp.PlatformEntitlements), len(platformEntitlements))
+			len(resp.PlatformEntitlements), len(services.PlatformEntitlements))
 	}
 	if resp.IoiEntitlements == nil {
 		t.Errorf("IoiEntitlements = nil, want non-null empty array")

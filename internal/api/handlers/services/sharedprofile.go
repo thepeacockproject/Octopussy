@@ -1,4 +1,4 @@
-package controller
+package services
 
 import (
 	"encoding/json"
@@ -32,17 +32,17 @@ type resolvedProfileResponse struct {
 // handleResolveProfiles returns the gamertag and linked platform accounts for
 // each requested profile id, preserving request order and skipping ids that
 // don't resolve to a known user.
-func (c *Controller) handleResolveProfiles(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleResolveProfiles(w http.ResponseWriter, r *http.Request) {
 	var req resolveProfilesRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
 		return
 	}
 
 	profiles, err := c.Store.ResolveProfiles(r.Context(), req.ProfileIDs)
 	if err != nil {
 		c.Log.Error("resolve profiles failed", slog.String("error", err.Error()))
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
 
@@ -59,5 +59,5 @@ func (c *Controller) handleResolveProfiles(w http.ResponseWriter, r *http.Reques
 		slog.Int("requested", len(req.ProfileIDs)),
 		slog.Int("resolved", len(out)),
 	)
-	c.writeJSON(w, http.StatusOK, out)
+	c.WriteJSON(w, http.StatusOK, out)
 }

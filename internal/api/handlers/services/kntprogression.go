@@ -1,4 +1,4 @@
-package controller
+package services
 
 import (
 	"encoding/json"
@@ -10,10 +10,12 @@ type GetChallengesRequest struct {
 }
 
 // KntProgressionService backs challenges and related progression data.
-func (c *Controller) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
 	var req GetChallengesRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
 		return
 	}
+
+	c.WriteJSON(w, http.StatusOK, []any{})
 }

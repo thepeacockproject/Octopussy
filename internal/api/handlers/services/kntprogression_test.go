@@ -1,13 +1,15 @@
-package controller
+package services_test
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 )
 
 func TestGetChallengesRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
@@ -20,7 +22,7 @@ func TestGetChallengesRequiresToken(t *testing.T) {
 }
 
 func TestGetChallengesReturnsEmptyArray(t *testing.T) {
-	c, token := newTestController(t)
+	c, token := apitest.NewTestController(t)
 	const profileID = "00000000-0000-4000-8000-000000000001"
 
 	rr := httptest.NewRecorder()

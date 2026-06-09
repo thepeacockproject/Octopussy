@@ -15,15 +15,12 @@ type statusRecorder struct {
 	bytes  int
 }
 
-func (r *statusRecorder) WriteHeader(code int) {
+func (r *statusRecorder) WriteStatus(code int) {
 	r.status = code
 	r.ResponseWriter.WriteHeader(code)
 }
 
 func (r *statusRecorder) Write(b []byte) (int, error) {
-	if r.status == 0 {
-		r.status = http.StatusOK
-	}
 	n, err := r.ResponseWriter.Write(b)
 	r.bytes += n
 	return n, err
@@ -50,7 +47,8 @@ func HTTPMiddleware(logger *slog.Logger) func(http.Handler) http.Handler {
 			defer func() {
 				if rv := recover(); rv != nil {
 					if rec.status == 0 {
-						rec.WriteHeader(http.StatusInternalServerError)
+						// TODO: Throw error instead? Endpoint should properly set a status code.
+						rec.WriteStatus(http.StatusInternalServerError)
 					}
 					logger.Error("panic recovered while serving request",
 						slog.String("method", r.Method),

@@ -1,4 +1,4 @@
-package controller
+package other
 
 import (
 	"log/slog"
@@ -34,8 +34,8 @@ type onlineConfigFileOnline struct {
 
 // handleOnlineConfigFile serves /files/onlineconfig.json. The values are static
 // for now; websockets stay disabled until we implement that path.
-func (c *Controller) handleOnlineConfigFile(w http.ResponseWriter, _ *http.Request) {
-	c.writeJSON(w, http.StatusOK, onlineConfigFile{
+func (c *Handler) handleOnlineConfigFile(w http.ResponseWriter, _ *http.Request) {
+	c.WriteJSON(w, http.StatusOK, onlineConfigFile{
 		Online: onlineConfigFileOnline{
 			BlobSignatureRenewalMinutes:         5.0,
 			BlobSignatureRenewalCooldownSeconds: 30.0,
@@ -53,7 +53,7 @@ func (c *Controller) handleOnlineConfigFile(w http.ResponseWriter, _ *http.Reque
 // body is stored verbatim and embedded in the binary; the x-ms-meta-version
 // header reproduces what the original blob storage returned, which the client
 // checks to decide whether the cached policy is current.
-func (c *Controller) handlePrivacyPolicy(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handlePrivacyPolicy(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("x-ms-meta-version", privacyPolicyVersion)
 	w.WriteHeader(http.StatusOK)

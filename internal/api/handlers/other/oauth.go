@@ -1,4 +1,4 @@
-package controller
+package other
 
 import (
 	"io"
@@ -7,6 +7,7 @@ import (
 	"net/url"
 
 	"github.com/google/uuid"
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 )
 
@@ -69,10 +70,10 @@ func platformForGrant(grantType string) (platform, useridField string) {
 // shaped like the game's real tokens.
 //
 // TODO: validate the steam_clienttoken / external session ticket against the platform, and support the refresh_token grant. For now we trust the supplied external id and derive a stable profile id from it.
-func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 	form, err := parseAuthForm(r)
 	if err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid form body"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid form body"})
 		return
 	}
 
@@ -81,7 +82,7 @@ func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 	userID := form.Get(useridField)
 
 	if grantType == "" || userID == "" {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "missing grant_type or external user id"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "missing grant_type or external user id"})
 		return
 	}
 
@@ -99,7 +100,7 @@ func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 	// are left untouched. The external user id seeds the initial gamertag.
 	if err := c.Store.EnsureUser(r.Context(), profileID, userID, platform, userID); err != nil {
 		c.Log.Error("failed to persist user", slog.String("error", err.Error()))
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
 		return
 	}
 
@@ -118,14 +119,14 @@ func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 		UserID:     userID,
 		Scope:      []string{"ioi:games"},
 		RegisteredClaims: jwt.RegisteredClaims{
-			Issuer:   requestBaseURL(r),
+			Issuer:   shared.RequestBaseURL(r),
 			Subject:  profileID,
 			Audience: jwt.Audience(gs),
 		},
 	})
 	if err != nil {
 		c.Log.Error("failed to sign token", slog.String("error", err.Error()))
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
 		return
 	}
 
@@ -135,7 +136,7 @@ func (c *Controller) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 		slog.String("grant", grantType),
 	)
 
-	c.writeJSON(w, http.StatusOK, oAuthTokenResponse{
+	c.WriteJSON(w, http.StatusOK, oAuthTokenResponse{
 		AccessToken:  access,
 		ExpiresIn:    int(c.JWT.TTL().Seconds()),
 		TokenType:    "bearer",

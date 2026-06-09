@@ -1,4 +1,4 @@
-package controller
+package other_test
 
 import (
 	"encoding/json"
@@ -9,11 +9,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
+	"github.com/thepeacockproject/Octopussy/internal/api/handlers/other"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 )
 
 func TestAuthConfigInitRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodGet,
@@ -26,7 +28,7 @@ func TestAuthConfigInitRequiresToken(t *testing.T) {
 }
 
 func TestAuthConfigInit(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 	const profileID = "00000000-0000-4000-8000-000000000001"
 
 	// Mint a token with the full claim set Init derives its fields from.
@@ -55,7 +57,7 @@ func TestAuthConfigInit(t *testing.T) {
 		t.Fatalf("status = %d, want 200", rr.Code)
 	}
 
-	var resp authConfigInitResponse
+	var resp other.AuthConfigInitResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
@@ -83,12 +85,12 @@ func TestAuthConfigInit(t *testing.T) {
 	if resp.BlobConfig.BlobSigDuration != 7200000 {
 		t.Errorf("blobsigduration = %v, want 7200000", resp.BlobConfig.BlobSigDuration)
 	}
-	if resp.ServerVersion != authServerVersion {
-		t.Errorf("serverversion = %q, want %q", resp.ServerVersion, authServerVersion)
+	if resp.ServerVersion != other.AuthServerVersion {
+		t.Errorf("serverversion = %q, want %q", resp.ServerVersion, other.AuthServerVersion)
 	}
 
 	// servertimeutc must parse as the .NET-style UTC stamp we emit.
-	if _, err := time.Parse(dotNetTimeLayout+"Z", resp.ServerTimeUTC); err != nil {
+	if _, err := time.Parse(other.DotNetTimeLayout+"Z", resp.ServerTimeUTC); err != nil {
 		t.Errorf("servertimeutc %q not in expected layout: %v", resp.ServerTimeUTC, err)
 	}
 }

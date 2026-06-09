@@ -1,4 +1,4 @@
-package controller
+package other
 
 import (
 	"encoding/json"
@@ -17,7 +17,7 @@ type metricsEvent struct {
 // handleMetricsIngest accepts telemetry events and discards them. The config
 // discovery doc points the game's metrics host here; we acknowledge events so
 // the client is happy, but persist nothing.
-func (c *Controller) handleMetricsIngest(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleMetricsIngest(w http.ResponseWriter, r *http.Request) {
 	// Peek at the event name for observability without keeping the payload.
 	var evt metricsEvent
 	if err := json.NewDecoder(r.Body).Decode(&evt); err == nil && evt.Name != "" {

@@ -1,4 +1,4 @@
-package controller
+package other_test
 
 import (
 	"encoding/json"
@@ -6,6 +6,9 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
+	"github.com/thepeacockproject/Octopussy/internal/api/handlers/other"
 )
 
 // The exact body the game's Steam auth client sends.
@@ -15,7 +18,7 @@ const steamLoginBody = "grant_type=external_steam&steam_userid=0123&pId=&steam_a
 // not send a Content-Type, so net/http's ParseForm would leave PostForm empty.
 // The handler must still parse the body and issue a token.
 func TestOAuthTokenWithoutContentType(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	req := httptest.NewRequest(http.MethodPost, "/oauth/token", strings.NewReader(steamLoginBody))
 	// Deliberately NO Content-Type header.
@@ -26,7 +29,7 @@ func TestOAuthTokenWithoutContentType(t *testing.T) {
 		t.Fatalf("status = %d, want 200; body = %s", rr.Code, rr.Body.String())
 	}
 
-	var resp oAuthTokenResponse
+	var resp other.OAuthTokenResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
@@ -41,7 +44,7 @@ func TestOAuthTokenWithoutContentType(t *testing.T) {
 // TestOAuthTokenWithContentType confirms the normal path still works when the
 // proper form Content-Type is present.
 func TestOAuthTokenWithContentType(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	req := httptest.NewRequest(http.MethodPost, "/oauth/token", strings.NewReader(steamLoginBody))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -56,7 +59,7 @@ func TestOAuthTokenWithContentType(t *testing.T) {
 // TestOAuthTokenMissingFields verifies the error path still rejects a body with
 // no grant_type or external user id.
 func TestOAuthTokenMissingFields(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	req := httptest.NewRequest(http.MethodPost, "/oauth/token", strings.NewReader("foo=bar"))
 	rr := httptest.NewRecorder()

@@ -1,14 +1,17 @@
-package controller
+package other_test
 
 import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
+	"github.com/thepeacockproject/Octopussy/internal/api/handlers/other"
 )
 
 func TestOnlineConfigFile(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodGet, "/files/onlineconfig.json", nil)
@@ -21,7 +24,7 @@ func TestOnlineConfigFile(t *testing.T) {
 		t.Errorf("Content-Type = %q, want application/json", ct)
 	}
 
-	var resp onlineConfigFile
+	var resp other.OnlineConfigFile
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
@@ -33,7 +36,7 @@ func TestOnlineConfigFile(t *testing.T) {
 }
 
 func TestPrivacyPolicyFile(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodGet, "/files/privacypolicy/knt/privacypolicy_pc_en.json", nil)

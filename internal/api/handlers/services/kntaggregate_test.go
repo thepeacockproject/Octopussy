@@ -1,4 +1,4 @@
-package controller
+package services_test
 
 import (
 	"encoding/json"
@@ -6,11 +6,12 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/content"
 )
 
 func TestGetMenuContentRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/services/KntAggregateService/GetMenuContent", nil)
@@ -22,7 +23,7 @@ func TestGetMenuContentRequiresToken(t *testing.T) {
 }
 
 func TestGetMenuContent(t *testing.T) {
-	c, token := newTestController(t)
+	c, token := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/services/KntAggregateService/GetMenuContent", nil)

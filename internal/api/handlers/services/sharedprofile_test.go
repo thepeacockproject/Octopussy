@@ -1,4 +1,4 @@
-package controller
+package services_test
 
 import (
 	"context"
@@ -7,10 +7,13 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
+	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
 )
 
 func TestResolveProfilesRequiresToken(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/services/SharedProfileService/ResolveProfiles",
@@ -23,7 +26,7 @@ func TestResolveProfilesRequiresToken(t *testing.T) {
 }
 
 func TestResolveProfiles(t *testing.T) {
-	c, token := newTestController(t)
+	c, token := apitest.NewTestController(t)
 
 	const profileID = "d97fc63c-9379-4300-9018-4c8d787ac63c"
 	if err := c.Store.EnsureUser(context.Background(), profileID, "peacock", "steam", "0123"); err != nil {
@@ -41,7 +44,7 @@ func TestResolveProfiles(t *testing.T) {
 		t.Fatalf("status = %d, want %d (body %s)", rr.Code, http.StatusOK, rr.Body.String())
 	}
 
-	var resp []resolvedProfileResponse
+	var resp []services.ResolvedProfileResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode response: %v", err)
 	}

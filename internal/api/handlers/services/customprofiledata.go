@@ -1,4 +1,4 @@
-package controller
+package services
 
 import (
 	"encoding/json"
@@ -56,7 +56,7 @@ type customProfileReadAllResponse struct {
 // The request has no body; the profile id comes from the bearer token. A
 // brand-new profile is seeded with defaultCustomProfileData first, so the game
 // always gets a sane initial state.
-func (c *Controller) handleCustomProfileReadAll(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleCustomProfileReadAll(w http.ResponseWriter, r *http.Request) {
 	profileID := profileIDFor(r)
 	ctx := r.Context()
 
@@ -65,13 +65,13 @@ func (c *Controller) handleCustomProfileReadAll(w http.ResponseWriter, r *http.R
 	count, err := c.Store.CountCustomProfileData(ctx, profileID)
 	if err != nil {
 		c.Log.Error("custom profile count failed", slog.String("error", err.Error()))
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
 	if count == 0 {
 		if err := c.Store.SeedCustomProfileDefaults(ctx, profileID, map[string]string{}); err != nil {
 			c.Log.Error("custom profile seed failed", slog.String("error", err.Error()))
-			c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
+			c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 			return
 		}
 	}
@@ -79,7 +79,7 @@ func (c *Controller) handleCustomProfileReadAll(w http.ResponseWriter, r *http.R
 	data, err := c.Store.ReadCustomProfileData(ctx, profileID)
 	if err != nil {
 		c.Log.Error("custom profile read failed", slog.String("error", err.Error()))
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
 
@@ -87,19 +87,19 @@ func (c *Controller) handleCustomProfileReadAll(w http.ResponseWriter, r *http.R
 		slog.String("profileId", profileID),
 		slog.Int("keys", len(data)),
 	)
-	c.writeJSON(w, http.StatusOK, customProfileReadAllResponse{Data: data})
+	c.WriteJSON(w, http.StatusOK, customProfileReadAllResponse{Data: data})
 }
 
 // handleCustomProfileWrite upserts a single key/value pair and answers 200 OK
 // with an empty body, matching the game's expectation.
-func (c *Controller) handleCustomProfileWrite(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleCustomProfileWrite(w http.ResponseWriter, r *http.Request) {
 	var req customProfileWriteRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
 		return
 	}
 	if req.Key == "" {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "missing key"})
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "missing key"})
 		return
 	}
 
@@ -112,7 +112,7 @@ func (c *Controller) handleCustomProfileWrite(w http.ResponseWriter, r *http.Req
 
 	if err := c.Store.WriteCustomProfileData(r.Context(), profileID, req.Key, req.Data); err != nil {
 		c.Log.Error("custom profile write failed", slog.String("error", err.Error()))
-		c.writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
+		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
 

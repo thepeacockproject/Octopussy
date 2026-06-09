@@ -1,5 +1,5 @@
 // Command octopussy starts the HTTP server: it builds the logger and JWT
-// manager, wires them into the controller, and serves with graceful shutdown.
+// manager, wires them into the api, and serves with graceful shutdown.
 package main
 
 import (
@@ -15,6 +15,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/thepeacockproject/Octopussy/internal/api"
 	"github.com/thepeacockproject/Octopussy/internal/content"
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
@@ -98,9 +99,12 @@ func run() error {
 	log.Info("loaded game content",
 		slog.String("source", dataSrc),
 		slog.Int("missions", gameContent.MissionCount()),
+		slog.Int("challenges", gameContent.ChallengeCount()),
+		slog.Int("unlockables", gameContent.UnlockableCount()),
 	)
 
 	ctrl := controller.New(log, jwtMgr, st, gameContent)
+	api.RegisterRoutes(ctrl)
 
 	addr := os.Getenv("OCTOPUSSY_ADDR")
 	if addr == "" {

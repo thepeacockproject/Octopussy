@@ -158,12 +158,9 @@ type Unlockable struct {
 	RequiredCheckpoint string   `json:"RequiredCheckpoint"`
 	IntelShop          bool     `json:"IntelShop"`
 	RequiredLevel      int      `json:"RequiredLevel"`
-	LevelOk            bool     `json:"LevelOk"`
 	PriceCurrency      string   `json:"PriceCurrency"`
 	PriceValue         int      `json:"PriceValue"`
-	PriceOk            bool     `json:"PriceOk"`
 	GrantedItems       []string `json:"GrantedItems"`
-	CanBuy             bool     `json:"CanBuy"`
 	Unlocks            []string `json:"Unlocks"`
 	Type               string   `json:"Type"`
 	Category           string   `json:"Category"`
@@ -182,6 +179,9 @@ type UnlockableState struct {
 // shape returned to the client.
 type UnlockablesWithState struct {
 	Unlockable
+	LevelOk         bool            `json:"LevelOk"`
+	PriceOk         bool            `json:"PriceOk"`
+	CanBuy          bool            `json:"CanBuy"` // Checks LevelOk, PriceOk and ownership.
 	UnlockableState UnlockableState `json:"UnlockableState"`
 }
 
@@ -383,9 +383,9 @@ func (s *Store) Challenges() []Challenge { return s.challenges }
 // ChallengeCount reports how many challenges were loaded, for startup logging.
 func (s *Store) ChallengeCount() int { return len(s.challenges) }
 
-// Unlockable returns the static unlockable catalog in file order. Callers pair
+// Unlockables returns the static unlockable catalog in file order. Callers pair
 // each entry with a per-user UnlockableState (see UnlockablesWithState).
 func (s *Store) Unlockables() []Unlockable { return s.unlockables }
 
-// UnlockablesCount reports how many unlockables were loaded, for startup logging.
-func (s *Store) UnlockablesCount() int { return len(s.unlockables) }
+// UnlockableCount reports how many unlockables were loaded, for startup logging.
+func (s *Store) UnlockableCount() int { return len(s.unlockables) }

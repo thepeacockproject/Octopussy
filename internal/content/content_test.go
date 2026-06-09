@@ -114,8 +114,8 @@ func TestLoadUnlockables(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Load: %v", err)
 	}
-	if s.UnlockablesCount() != 1 {
-		t.Fatalf("UnlockableCount = %d, want 1", s.UnlockablesCount())
+	if s.UnlockableCount() != 1 {
+		t.Fatalf("UnlockableCount = %d, want 1", s.UnlockableCount())
 	}
 
 	u := s.Unlockables()[0]

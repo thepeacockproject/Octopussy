@@ -1,4 +1,4 @@
-package controller
+package other_test
 
 import (
 	"encoding/json"
@@ -6,10 +6,13 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
+	"github.com/thepeacockproject/Octopussy/internal/api/handlers/other"
 )
 
 func TestOnlineConfigDiscovery(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodGet, "/config/pc-prod/1_1_7?issuer=3768760", nil)
@@ -20,7 +23,7 @@ func TestOnlineConfigDiscovery(t *testing.T) {
 		t.Fatalf("status = %d, want 200", rr.Code)
 	}
 
-	var resp onlineConfigResponse
+	var resp other.OnlineConfigResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
@@ -36,8 +39,8 @@ func TestOnlineConfigDiscovery(t *testing.T) {
 	if v.IssuerID != "3768760" {
 		t.Errorf("ISSUER_ID = %q, want 3768760", v.IssuerID)
 	}
-	if v.GameVer != supportedGameVersion {
-		t.Errorf("GAME_VER = %q, want %q", v.GameVer, supportedGameVersion)
+	if v.GameVer != other.SupportedGameVersion {
+		t.Errorf("GAME_VER = %q, want %q", v.GameVer, other.SupportedGameVersion)
 	}
 
 	// Every service URL should point back at the requesting host.
@@ -60,7 +63,7 @@ func TestOnlineConfigDiscovery(t *testing.T) {
 }
 
 func TestOnlineConfigHonorsForwardedProto(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodGet, "/config/pc-prod/1_1_7?issuer=1", nil)
@@ -68,7 +71,7 @@ func TestOnlineConfigHonorsForwardedProto(t *testing.T) {
 	req.Header.Set("X-Forwarded-Proto", "https")
 	c.Handler().ServeHTTP(rr, req)
 
-	var resp onlineConfigResponse
+	var resp other.OnlineConfigResponse
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}

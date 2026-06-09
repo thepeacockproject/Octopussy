@@ -1,13 +1,13 @@
-package controller
+package other
 
 import (
-	"encoding/json"
 	"fmt"
 	"log/slog"
 	"net/http"
 	"net/url"
 	"time"
 
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 )
 
@@ -47,10 +47,6 @@ type authProfileInit struct {
 	BaseURL string `json:"baseurl"`
 }
 
-type getBlobOfflineCacheDatabaseDiffRequest struct {
-	ProductVersion string `json:"productVersion"`
-}
-
 // handleAuthConfigInit answers authentication/api/configuration/Init. It runs
 // behind the JWT middleware: the profile id and the legacy "token" string are
 // derived from the bearer token's claims.
@@ -58,10 +54,10 @@ type getBlobOfflineCacheDatabaseDiffRequest struct {
 // TODO: the blob SAS signature is a stub (we serve resources ourselves with no
 // SAS auth), and the account email/ias/baseurl are placeholders until we have a
 // real account system.
-func (c *Controller) handleAuthConfigInit(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleAuthConfigInit(w http.ResponseWriter, r *http.Request) {
 	claims, ok := jwt.ClaimsFrom(r.Context())
 	if !ok {
-		c.writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "unauthorized"})
+		c.WriteJSON(w, http.StatusUnauthorized, map[string]string{"error": "unauthorized"})
 		return
 	}
 
@@ -78,7 +74,7 @@ func (c *Controller) handleAuthConfigInit(w http.ResponseWriter, r *http.Request
 	}
 	legacyToken := fmt.Sprintf("%d-%d-%s-%s", exp, iat, claims.Platform, claims.UserID)
 
-	base := requestBaseURL(r)
+	base := shared.RequestBaseURL(r)
 	expiry := time.Now().UTC().Add(c.JWT.TTL())
 	// Stub SAS: structurally like an Azure blob signature, but our resource
 	// routes ignore it. Only the expiry is real, to mimic blobsigduration.
@@ -91,7 +87,7 @@ func (c *Controller) handleAuthConfigInit(w http.ResponseWriter, r *http.Request
 		slog.String("profile", claims.Subject),
 	)
 
-	c.writeJSON(w, http.StatusOK, authConfigInitResponse{
+	c.WriteJSON(w, http.StatusOK, authConfigInitResponse{
 		Token: legacyToken,
 		BlobConfig: authBlobConfig{
 			BlobURL:         base + "/resources-1-1/",
@@ -107,14 +103,4 @@ func (c *Controller) handleAuthConfigInit(w http.ResponseWriter, r *http.Request
 			BaseURL: "https://thepeacockproject.org",
 		},
 	})
-}
-
-func (c *Controller) handleGetBlobOfflineCacheDatabaseDiff(w http.ResponseWriter, r *http.Request) {
-	var req getBlobOfflineCacheDatabaseDiffRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		c.writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid request body"})
-		return
-	}
-
-	c.writeJSON(w, http.StatusOK, fmt.Sprintf("Unknown product version %s", req.ProductVersion))
 }

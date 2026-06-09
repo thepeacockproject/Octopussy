@@ -1,11 +1,11 @@
-package controller
+package other
 
 import (
 	"fmt"
 	"net/http"
 )
 
-func (c *Controller) handleResources(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleResources(w http.ResponseWriter, r *http.Request) {
 	path := r.PathValue("path")
 
 	result := fmt.Sprintf(""+

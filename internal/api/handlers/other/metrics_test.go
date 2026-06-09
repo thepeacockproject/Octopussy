@@ -1,10 +1,12 @@
-package controller
+package other_test
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 )
 
 // sampleGameStartEvent is a trimmed GameStart telemetry event; the real payload
@@ -18,7 +20,7 @@ const sampleGameStartEvent = `{
 }`
 
 func TestMetricsIngestAcceptsEvent(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/ingest", strings.NewReader(sampleGameStartEvent))
@@ -36,7 +38,7 @@ func TestMetricsIngestAcceptsEvent(t *testing.T) {
 // The ingest sink is lenient: even a malformed body is acknowledged so the
 // fire-and-forget client never sees an error.
 func TestMetricsIngestToleratesGarbage(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/ingest", strings.NewReader("not json at all"))
@@ -49,7 +51,7 @@ func TestMetricsIngestToleratesGarbage(t *testing.T) {
 
 // The endpoint is unauthenticated: telemetry should not require a bearer token.
 func TestMetricsIngestNoAuthRequired(t *testing.T) {
-	c, _ := newTestController(t)
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/ingest", strings.NewReader(sampleGameStartEvent))

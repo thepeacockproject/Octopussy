@@ -1,8 +1,10 @@
-package controller
+package other
 
 import (
 	"log/slog"
 	"net/http"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 )
 
 // supportedGameVersion is the GAME_VER our server reports to clients. The game
@@ -65,12 +67,12 @@ type onlineConfigGlobalAuth struct {
 // handleOnlineConfig serves the config discovery document. The game hits this
 // first to learn where every other service lives; we answer with our own host
 // for all of them so the client routes everything back to Octopussy.
-func (c *Controller) handleOnlineConfig(w http.ResponseWriter, r *http.Request) {
+func (c *Handler) handleOnlineConfig(w http.ResponseWriter, r *http.Request) {
 	configName := r.PathValue("configName")
 	version := r.PathValue("version")
 	issuer := r.URL.Query().Get("issuer")
 
-	base := requestBaseURL(r)
+	base := shared.RequestBaseURL(r)
 
 	resp := onlineConfigResponse{
 		Versions: []onlineConfigVersion{{
@@ -111,5 +113,5 @@ func (c *Controller) handleOnlineConfig(w http.ResponseWriter, r *http.Request) 
 		slog.String("version", version),
 		slog.String("issuer", issuer),
 	)
-	c.writeJSON(w, http.StatusOK, resp)
+	c.WriteJSON(w, http.StatusOK, resp)
 }
