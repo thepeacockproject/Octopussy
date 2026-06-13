@@ -16,6 +16,6 @@ func NewHandler(controller *controller.Controller) *Handler {
 
 func (c *Handler) RegisterRoutes() {
 	mux := c.Mux()
-	
+
 	mux.HandleFunc("GET /health", c.handleHealth)
 }
