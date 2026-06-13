@@ -204,14 +204,18 @@ func mapToUnlockableWithState(unlockable content.Unlockable, user *store.User, u
 		Unlockable: unlockable,
 		LevelOk:    user.Rank >= unlockable.RequiredLevel,
 		PriceOk:    unlockable.PriceCurrency == "Intel" && user.IntelCurrency >= unlockable.PriceValue,
+		CanBuy:     false,
+		UnlockableState: content.UnlockableStateWithState{
+			// BUGFIX: Don't forget to set overridden nested composite types
+			UnlockableState: unlockable.UnlockableState,
+			State:           content.UnlockState_Locked,
+		},
 	}
 
 	if lo.ContainsBy(unlockables, func(item store.UserUnlockable) bool {
 		return item.UnlockableID == unlockableWithState.UnlockableState.Id
 	}) {
 		unlockableWithState.UnlockableState.State = content.UnlockState_Unlocked
-	} else {
-		unlockableWithState.UnlockableState.State = content.UnlockState_Locked
 	}
 
 	checkpointOk := unlockableWithState.RequiredCheckpoint == "" ||
