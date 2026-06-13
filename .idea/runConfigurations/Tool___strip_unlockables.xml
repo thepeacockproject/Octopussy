@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tool - strip-unlockables" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="Octopussy" />
+    <working_directory value="$PROJECT_DIR$" />
+    <kind value="PACKAGE" />
+    <package value="github.com/thepeacockproject/Octopussy/cmd/strip-unlockables" />
+    <directory value="$PROJECT_DIR$" />
+    <auto_managed_config_id value="$PROJECT_DIR$/cmd/strip-unlockables" />
+    <method v="2" />
+  </configuration>
+</component>

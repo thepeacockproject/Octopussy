@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Octopussy - Reverse proxy" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="Octopussy" />
+    <working_directory value="$PROJECT_DIR$" />
+    <envs>
+      <env name="OCTOPUSSY_REVERSEPROXY" value="true" />
+    </envs>
+    <kind value="PACKAGE" />
+    <package value="github.com/thepeacockproject/Octopussy" />
+    <directory value="$PROJECT_DIR$" />
+    <auto_managed_config_id value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

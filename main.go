@@ -22,6 +22,7 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 	"github.com/thepeacockproject/Octopussy/internal/logging"
+	"github.com/thepeacockproject/Octopussy/internal/proxy"
 	"github.com/thepeacockproject/Octopussy/internal/shared"
 	"github.com/thepeacockproject/Octopussy/internal/store"
 )
@@ -42,6 +43,7 @@ func main() {
 
 func run() error {
 	dev := envBool("OCTOPUSSY_DEV", true)
+	reverseProxy := envBool("OCTOPUSSY_REVERSEPROXY", false)
 
 	level := slog.LevelInfo
 	if dev {
@@ -129,6 +131,7 @@ func run() error {
 			logging.HTTPMiddleware(),
 			logging.HTTPMiddlewareSimple(log),
 			shared.ShortHandIf(dev, logging.HTTPMiddlewareDetailed(log), nil),
+			shared.ShortHandIf(dev && reverseProxy, proxy.HTTPMiddleware(log), nil),
 		),
 		ReadHeaderTimeout: 10 * time.Second,
 		ReadTimeout:       30 * time.Second,
