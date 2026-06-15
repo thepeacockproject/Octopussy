@@ -31,6 +31,21 @@ type playerProgressionResponse struct {
 	PlayerProgression playerProgression `json:"PlayerProgression"`
 }
 
+type signupIoiAccountRequest struct {
+	Email                      string `json:"email"`
+	LanguageCode               string `json:"languageCode"`
+	MarketingConsentPrechecked bool   `json:"marketingConsentPrechecked"`
+}
+
+type signupIoiAccountResponse struct {
+	Success      bool   `json:"Success"`
+	ErrorCode    int    `json:"ErrorCode"`
+	IsConfirmed  bool   `json:"IsConfirmed"`
+	LinkedEmail  string `json:"LinkedEmail"`
+	IoiAccountId string `json:"IoiAccountId"`
+	BaseUrl      string `json:"BaseUrl"`
+}
+
 func (c *Handler) handleSetClientEntitlements(w http.ResponseWriter, _ *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
@@ -64,5 +79,28 @@ func (c *Handler) handleGetPlayerProgression(w http.ResponseWriter, r *http.Requ
 
 	c.WriteJSON(w, http.StatusOK, playerProgressionResponse{
 		PlayerProgression: playerProgression{Xp: user.XPEarned, Level: user.Rank},
+	})
+}
+
+func (c *Handler) handleSignupIoiAccount(w http.ResponseWriter, r *http.Request) {
+	body, ok := shared.ParseBody[signupIoiAccountRequest](r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	c.WriteJSON(w, http.StatusOK, signupIoiAccountResponse{
+		Success:      true,
+		ErrorCode:    0,
+		IsConfirmed:  true,
+		LinkedEmail:  body.Email,
+		IoiAccountId: userId,
+		BaseUrl:      "https://thepeacockproject.org",
 	})
 }

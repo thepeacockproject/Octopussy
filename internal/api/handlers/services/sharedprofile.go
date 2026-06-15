@@ -30,6 +30,10 @@ type resolveProfileResponse struct {
 	Gamertag       string            `json:"Gamertag"`
 }
 
+func (c *Handler) handleGetFriendsCount(w http.ResponseWriter, r *http.Request) {
+	c.WriteJSON(w, http.StatusOK, 0)
+}
+
 // handleResolveProfiles returns the gamertag and linked platform accounts for
 // each requested profile id, preserving request order and skipping ids that
 // don't resolve to a known user.

@@ -13,10 +13,10 @@ type intelAndRank struct {
 }
 
 type stopSessionRequest struct {
-	GameTime     float64                 `json:"gameTime"`
-	Score        int                     `json:"score"`
-	SessionId    string                  `json:"sessionId"`
-	ScoreDetails stopSessionScoreDetails `json:"scoreDetails"`
+	GameTime     float64      `json:"gameTime"`
+	Score        int          `json:"score"`
+	SessionId    string       `json:"sessionId"`
+	ScoreDetails scoreDetails `json:"scoreDetails"`
 }
 
 type stopSessionResponse struct {
@@ -32,12 +32,12 @@ type stopSessionResponse struct {
 	MissionTier            int                          `json:"MissionTier"`
 	MissionProgressions    []content.MissionProgression `json:"MissionProgressions"`
 	Score                  int                          `json:"Score"`
-	ScoreDetails           *stopSessionScoreDetails     `json:"ScoreDetails"`
-	ScoreDetailsDiff       *stopSessionScoreDetails     `json:"ScoreDetailsDiff"`
+	ScoreDetails           *scoreDetails                `json:"ScoreDetails"`
+	ScoreDetailsDiff       *scoreDetails                `json:"ScoreDetailsDiff"`
 	PreviousScore          int                          `json:"PreviousScore"`
 }
 
-type stopSessionScoreDetails struct {
+type scoreDetails struct {
 	Time      int `json:"Time"`
 	Precision int `json:"Precision"`
 	Flair     int `json:"Flair"`

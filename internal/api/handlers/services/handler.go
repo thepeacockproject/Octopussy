@@ -36,6 +36,8 @@ func (c *Handler) RegisterRoutes() {
 
 	// SharedProfileService: public-facing profile lookup (gamertag, linked
 	// accounts) for one or more users.
+	mux.Handle("POST /services/SharedProfileService/GetFriendsCount",
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetFriendsCount)))
 	mux.Handle("POST /services/SharedProfileService/ResolveProfiles",
 		c.JWT.Middleware(http.HandlerFunc(c.handleResolveProfiles)))
 
@@ -46,6 +48,8 @@ func (c *Handler) RegisterRoutes() {
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetEntitlements)))
 	mux.Handle("POST /services/KntProfileService/GetPlayerProgression",
 		c.JWT.Middleware(http.HandlerFunc(c.handleGetPlayerProgression)))
+	mux.Handle("POST /services/KntProfileService/SignupIoiAccount",
+		c.JWT.Middleware(http.HandlerFunc(c.handleSignupIoiAccount)))
 
 	// KntProgressionService: challenges.
 	mux.Handle("POST /services/KntProgressionService/GetChallenges",
@@ -71,11 +75,11 @@ func (c *Handler) RegisterRoutes() {
 
 	// KntLeaderboardService
 	mux.Handle("POST /services/KntLeaderboardService/GetLeaderboards",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetLeaderboards)))
 	mux.Handle("POST /services/KntLeaderboardService/GetFriendLeaderboards",
-		c.JWT.Middleware(http.HandlerFunc(c.handleTODO)))
+		c.JWT.Middleware(http.HandlerFunc(c.handleGetFriendLeaderboards)))
 }
 
-func (c *Handler) handleTODO(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusBadRequest)
-}
+//func (c *Handler) handleTODO(w http.ResponseWriter, r *http.Request) {
+//	w.WriteHeader(http.StatusBadRequest)
+//}

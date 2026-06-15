@@ -13,7 +13,7 @@ import (
 
 // authServerVersion is the backend service version we report (distinct from the
 // game's GAME_VER). Observed value from the real service.
-const authServerVersion = "1.1.0.24"
+const authServerVersion = "1.1.0.26"
 
 // dotNetTimeLayout reproduces the .NET "round-trip"-ish UTC stamp the real
 // service emits (7 fractional-second digits, literal Z). Go can't print a bare
