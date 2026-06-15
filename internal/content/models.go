@@ -1,15 +1,13 @@
 package content
 
-import "encoding/json"
-
 // MenuContent is the aggregate document returned by GetMenuContent. PlayerLevels
 // is kept as raw JSON so we reproduce that document verbatim without modeling its
 // every nested field; missions are fully parsed into the Mission type.
 type MenuContent struct {
-	MissionLists        []MissionList   `json:"MissionLists"`
-	Missions            []Mission       `json:"Missions"`
-	MissionProgressions json.RawMessage `json:"MissionProgressions"`
-	PlayerLevels        json.RawMessage `json:"PlayerLevels"`
+	MissionLists        []MissionList        `json:"MissionLists"`
+	Missions            []Mission            `json:"Missions"`
+	MissionProgressions []MissionProgression `json:"MissionProgressions"`
+	PlayerLevels        PlayerLevels         `json:"PlayerLevels"`
 }
 
 // MissionList groups mission ids under a named menu list (e.g. "KNT_Missions").
@@ -64,6 +62,27 @@ type MissionUGC struct {
 type MissionGroup struct {
 	Parent   *string  `json:"Parent"`
 	Children []string `json:"Children"`
+}
+
+type MissionProgression struct {
+	Id        string                   `json:"id"`
+	ProfileId string                   `json:"ProfileId"`
+	MissionId string                   `json:"MissionId"`
+	Common    MissionProgressionCommon `json:"Common"`
+	Group     *MissionProgressionGroup `json:"Group"`
+}
+
+type MissionProgressionCommon struct {
+	Completed      bool   `json:"Completed"`
+	CompletionTime string `json:"CompletionTime"`
+}
+
+type MissionProgressionGroup struct {
+	NextMissionId string `json:"NextMissionId"`
+}
+
+type PlayerLevels struct {
+	XpThresholds []int64 `json:"XpThresholds"`
 }
 
 // Challenge is one entry in the challenge catalog. ChallengeDefinition and ChallengeKntDefinition

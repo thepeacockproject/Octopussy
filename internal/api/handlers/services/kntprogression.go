@@ -74,15 +74,13 @@ func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Reques
 
 	ctx := r.Context()
 
-	// TODO: Rename to UserId instead of Profile, or at least be consistent.
 	session, err := c.Persistence.GetCurrentSessionByUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	// TODO: Rename to Mission/MissionId
-	mission, found := c.Content.Contract(session.ContractId)
+	mission, found := c.Content.Mission(session.ContractId)
 	if !found {
 		w.WriteHeader(http.StatusBadRequest)
 		return

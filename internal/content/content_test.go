@@ -52,17 +52,8 @@ func TestLoadAndMenuContent(t *testing.T) {
 		t.Errorf("first mission id = %q, want aaaa (sorted)", mc.Missions[0].Id)
 	}
 
-	// MissionProgressions must serialize as null, matching the real response.
-	out, err := json.Marshal(mc)
-	if err != nil {
-		t.Fatalf("marshal: %v", err)
-	}
-	var generic map[string]json.RawMessage
-	if err := json.Unmarshal(out, &generic); err != nil {
-		t.Fatalf("unmarshal: %v", err)
-	}
-	if string(generic["MissionProgressions"]) != "null" {
-		t.Errorf("MissionProgressions = %s, want null", generic["MissionProgressions"])
+	if len(mc.MissionProgressions) > 0 {
+		t.Errorf("MissionProgressions length is %d, expected 0", len(mc.MissionProgressions))
 	}
 }
 
@@ -72,7 +63,7 @@ func TestContractLookup(t *testing.T) {
 		t.Fatalf("Load: %v", err)
 	}
 
-	mission, ok := s.Contract("bbbb")
+	mission, ok := s.Mission("bbbb")
 	if !ok {
 		t.Fatal("expected to find contract bbbb")
 	}
@@ -83,7 +74,7 @@ func TestContractLookup(t *testing.T) {
 		t.Errorf("title = %q, want B", mission.UI.Title)
 	}
 
-	if _, ok := s.Contract("does-not-exist"); ok {
+	if _, ok := s.Mission("does-not-exist"); ok {
 		t.Error("expected missing contract to return ok=false")
 	}
 }

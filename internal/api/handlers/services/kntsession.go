@@ -20,21 +20,21 @@ type stopSessionRequest struct {
 }
 
 type stopSessionResponse struct {
-	SessionId              string                   `json:"SessionId"`
-	Rewards                stopSessionRewards       `json:"Rewards"`
-	AnyChallengesCompleted bool                     `json:"AnyChallengesCompleted"`
-	MissionId              string                   `json:"MissionId"`
-	TotalRewards           stopSessionRewards       `json:"TotalRewards"`
-	CompletionTime         float64                  `json:"CompletionTime"`
-	SessionProgression     stopSessionProgression   `json:"SessionProgression"`
-	StopReason             int                      `json:"StopReason"`
-	MissionType            *interface{}             `json:"MissionType"`
-	MissionTier            int                      `json:"MissionTier"`
-	MissionProgressions    []interface{}            `json:"MissionProgressions"`
-	Score                  int                      `json:"Score"`
-	ScoreDetails           *stopSessionScoreDetails `json:"ScoreDetails"`
-	ScoreDetailsDiff       *stopSessionScoreDetails `json:"ScoreDetailsDiff"`
-	PreviousScore          int                      `json:"PreviousScore"`
+	SessionId              string                       `json:"SessionId"`
+	Rewards                stopSessionRewards           `json:"Rewards"`
+	AnyChallengesCompleted bool                         `json:"AnyChallengesCompleted"`
+	MissionId              string                       `json:"MissionId"`
+	TotalRewards           stopSessionRewards           `json:"TotalRewards"`
+	CompletionTime         float64                      `json:"CompletionTime"`
+	SessionProgression     stopSessionProgression       `json:"SessionProgression"`
+	StopReason             int                          `json:"StopReason"`
+	MissionType            *interface{}                 `json:"MissionType"`
+	MissionTier            int                          `json:"MissionTier"`
+	MissionProgressions    []content.MissionProgression `json:"MissionProgressions"`
+	Score                  int                          `json:"Score"`
+	ScoreDetails           *stopSessionScoreDetails     `json:"ScoreDetails"`
+	ScoreDetailsDiff       *stopSessionScoreDetails     `json:"ScoreDetailsDiff"`
+	PreviousScore          int                          `json:"PreviousScore"`
 }
 
 type stopSessionScoreDetails struct {
@@ -113,7 +113,7 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	mission, contractFound := c.Content.Contract(body.MissionId)
+	mission, contractFound := c.Content.Mission(body.MissionId)
 	if !contractFound {
 		c.WriteJSON(w, http.StatusNotFound, map[string]string{"error": "could not find mission" + body.MissionId})
 		return
@@ -184,7 +184,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	mission, found := c.Content.Contract(session.ContractId)
+	mission, found := c.Content.Mission(session.ContractId)
 	if !found {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -239,7 +239,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 		StopReason:          0,
 		MissionType:         nil,
 		MissionTier:         0,
-		MissionProgressions: nil,
+		MissionProgressions: []content.MissionProgression{},
 		Score:               body.Score,
 		ScoreDetails:        &body.ScoreDetails,
 		ScoreDetailsDiff:    nil,

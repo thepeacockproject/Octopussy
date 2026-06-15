@@ -24,17 +24,12 @@ import (
 
 // Store holds the parsed game data in memory.
 type Store struct {
-	missionLists []MissionList
-	playerLevels json.RawMessage
-
-	// xpThresholds is the parsed XpThresholds array from player_levels.json: the
-	// cumulative XP needed to reach each successive level (ascending). It backs
-	// level calculation for player progression.
-	xpThresholds []int64
-
 	// privacyPolicy is the verbatim KNT privacy-policy dialog document, served
 	// under /files/privacypolicy/. The game requires it before going online.
 	privacyPolicy json.RawMessage
+
+	missionLists []MissionList
+	playerLevels PlayerLevels
 
 	// missions maps a mission id to its parsed Mission; missionOrder is the
 	// stable (sorted-by-id) order used when listing the mission pool.
@@ -53,36 +48,17 @@ type Store struct {
 func Load(fsys fs.FS) (*Store, error) {
 	s := &Store{missions: make(map[string]Mission)}
 
-	listsRaw, err := fs.ReadFile(fsys, "menu/mission_lists.json")
-	if err != nil {
-		return nil, fmt.Errorf("read mission lists: %w", err)
+	if err := s.loadPrivacyPolicy(fsys); err != nil {
+		return nil, err
 	}
 
-	if err := json.Unmarshal(listsRaw, &s.missionLists); err != nil {
-		return nil, fmt.Errorf("parse mission lists: %w", err)
+	if err := s.loadMissionLists(fsys); err != nil {
+		return nil, err
 	}
 
-	levels, err := fs.ReadFile(fsys, "menu/player_levels.json")
-	if err != nil {
-		return nil, fmt.Errorf("read player levels: %w", err)
+	if err := s.loadPlayerLevels(fsys); err != nil {
+		return nil, err
 	}
-	s.playerLevels = levels
-
-	var pl struct {
-		XpThresholds []int64 `json:"XpThresholds"`
-	}
-
-	if err := json.Unmarshal(levels, &pl); err != nil {
-		return nil, fmt.Errorf("parse player levels: %w", err)
-	}
-
-	s.xpThresholds = pl.XpThresholds
-
-	policy, err := fs.ReadFile(fsys, "privacypolicy_pc_en.json")
-	if err != nil {
-		return nil, fmt.Errorf("read privacy policy: %w", err)
-	}
-	s.privacyPolicy = policy
 
 	if err := s.loadMissions(fsys); err != nil {
 		return nil, err
@@ -97,6 +73,43 @@ func Load(fsys fs.FS) (*Store, error) {
 	}
 
 	return s, nil
+}
+
+func (s *Store) loadPrivacyPolicy(fsys fs.FS) error {
+	raw, err := fs.ReadFile(fsys, "privacypolicy_pc_en.json")
+	if err != nil {
+		return fmt.Errorf("read privacy policy: %w", err)
+	}
+
+	s.privacyPolicy = raw
+
+	return nil
+}
+
+func (s *Store) loadMissionLists(fsys fs.FS) error {
+	raw, err := fs.ReadFile(fsys, "menu/mission_lists.json")
+	if err != nil {
+		return fmt.Errorf("read mission lists: %w", err)
+	}
+
+	if err := json.Unmarshal(raw, &s.missionLists); err != nil {
+		return fmt.Errorf("parse mission lists: %w", err)
+	}
+
+	return nil
+}
+
+func (s *Store) loadPlayerLevels(fsys fs.FS) error {
+	raw, err := fs.ReadFile(fsys, "menu/player_levels.json")
+	if err != nil {
+		return fmt.Errorf("read player levels: %w", err)
+	}
+
+	if err := json.Unmarshal(raw, &s.playerLevels); err != nil {
+		return fmt.Errorf("parse player levels: %w", err)
+	}
+
+	return nil
 }
 
 // loadMissions reads every missions/<id>.json file into the store, keyed by the
@@ -173,13 +186,15 @@ func (s *Store) loadUnlockables(fsys fs.FS) error {
 // currently always null, matching the observed response.
 func (s *Store) MenuContent() MenuContent {
 	missions := make([]Mission, 0, len(s.missionOrder))
+
 	for _, id := range s.missionOrder {
 		missions = append(missions, s.missions[id])
 	}
+
 	return MenuContent{
 		MissionLists:        s.missionLists,
 		Missions:            missions,
-		MissionProgressions: nil, // marshals as null
+		MissionProgressions: []MissionProgression{},
 		PlayerLevels:        s.playerLevels,
 	}
 }
@@ -189,7 +204,7 @@ func (s *Store) MenuContent() MenuContent {
 // ascending, so the scan stops at the first one not yet reached.
 func (s *Store) LevelForXP(xp int64) int {
 	level := 1
-	for _, threshold := range s.xpThresholds {
+	for _, threshold := range s.playerLevels.XpThresholds {
 		if xp < threshold {
 			break
 		}
@@ -202,9 +217,8 @@ func (s *Store) LevelForXP(xp int64) int {
 // under /files/privacypolicy/. It is always present once Load succeeds.
 func (s *Store) PrivacyPolicy() json.RawMessage { return s.privacyPolicy }
 
-// Contract returns the parsed mission/contract for a single id. This backs
-// per-contract lookups.
-func (s *Store) Contract(id string) (Mission, bool) {
+// Mission returns the parsed mission for a single id.
+func (s *Store) Mission(id string) (Mission, bool) {
 	mission, ok := s.missions[id]
 	return mission, ok
 }
