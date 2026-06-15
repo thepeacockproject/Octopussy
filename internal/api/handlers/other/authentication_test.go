@@ -29,15 +29,15 @@ func TestAuthConfigInitRequiresToken(t *testing.T) {
 
 func TestAuthConfigInit(t *testing.T) {
 	c, _ := apitest.NewTestController(t)
-	const profileID = "00000000-0000-4000-8000-000000000001"
+	const userId = "00000000-0000-4000-8000-000000000001"
 
 	// Mint a token with the full claim set Init derives its fields from.
 	now := time.Now()
 	tok, err := c.JWT.Sign(jwt.Claims{
 		Platform: "steam",
-		UserID:   "76561190000000000",
+		UserId:   "76561190000000000",
 		RegisteredClaims: jwt.RegisteredClaims{
-			Subject:   profileID,
+			Subject:   userId,
 			IssuedAt:  jwt.NewNumericDate(now),
 			ExpiresAt: jwt.NewNumericDate(now.Add(2 * time.Hour)),
 		},
@@ -63,8 +63,8 @@ func TestAuthConfigInit(t *testing.T) {
 	}
 
 	// profileid mirrors the token subject.
-	if resp.ProfileID != profileID {
-		t.Errorf("profileid = %q, want %q", resp.ProfileID, profileID)
+	if resp.ProfileId != userId {
+		t.Errorf("profileid = %q, want %q", resp.ProfileId, userId)
 	}
 
 	// token = "{exp}-{iat}-{platform}-{userid}".

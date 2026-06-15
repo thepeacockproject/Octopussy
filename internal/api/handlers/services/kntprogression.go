@@ -22,10 +22,15 @@ func (c *Handler) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	challenges, err := c.Store.GetChallenges(ctx, profileId)
+	ctx := r.Context()
+
+	challenges, err := c.Store.GetChallenges(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -61,24 +66,29 @@ func (c *Handler) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Request) {
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	ctx := r.Context()
+
 	// TODO: Rename to UserId instead of Profile, or at least be consistent.
-	session, err := c.Store.GetCurrentSessionByUser(r.Context(), profileIDFor(r))
+	session, err := c.Store.GetCurrentSessionByUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
 	// TODO: Rename to Mission/MissionId
-	mission, found := c.Content.Contract(session.ContractID)
+	mission, found := c.Content.Contract(session.ContractId)
 	if !found {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
-
-	challenges, err := c.Store.GetChallenges(ctx, profileId)
+	challenges, err := c.Store.GetChallenges(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -100,17 +110,17 @@ func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Reques
 
 func mapToChallengeWithState(c content.Challenge, challenges []store.UserChallenge) content.ChallengeWithState {
 	_, ok := lo.Find(challenges, func(item store.UserChallenge) bool {
-		return item.ChallengeID == c.Definition.Id
+		return item.ChallengeId == c.Definition.Id
 	})
 
 	return content.ChallengeWithState{
 		Challenge: c,
-		State: content.StateWithState{
-			State:           c.State,
+		State: content.ChallengeStateWithState{
+			ChallengeState:  c.State,
 			CompletionState: shared2.ShortHandIf(ok, content.CompletionState_Completed, content.CompletionState_NotCompleted),
 			ProgressCurrent: shared2.ShortHandIf(ok, 1, 0),
 		},
-		KntState: content.KntState{
+		KntState: content.ChallengeKntState{
 			NewlyCompleted: false, // TODO: Track if not shown in mosaic before
 		},
 	}

@@ -3,6 +3,8 @@ package services
 import (
 	"log/slog"
 	"net/http"
+
+	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 )
 
 // TODO
@@ -42,26 +44,25 @@ func (c *Handler) handleGetEntitlements(w http.ResponseWriter, _ *http.Request) 
 	})
 }
 
-// handleGetPlayerProgression returns the caller's XP and derived level. Level is computed from the XpThresholds in the game's
-// player_levels data.
 func (c *Handler) handleGetPlayerProgression(w http.ResponseWriter, r *http.Request) {
-	profileID := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	xp, err := c.Store.UserXP(r.Context(), profileID)
+	ctx := r.Context()
+
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		c.Log.Error("get player progression failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
 
-	level := c.Content.LevelForXP(xp)
+	// TODO: Validate if Rank still matches the XPEarned, probably best to do that in /oauth/token.
 
-	c.Log.Debug("get player progression",
-		slog.String("profileId", profileID),
-		slog.Int64("xp", xp),
-		slog.Int("level", level),
-	)
 	c.WriteJSON(w, http.StatusOK, playerProgressionResponse{
-		PlayerProgression: playerProgression{Xp: xp, Level: level},
+		PlayerProgression: playerProgression{Xp: user.XPEarned, Level: user.Rank},
 	})
 }

@@ -48,8 +48,8 @@ func TestLoadAndMenuContent(t *testing.T) {
 	}
 
 	// Missions are emitted in stable sorted-by-id order.
-	if mc.Missions[0].ID != "aaaa" {
-		t.Errorf("first mission id = %q, want aaaa (sorted)", mc.Missions[0].ID)
+	if mc.Missions[0].Id != "aaaa" {
+		t.Errorf("first mission id = %q, want aaaa (sorted)", mc.Missions[0].Id)
 	}
 
 	// MissionProgressions must serialize as null, matching the real response.
@@ -76,11 +76,11 @@ func TestContractLookup(t *testing.T) {
 	if !ok {
 		t.Fatal("expected to find contract bbbb")
 	}
-	if mission.ID != "bbbb" {
-		t.Errorf("id = %q, want bbbb", mission.ID)
+	if mission.Id != "bbbb" {
+		t.Errorf("id = %q, want bbbb", mission.Id)
 	}
-	if mission.Ui.Title != "B" {
-		t.Errorf("title = %q, want B", mission.Ui.Title)
+	if mission.UI.Title != "B" {
+		t.Errorf("title = %q, want B", mission.UI.Title)
 	}
 
 	if _, ok := s.Contract("does-not-exist"); ok {

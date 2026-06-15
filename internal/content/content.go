@@ -22,189 +22,6 @@ import (
 	"github.com/samber/lo"
 )
 
-// MissionList groups mission ids under a named menu list (e.g. "KNT_Missions").
-type MissionList struct {
-	Name     string   `json:"Name"`
-	Missions []string `json:"Missions"`
-}
-
-// MenuContent is the aggregate document returned by GetMenuContent. PlayerLevels
-// is kept as raw JSON so we reproduce that document verbatim without modeling its
-// every nested field; missions are fully parsed into the Mission type.
-type MenuContent struct {
-	MissionLists        []MissionList   `json:"MissionLists"`
-	Missions            []Mission       `json:"Missions"`
-	MissionProgressions json.RawMessage `json:"MissionProgressions"`
-	PlayerLevels        json.RawMessage `json:"PlayerLevels"`
-}
-
-// Mission is the typed description of a single mission/contract (one
-// missions/<id>.json file). The store also keeps each mission as raw JSON for
-// verbatim serving; this type is for code that needs to read mission fields.
-type Mission struct {
-	ID       string          `json:"id"`
-	Gameplay MissionGameplay `json:"Gameplay"`
-	Ui       MissionUI       `json:"Ui"`
-	Ugc      MissionUgc      `json:"Ugc"`
-	Group    *MissionGroup   `json:"Group"`
-}
-
-// MissionGameplay holds a mission's gameplay rules and completion rewards.
-type MissionGameplay struct {
-	Checkpoint         string   `json:"Checkpoint"`
-	Tags               []string `json:"Tags"`
-	Type               int      `json:"Type"`
-	Rewards            Rewards  `json:"Rewards"`
-	RequirementTags    string   `json:"RequirementTags"`
-	RequiredCheckpoint string   `json:"RequiredCheckpoint"`
-	Entitlements       []string `json:"Entitlements"`
-}
-
-// MissionUI holds a mission's presentation strings and imagery.
-type MissionUI struct {
-	Title            string   `json:"Title"`
-	Image            string   `json:"Image"`
-	HighResImage     string   `json:"HighResImage"`
-	Description      string   `json:"Description"`
-	Location         string   `json:"Location"`
-	Goal             string   `json:"Goal"`
-	Objectives       []string `json:"Objectives"`
-	Requirements     []string `json:"Requirements"`
-	ShortDescription string   `json:"ShortDescription"`
-}
-
-// MissionUgc holds user-generated-content objectives; empty for built-in missions.
-type MissionUgc struct {
-	Objectives []string `json:"Objectives"`
-}
-
-// MissionGroup links a mission into an escalation tree. Parent is null for a
-// top-level mission; Children is null for a leaf. Both Mission.Group and Parent
-// are pointers so a null/absent group round-trips faithfully.
-type MissionGroup struct {
-	Parent   *string  `json:"Parent"`
-	Children []string `json:"Children"`
-}
-
-// Challenge is one entry in the challenge catalog. Definition and KntDefinition
-// are static game data (loaded from challenges.json); State and KntState are
-// user-specific runtime data that is absent from the static file and filled in
-// per request by the handler. A zero-valued State/KntState is therefore the
-// expected shape of a freshly loaded Challenge.
-type Challenge struct {
-	Definition    Definition    `json:"Definition"`
-	State         State         `json:"State"`
-	KntDefinition KntDefinition `json:"KntDefinition"`
-}
-
-// TODO: Move this to another file?
-type ChallengeWithState struct {
-	Challenge
-	State    StateWithState `json:"State"`
-	KntState KntState       `json:"KntState"`
-}
-
-// Definition is the static, user-agnostic description of a challenge.
-type Definition struct {
-	Id          string `json:"Id"`
-	Name        string `json:"Name"`
-	Description string `json:"Description"`
-}
-
-type CompletionState int
-
-const (
-	CompletionState_NotCompleted CompletionState = 1
-	CompletionState_Completed    CompletionState = 2
-)
-
-type UnlockState int
-
-const (
-	UnlockState_Locked   UnlockState = 0
-	UnlockState_Unlocked UnlockState = 1
-)
-
-// State is the per-user progress on a challenge. It is not part of the static
-// data and is populated for the requesting player.
-type State struct {
-	Id          string `json:"Id"`
-	ProgressMax int    `json:"ProgressMax"`
-}
-
-type StateWithState struct {
-	State
-	CompletionState CompletionState `json:"CompletionState"`
-	ProgressCurrent int             `json:"ProgressCurrent"`
-}
-
-// KntDefinition is the KNT-specific static metadata for a challenge: tags,
-// imagery, and the rewards granted on completion.
-type KntDefinition struct {
-	Id                        string   `json:"Id"`
-	Tags                      []string `json:"Tags"`
-	Image                     string   `json:"Image"`
-	HighResImage              string   `json:"HighResImage"`
-	Rewards                   Rewards  `json:"Rewards"`
-	IsSpoiler                 bool     `json:"IsSpoiler"`
-	SpoilerRequiredCheckpoint string   `json:"SpoilerRequiredCheckpoint"`
-}
-
-// Rewards are the XP, Intel currency, and unlockables granted on completion,
-// shared by both challenges and missions.
-type Rewards struct {
-	Xp          int64    `json:"Xp"`
-	Intel       int      `json:"Intel"`
-	Unlockables []string `json:"Unlockables"`
-}
-
-// KntState is the per-user KNT challenge state. Like State, it is not part of
-// the static data and is populated for the requesting player.
-type KntState struct {
-	NewlyCompleted bool `json:"NewlyCompleted"`
-}
-
-// Unlockable is one entry in the unlockable catalog (gadgets, gear, etc.). It
-// holds only the static, user-agnostic fields; the per-user UnlockableState is
-// absent here and carried by UnlockablesWithState.
-type Unlockable struct {
-	Title              string          `json:"Title"`
-	Description        string          `json:"Description"`
-	Image              string          `json:"Image"`
-	Comment            string          `json:"Comment"`
-	HighResImage       string          `json:"HighResImage"`
-	FeaturedImage      string          `json:"FeaturedImage"`
-	IsFeatured         bool            `json:"IsFeatured"`
-	IsNew              bool            `json:"IsNew"`
-	RequiredCheckpoint string          `json:"RequiredCheckpoint"`
-	IntelShop          bool            `json:"IntelShop"`
-	UnlockableState    UnlockableState `json:"UnlockableState"`
-	RequiredLevel      int             `json:"RequiredLevel"`
-	PriceCurrency      string          `json:"PriceCurrency"`
-	PriceValue         int             `json:"PriceValue"`
-	GrantedItems       []string        `json:"GrantedItems"`
-	Unlocks            []string        `json:"Unlocks"`
-	Type               string          `json:"Type"`
-	Category           string          `json:"Category"`
-}
-
-type UnlockableState struct {
-	Id string `json:"Id"`
-}
-
-type UnlockableWithState struct {
-	Unlockable
-	LevelOk         bool                     `json:"LevelOk"`
-	PriceOk         bool                     `json:"PriceOk"`
-	CanBuy          bool                     `json:"CanBuy"` // Checks LevelOk, PriceOk and ownership.
-	UnlockableState UnlockableStateWithState `json:"UnlockableState"`
-}
-
-type UnlockableStateWithState struct {
-	UnlockableState
-	State UnlockState `json:"State"`
-}
-
 // Store holds the parsed game data in memory.
 type Store struct {
 	missionLists []MissionList
@@ -225,7 +42,7 @@ type Store struct {
 	missionOrder []string
 
 	// challenges is the static challenge catalog in file order. Each entry's
-	// State and KntState are zero-valued (those are user-specific and absent
+	// ChallengeState and ChallengeKntState are zero-valued (those are user-specific and absent
 	// from challenges.json); handlers fill them per requesting player.
 	challenges []Challenge
 
@@ -306,12 +123,12 @@ func (s *Store) loadMissions(fsys fs.FS) error {
 			return fmt.Errorf("parse mission %s: %w", e.Name(), err)
 		}
 
-		if m.ID == "" {
+		if m.Id == "" {
 			return fmt.Errorf("mission %s has no id", e.Name())
 		}
 
-		s.missions[m.ID] = m
-		s.missionOrder = append(s.missionOrder, m.ID)
+		s.missions[m.Id] = m
+		s.missionOrder = append(s.missionOrder, m.Id)
 	}
 
 	// Deterministic order so the menu content is stable across runs.
@@ -321,8 +138,8 @@ func (s *Store) loadMissions(fsys fs.FS) error {
 }
 
 // loadChallenges reads the static challenge catalog from challenges.json. Only
-// the Definition and KntDefinition of each entry are present in the file; the
-// per-user State and KntState are left zero-valued for handlers to fill in.
+// the ChallengeDefinition and ChallengeKntDefinition of each entry are present in the file; the
+// per-user ChallengeState and ChallengeKntState are left zero-valued for handlers to fill in.
 func (s *Store) loadChallenges(fsys fs.FS) error {
 	raw, err := fs.ReadFile(fsys, "challenges.json")
 	if err != nil {
@@ -402,8 +219,8 @@ func (s *Store) Challenge(challengeId string) (Challenge, bool) {
 	})
 }
 
-// Challenges returns the static challenge catalog in file order. The State and
-// KntState on each returned Challenge are zero-valued; callers copy the entries
+// Challenges returns the static challenge catalog in file order. The ChallengeState and
+// ChallengeKntState on each returned Challenge are zero-valued; callers copy the entries
 // and fill those fields in for the requesting player.
 func (s *Store) Challenges() []Challenge { return s.challenges }
 

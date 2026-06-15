@@ -2,58 +2,58 @@ package store
 
 import (
 	"context"
-	"errors"
 	"fmt"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
-// User accessors back player accounts and their external platform identities.
-
-// SetUserXP sets a user's accumulated XP to an absolute value.
-func (s *Store) SetUserXP(ctx context.Context, userID string, xp int64) error {
-	err := s.db.
-		WithContext(ctx).
-		Model(&User{}).
-		Where("id = ?", userID).
-		Update("xp_earned", xp).
-		Error
-
-	if err != nil {
-		return fmt.Errorf("set user xp: %w", err)
-	}
-
-	return nil
+type Profile struct {
+	Id             string
+	Gamertag       string
+	LinkedAccounts map[string]string
 }
 
-// UserXP returns a user's accumulated XP. An unknown user reports zero XP rather
-// than an error, matching a brand-new profile with no progression yet.
-func (s *Store) UserXP(ctx context.Context, userID string) (int64, error) {
+// EnsureUser makes sure a user and the given platform identity both exist,
+// creating them on first login and leaving any existing rows untouched. It is
+// called during OAuth so every authenticated account is backed by a persisted
+// user. userId is the canonical profile id (stored as users.id); gamertag is the
+// initial display name used only when the user is first created; platform and
+// platformId are the external identity (e.g. "steam" + the steam user id).
+func (s *Store) EnsureUser(ctx context.Context, userId, gamertag, platform, platformId string) error {
+	return s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
+		user := User{Id: userId, Gamertag: gamertag}
+		if err := tx.Clauses(clause.OnConflict{DoNothing: true}).Create(&user).Error; err != nil {
+			return fmt.Errorf("ensure user: %w", err)
+		}
+
+		// Omit the User association so writing an identity never touches the
+		// users table through it; the user is created explicitly above.
+		identity := UserIdentity{UserId: userId, Platform: platform, PlatformId: platformId}
+		if err := tx.Omit("User").Clauses(clause.OnConflict{DoNothing: true}).Create(&identity).Error; err != nil {
+			return fmt.Errorf("ensure user identity: %w", err)
+		}
+
+		return nil
+	})
+}
+
+func (s *Store) GetUser(ctx context.Context, userId string) (*User, error) {
 	var user User
 
 	err := s.db.
 		WithContext(ctx).
-		Select("xp_earned").
-		First(&user, "id = ?", userID).
+		First(&user, "id = ?", userId).
 		Error
 
-	if errors.Is(err, gorm.ErrRecordNotFound) {
-		return 0, nil
-	}
-
-	if err != nil {
-		return 0, fmt.Errorf("read user xp: %w", err)
-	}
-
-	return user.XPEarned, nil
+	return &user, err
 }
 
 func (s *Store) UpdateUser(ctx context.Context, user *User) error {
 	err := s.db.
 		WithContext(ctx).
 		Model(&User{}).
-		Where("id = ?", user.ID).
+		Where("id = ?", user.Id).
 		Updates(User{
 			Gamertag:      user.Gamertag,
 			XPEarned:      user.XPEarned,
@@ -69,57 +69,13 @@ func (s *Store) UpdateUser(ctx context.Context, user *User) error {
 	return nil
 }
 
-// User loads a user by ID.
-func (s *Store) User(ctx context.Context, userID string) (*User, error) {
-	var user User
-
-	err := s.db.
-		WithContext(ctx).
-		First(&user, "id = ?", userID).
-		Error
-
-	return &user, err
-}
-
-// EnsureUser makes sure a user and the given platform identity both exist,
-// creating them on first login and leaving any existing rows untouched. It is
-// called during OAuth so every authenticated account is backed by a persisted
-// user. userID is the canonical profile id (stored as users.id); gamertag is the
-// initial display name used only when the user is first created; platform and
-// platformID are the external identity (e.g. "steam" + the steam user id).
-func (s *Store) EnsureUser(ctx context.Context, userID, gamertag, platform, platformID string) error {
-	return s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		user := User{ID: userID, Gamertag: gamertag}
-		if err := tx.Clauses(clause.OnConflict{DoNothing: true}).Create(&user).Error; err != nil {
-			return fmt.Errorf("ensure user: %w", err)
-		}
-
-		// Omit the User association so writing an identity never touches the
-		// users table through it; the user is created explicitly above.
-		identity := UserIdentity{UserID: userID, Platform: platform, PlatformID: platformID}
-		if err := tx.Omit("User").Clauses(clause.OnConflict{DoNothing: true}).Create(&identity).Error; err != nil {
-			return fmt.Errorf("ensure user identity: %w", err)
-		}
-
-		return nil
-	})
-}
-
-// ResolvedProfile is a user together with its external platform identities,
-// keyed platform -> platform id. It backs SharedProfileService/ResolveProfiles.
-type ResolvedProfile struct {
-	ID             string
-	Gamertag       string
-	LinkedAccounts map[string]string
-}
-
-// ResolveProfiles looks up the given user ids and returns each as a
-// ResolvedProfile with its gamertag and linked platform accounts. Results follow
+// GetProfilesByIds looks up the given user ids and returns each as a
+// Profile with its gamertag and linked platform accounts. Results follow
 // the order of the requested ids; ids with no matching user are skipped, so the
 // returned slice may be shorter than the input.
-func (s *Store) ResolveProfiles(ctx context.Context, ids []string) ([]ResolvedProfile, error) {
+func (s *Store) GetProfilesByIds(ctx context.Context, ids []string) ([]Profile, error) {
 	if len(ids) == 0 {
-		return []ResolvedProfile{}, nil
+		return []Profile{}, nil
 	}
 
 	var users []User
@@ -135,22 +91,22 @@ func (s *Store) ResolveProfiles(ctx context.Context, ids []string) ([]ResolvedPr
 	// Group identities by user into platform -> platform_id maps.
 	linked := make(map[string]map[string]string, len(users))
 	for _, id := range identities {
-		accounts := linked[id.UserID]
+		accounts := linked[id.UserId]
 		if accounts == nil {
 			accounts = make(map[string]string)
-			linked[id.UserID] = accounts
+			linked[id.UserId] = accounts
 		}
-		accounts[id.Platform] = id.PlatformID
+		accounts[id.Platform] = id.PlatformId
 	}
 
-	byID := make(map[string]User, len(users))
+	byId := make(map[string]User, len(users))
 	for _, u := range users {
-		byID[u.ID] = u
+		byId[u.Id] = u
 	}
 
-	out := make([]ResolvedProfile, 0, len(ids))
+	out := make([]Profile, 0, len(ids))
 	for _, id := range ids {
-		u, ok := byID[id]
+		u, ok := byId[id]
 		if !ok {
 			continue
 		}
@@ -158,8 +114,8 @@ func (s *Store) ResolveProfiles(ctx context.Context, ids []string) ([]ResolvedPr
 		if accounts == nil {
 			accounts = map[string]string{}
 		}
-		out = append(out, ResolvedProfile{
-			ID:             u.ID,
+		out = append(out, Profile{
+			Id:             u.Id,
 			Gamertag:       u.Gamertag,
 			LinkedAccounts: accounts,
 		})

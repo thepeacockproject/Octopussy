@@ -11,7 +11,7 @@ import (
 )
 
 type getInventoryRequest struct {
-	ProfileID string `json:"profileId"`
+	ProfileId string `json:"profileId"`
 }
 
 type getInventoryResponse struct {
@@ -35,13 +35,13 @@ type currency struct {
 }
 
 type getUnlockablesRequest struct {
-	ProfileID string `json:"profileId"`
+	ProfileId string `json:"profileId"`
 }
 
 //type getUnlockablesResponse = []content.UnlockableWithState
 
 type acquireUnlockableRequest struct {
-	ProfileID     string `json:"profileId"`
+	ProfileId     string `json:"profileId"`
 	UnlockableId  string `json:"unlockableId"`
 	PriceCurrency string `json:"priceCurrency"`
 	PriceAmount   int    `json:"priceAmount"`
@@ -54,10 +54,15 @@ func (c *Handler) handleGetInventory(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	unlockables, err := c.Store.GetUnlockables(ctx, profileId)
+	ctx := r.Context()
+
+	unlockables, err := c.Store.GetUnlockables(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -65,14 +70,14 @@ func (c *Handler) handleGetInventory(w http.ResponseWriter, r *http.Request) {
 
 	unlockableItems := lo.Map(unlockables, func(item store.UserUnlockable, index int) unlockableItem {
 		return unlockableItem{
-			Id:     item.UnlockableID,
+			Id:     item.UnlockableId,
 			Amount: 1,
 			Type:   "",
 			IsNew:  false,
 		}
 	})
 
-	user, err := c.Store.User(ctx, profileId)
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -95,22 +100,27 @@ func (c *Handler) handleGetUnlockables(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	ctx := r.Context()
-	profileId := profileIDFor(r)
 
-	unlockables, err := c.Store.GetUnlockables(ctx, profileId)
+	unlockables, err := c.Store.GetUnlockables(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	user, err := c.Store.User(ctx, profileId)
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	profileData, err := c.Store.ReadCustomProfileData(ctx, profileId)
+	profileData, err := c.Store.GetCustomProfileData(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -143,16 +153,21 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	user, err := c.Store.User(ctx, profileId)
+	ctx := r.Context()
+
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	profileData, err := c.Store.ReadCustomProfileData(ctx, profileId)
+	profileData, err := c.Store.GetCustomProfileData(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -164,7 +179,7 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 		profileDataCheckpoints = ""
 	}
 
-	userUnlockable, err := c.Store.GetUnlockableById(ctx, profileId, body.UnlockableId)
+	userUnlockable, err := c.Store.GetUnlockableById(ctx, userId, body.UnlockableId)
 	if err == nil {
 		// Player already owns this item
 		c.WriteJSON(w, http.StatusOK, false)
@@ -190,11 +205,15 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	_, err = c.Store.CreateUnlockable(ctx, profileId, body.UnlockableId)
+	_, err = c.Store.CreateUnlockable(ctx, userId, body.UnlockableId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+
+	user.IntelCurrency -= staticUnlockable.PriceValue
+
+	c.Store.UpdateUser(ctx, user)
 
 	c.WriteJSON(w, http.StatusOK, true)
 }
@@ -213,7 +232,7 @@ func mapToUnlockableWithState(unlockable content.Unlockable, user *store.User, u
 	}
 
 	if lo.ContainsBy(unlockables, func(item store.UserUnlockable) bool {
-		return item.UnlockableID == unlockableWithState.UnlockableState.Id
+		return item.UnlockableId == unlockableWithState.UnlockableState.Id
 	}) {
 		unlockableWithState.UnlockableState.State = content.UnlockState_Unlocked
 	}

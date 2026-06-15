@@ -4,7 +4,7 @@ type (
 	CustomProfileReadAllResponse = customProfileReadAllResponse
 	GetEntitlementsResponse      = getEntitlementsResponse
 	PlayerProgressionResponse    = playerProgressionResponse
-	ResolvedProfileResponse      = resolvedProfileResponse
+	ResolvedProfileResponse      = resolveProfileResponse
 )
 
 var PlatformEntitlements = platformEntitlements

@@ -5,7 +5,6 @@
     <kind value="PACKAGE" />
     <package value="github.com/thepeacockproject/Octopussy/cmd/strip-challenges" />
     <directory value="$PROJECT_DIR$" />
-    <auto_managed_config_id value="$PROJECT_DIR$/cmd/strip-challenges" />
     <method v="2" />
   </configuration>
 </component>

@@ -15,12 +15,12 @@ type intelAndRank struct {
 type stopSessionRequest struct {
 	GameTime     float64                 `json:"gameTime"`
 	Score        int                     `json:"score"`
-	SessionID    string                  `json:"sessionId"`
+	SessionId    string                  `json:"sessionId"`
 	ScoreDetails stopSessionScoreDetails `json:"scoreDetails"`
 }
 
 type stopSessionResponse struct {
-	SessionID              string                   `json:"SessionId"`
+	SessionId              string                   `json:"SessionId"`
 	Rewards                stopSessionRewards       `json:"Rewards"`
 	AnyChallengesCompleted bool                     `json:"AnyChallengesCompleted"`
 	MissionId              string                   `json:"MissionId"`
@@ -119,13 +119,20 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user, err := c.Store.User(r.Context(), profileIDFor(r))
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	ctx := r.Context()
+
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		return
 	}
 
-	ctx := r.Context()
 	session, err := c.Store.CreateSession(ctx, *user, body.MissionId)
 
 	if err != nil {
@@ -140,7 +147,7 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 			Mission: mission,
 		},
 		Dynamic: getForPlayDynamic{
-			NewSessionId:  session.SessionID,
+			NewSessionId:  session.SessionId,
 			SessionResult: nil, // TODO?
 			Progression: &getForPlayProgression{
 				Group: nil,
@@ -163,22 +170,27 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 
 	// TODO: If sessionId is 00000000-0000-0000-0000-000000000000, don't grants unlocks?
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	session, err := c.Store.GetCurrentSessionByUser(ctx, profileId)
+	ctx := r.Context()
+
+	session, err := c.Store.GetCurrentSessionByUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	mission, found := c.Content.Contract(session.ContractID)
+	mission, found := c.Content.Contract(session.ContractId)
 	if !found {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	user, err := c.Store.User(ctx, profileId)
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -191,7 +203,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, unlockable := range rewards.Unlockables {
-		c.Store.CreateUnlockable(ctx, profileId, unlockable)
+		c.Store.CreateUnlockable(ctx, userId, unlockable)
 	}
 
 	oldProgression := stopSessionProgressionItem{
@@ -214,10 +226,10 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 
 	// TODO: Get previous score from leaderboards
 	c.WriteJSON(w, http.StatusOK, stopSessionResponse{
-		SessionID:              session.SessionID,
+		SessionId:              session.SessionId,
 		Rewards:                rewards,
 		AnyChallengesCompleted: false,
-		MissionId:              session.ContractID,
+		MissionId:              session.ContractId,
 		TotalRewards:           rewards,
 		CompletionTime:         body.GameTime,
 		SessionProgression: stopSessionProgression{
@@ -242,10 +254,15 @@ func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.R
 		return
 	}
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	_, err := c.Store.CreateChallenge(ctx, profileId, body.ChallengeId)
+	ctx := r.Context()
+
+	_, err := c.Store.CreateChallenge(ctx, userId, body.ChallengeId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -258,10 +275,10 @@ func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.R
 	}
 
 	for _, unlockable := range challenge.KntDefinition.Rewards.Unlockables {
-		c.Store.CreateUnlockable(ctx, profileId, unlockable)
+		c.Store.CreateUnlockable(ctx, userId, unlockable)
 	}
 
-	user, err := c.Store.User(ctx, profileId)
+	user, err := c.Store.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return

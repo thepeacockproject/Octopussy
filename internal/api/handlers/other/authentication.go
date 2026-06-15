@@ -26,7 +26,7 @@ const dotNetTimeLayout = "2006-01-02T15:04:05.0000000"
 type authConfigInitResponse struct {
 	Token         string          `json:"token"`
 	BlobConfig    authBlobConfig  `json:"blobconfig"`
-	ProfileID     string          `json:"profileid"`
+	ProfileId     string          `json:"profileid"`
 	ServerVersion string          `json:"serverversion"`
 	ServerTimeUTC string          `json:"servertimeutc"`
 	ProfileInit   authProfileInit `json:"profileinit"`
@@ -72,7 +72,7 @@ func (c *Handler) handleAuthConfigInit(w http.ResponseWriter, r *http.Request) {
 	if claims.IssuedAt != nil {
 		iat = claims.IssuedAt.Unix()
 	}
-	legacyToken := fmt.Sprintf("%d-%d-%s-%s", exp, iat, claims.Platform, claims.UserID)
+	legacyToken := fmt.Sprintf("%d-%d-%s-%s", exp, iat, claims.Platform, claims.UserId)
 
 	base := shared.RequestBaseURL(r)
 	expiry := time.Now().UTC().Add(c.JWT.TTL())
@@ -94,7 +94,7 @@ func (c *Handler) handleAuthConfigInit(w http.ResponseWriter, r *http.Request) {
 			BlobSig:         blobSig,
 			BlobSigDuration: float64(c.JWT.TTL().Milliseconds()),
 		},
-		ProfileID:     claims.Subject,
+		ProfileId:     claims.Subject,
 		ServerVersion: authServerVersion,
 		ServerTimeUTC: time.Now().UTC().Format(dotNetTimeLayout) + "Z",
 		ProfileInit: authProfileInit{

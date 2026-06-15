@@ -27,13 +27,13 @@ func TestSetClientEntitlementsRequiresToken(t *testing.T) {
 
 func TestSetClientEntitlementsNoop(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const profileID = "00000000-0000-4000-8000-000000000001"
+	const userId = "00000000-0000-4000-8000-000000000001"
 
 	rr := httptest.NewRecorder()
 	body := `{"entitlements":["dlc1","dlc2"]}`
 	req := httptest.NewRequest(http.MethodPost,
 		"/services/KntProfileService/SetClientEntitlements", strings.NewReader(body))
-	req.Header.Set("Authorization", "Bearer "+token(profileID))
+	req.Header.Set("Authorization", "Bearer "+token(userId))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {
@@ -59,22 +59,32 @@ func TestGetPlayerProgressionRequiresToken(t *testing.T) {
 
 func TestGetPlayerProgression(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const profileID = "00000000-0000-4000-8000-000000000001"
+	const userId = "00000000-0000-4000-8000-000000000001"
 
 	// Seed the user, then give them enough XP to be level 2 under the test
 	// thresholds [3950, 7900].
 	ctx := context.Background()
-	if err := c.Store.EnsureUser(ctx, profileID, "gamer", "steam", "steam-123"); err != nil {
+	if err := c.Store.EnsureUser(ctx, userId, "gamer", "steam", "steam-123"); err != nil {
 		t.Fatalf("seed user: %v", err)
 	}
-	if err := c.Store.SetUserXP(ctx, profileID, 5500); err != nil {
-		t.Fatalf("set xp: %v", err)
+
+	user, err := c.Store.GetUser(ctx, userId)
+	if err != nil {
+		t.Fatalf("get user: %v", err)
+	}
+
+	// TODO: Create a function for this on content
+	user.XPEarned = 5500
+	user.Rank = c.Content.LevelForXP(user.XPEarned)
+
+	if err := c.Store.UpdateUser(ctx, user); err != nil {
+		t.Fatalf("update user: %v", err)
 	}
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
 		"/services/KntProfileService/GetPlayerProgression", nil)
-	req.Header.Set("Authorization", "Bearer "+token(profileID))
+	req.Header.Set("Authorization", "Bearer "+token(userId))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {
@@ -108,12 +118,12 @@ func TestGetEntitlementsRequiresToken(t *testing.T) {
 
 func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const profileID = "00000000-0000-4000-8000-000000000001"
+	const userId = "00000000-0000-4000-8000-000000000001"
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
 		"/services/KntProfileService/GetEntitlements", nil)
-	req.Header.Set("Authorization", "Bearer "+token(profileID))
+	req.Header.Set("Authorization", "Bearer "+token(userId))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {
