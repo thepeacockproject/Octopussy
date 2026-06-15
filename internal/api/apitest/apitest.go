@@ -11,7 +11,7 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/content"
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
-	"github.com/thepeacockproject/Octopussy/internal/store"
+	"github.com/thepeacockproject/Octopussy/internal/persistence"
 )
 
 // NewTestController builds an api backed by an in-memory store and a
@@ -20,7 +20,7 @@ import (
 func NewTestController(t *testing.T) (*controller.Controller, func(userId string) string) {
 	t.Helper()
 
-	st, err := store.Open(store.Config{Driver: "sqlite", DSN: ":memory:"})
+	st, err := persistence.Open(persistence.Config{Driver: "sqlite", DSN: ":memory:"})
 	if err != nil {
 		t.Fatalf("open store: %v", err)
 	}

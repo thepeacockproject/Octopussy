@@ -127,13 +127,13 @@ func (c *Handler) handleGetForPlay(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
 		return
 	}
 
-	session, err := c.Store.CreateSession(ctx, *user, body.MissionId)
+	session, err := c.Persistence.CreateSession(ctx, *user, body.MissionId)
 
 	if err != nil {
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": err.Error()})
@@ -178,7 +178,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 
-	session, err := c.Store.GetCurrentSessionByUser(ctx, userId)
+	session, err := c.Persistence.GetCurrentSessionByUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -190,7 +190,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -203,7 +203,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, unlockable := range rewards.Unlockables {
-		c.Store.CreateUnlockable(ctx, userId, unlockable)
+		c.Persistence.CreateUnlockable(ctx, userId, unlockable)
 	}
 
 	oldProgression := stopSessionProgressionItem{
@@ -216,7 +216,7 @@ func (c *Handler) handleStopSession(w http.ResponseWriter, r *http.Request) {
 	user.IntelCurrency += rewards.Intel
 	user.Rank = c.Content.LevelForXP(user.XPEarned)
 
-	c.Store.UpdateUser(ctx, user)
+	c.Persistence.UpdateUser(ctx, user)
 
 	newProgression := stopSessionProgressionItem{
 		user.XPEarned,
@@ -262,7 +262,7 @@ func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.R
 
 	ctx := r.Context()
 
-	_, err := c.Store.CreateChallenge(ctx, userId, body.ChallengeId)
+	_, err := c.Persistence.CreateChallenge(ctx, userId, body.ChallengeId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -275,10 +275,10 @@ func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.R
 	}
 
 	for _, unlockable := range challenge.KntDefinition.Rewards.Unlockables {
-		c.Store.CreateUnlockable(ctx, userId, unlockable)
+		c.Persistence.CreateUnlockable(ctx, userId, unlockable)
 	}
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -288,7 +288,7 @@ func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.R
 	user.IntelCurrency += challenge.KntDefinition.Rewards.Intel
 	user.Rank = c.Content.LevelForXP(user.XPEarned)
 
-	c.Store.UpdateUser(ctx, user)
+	c.Persistence.UpdateUser(ctx, user)
 
 	// TODO: Server-side has information about related challenges not in JSON, eg. completionist, infiltration and global challenges.
 	c.WriteJSON(w, http.StatusOK, completeActiveChallengeResponse{

@@ -53,7 +53,7 @@ func (c *Handler) handleGetPlayerProgression(w http.ResponseWriter, r *http.Requ
 
 	ctx := r.Context()
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		c.Log.Error("get player progression failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})

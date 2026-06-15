@@ -58,7 +58,7 @@ func (c *Handler) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 
 	// Persist the user and its external identity on first login; existing rows
 	// are left untouched. The external user id seeds the initial gamertag.
-	if err := c.Store.EnsureUser(r.Context(), userId, platformId, platform, platformId); err != nil {
+	if err := c.Persistence.EnsureUser(r.Context(), userId, platformId, platform, platformId); err != nil {
 		c.Log.Error("failed to persist user", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
 		return

@@ -7,8 +7,8 @@ import (
 	"github.com/samber/lo"
 	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/content"
+	"github.com/thepeacockproject/Octopussy/internal/persistence"
 	shared2 "github.com/thepeacockproject/Octopussy/internal/shared"
-	"github.com/thepeacockproject/Octopussy/internal/store"
 )
 
 type getChallengesRequest struct {
@@ -30,7 +30,7 @@ func (c *Handler) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 
-	challenges, err := c.Store.GetChallenges(ctx, userId)
+	challenges, err := c.Persistence.GetChallenges(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -75,7 +75,7 @@ func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Reques
 	ctx := r.Context()
 
 	// TODO: Rename to UserId instead of Profile, or at least be consistent.
-	session, err := c.Store.GetCurrentSessionByUser(ctx, userId)
+	session, err := c.Persistence.GetCurrentSessionByUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -88,7 +88,7 @@ func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	challenges, err := c.Store.GetChallenges(ctx, userId)
+	challenges, err := c.Persistence.GetChallenges(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -108,8 +108,8 @@ func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Reques
 	c.WriteJSON(w, http.StatusOK, result)
 }
 
-func mapToChallengeWithState(c content.Challenge, challenges []store.UserChallenge) content.ChallengeWithState {
-	_, ok := lo.Find(challenges, func(item store.UserChallenge) bool {
+func mapToChallengeWithState(c content.Challenge, challenges []persistence.UserChallenge) content.ChallengeWithState {
+	_, ok := lo.Find(challenges, func(item persistence.UserChallenge) bool {
 		return item.ChallengeId == c.Definition.Id
 	})
 

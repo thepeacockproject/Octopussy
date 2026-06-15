@@ -33,7 +33,7 @@ func (c *Handler) handleCustomProfileReadAll(w http.ResponseWriter, r *http.Requ
 	// TODO: Do this right after ensure so we can also migrate existing accounts if needed
 	// Seed defaults for a never-before-seen profile so the client isn't handed
 	// an empty bag on first launch.
-	count, err := c.Store.CountCustomProfileData(ctx, userId)
+	count, err := c.Persistence.CountCustomProfileData(ctx, userId)
 	if err != nil {
 		c.Log.Error("custom profile count failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
@@ -41,14 +41,14 @@ func (c *Handler) handleCustomProfileReadAll(w http.ResponseWriter, r *http.Requ
 	}
 
 	if count == 0 {
-		if err := c.Store.SeedCustomProfileDefaults(ctx, userId, map[string]string{}); err != nil {
+		if err := c.Persistence.SeedCustomProfileDefaults(ctx, userId, map[string]string{}); err != nil {
 			c.Log.Error("custom profile seed failed", slog.String("error", err.Error()))
 			c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 			return
 		}
 	}
 
-	data, err := c.Store.GetCustomProfileData(ctx, userId)
+	data, err := c.Persistence.GetCustomProfileData(ctx, userId)
 	if err != nil {
 		c.Log.Error("custom profile read failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
@@ -87,7 +87,7 @@ func (c *Handler) handleCustomProfileWrite(w http.ResponseWriter, r *http.Reques
 
 	ctx := r.Context()
 
-	if err := c.Store.SetCustomProfileData(ctx, userId, body.Key, body.Data); err != nil {
+	if err := c.Persistence.SetCustomProfileData(ctx, userId, body.Key, body.Data); err != nil {
 		c.Log.Error("custom profile write failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return

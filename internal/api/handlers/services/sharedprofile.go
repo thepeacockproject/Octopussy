@@ -40,7 +40,7 @@ func (c *Handler) handleResolveProfiles(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	profiles, err := c.Store.GetProfilesByIds(r.Context(), body.ProfileIds)
+	profiles, err := c.Persistence.GetProfilesByIds(r.Context(), body.ProfileIds)
 	if err != nil {
 		c.Log.Error("resolve profiles failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})

@@ -7,7 +7,7 @@ import (
 	"github.com/samber/lo"
 	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/content"
-	"github.com/thepeacockproject/Octopussy/internal/store"
+	"github.com/thepeacockproject/Octopussy/internal/persistence"
 )
 
 type getInventoryRequest struct {
@@ -62,13 +62,13 @@ func (c *Handler) handleGetInventory(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 
-	unlockables, err := c.Store.GetUnlockables(ctx, userId)
+	unlockables, err := c.Persistence.GetUnlockables(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	unlockableItems := lo.Map(unlockables, func(item store.UserUnlockable, index int) unlockableItem {
+	unlockableItems := lo.Map(unlockables, func(item persistence.UserUnlockable, index int) unlockableItem {
 		return unlockableItem{
 			Id:     item.UnlockableId,
 			Amount: 1,
@@ -77,7 +77,7 @@ func (c *Handler) handleGetInventory(w http.ResponseWriter, r *http.Request) {
 		}
 	})
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -108,19 +108,19 @@ func (c *Handler) handleGetUnlockables(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 
-	unlockables, err := c.Store.GetUnlockables(ctx, userId)
+	unlockables, err := c.Persistence.GetUnlockables(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	profileData, err := c.Store.GetCustomProfileData(ctx, userId)
+	profileData, err := c.Persistence.GetCustomProfileData(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -161,13 +161,13 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 
 	ctx := r.Context()
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	profileData, err := c.Store.GetCustomProfileData(ctx, userId)
+	profileData, err := c.Persistence.GetCustomProfileData(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -179,7 +179,7 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 		profileDataCheckpoints = ""
 	}
 
-	userUnlockable, err := c.Store.GetUnlockableById(ctx, userId, body.UnlockableId)
+	userUnlockable, err := c.Persistence.GetUnlockableById(ctx, userId, body.UnlockableId)
 	if err == nil {
 		// Player already owns this item
 		c.WriteJSON(w, http.StatusOK, false)
@@ -195,7 +195,7 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 	unlockableWithState := mapToUnlockableWithState(
 		staticUnlockable,
 		user,
-		[]store.UserUnlockable{userUnlockable},
+		[]persistence.UserUnlockable{userUnlockable},
 		profileDataCheckpoints,
 	)
 
@@ -205,7 +205,7 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	_, err = c.Store.CreateUnlockable(ctx, userId, body.UnlockableId)
+	_, err = c.Persistence.CreateUnlockable(ctx, userId, body.UnlockableId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -213,12 +213,12 @@ func (c *Handler) handleAcquireUnlockable(w http.ResponseWriter, r *http.Request
 
 	user.IntelCurrency -= staticUnlockable.PriceValue
 
-	c.Store.UpdateUser(ctx, user)
+	c.Persistence.UpdateUser(ctx, user)
 
 	c.WriteJSON(w, http.StatusOK, true)
 }
 
-func mapToUnlockableWithState(unlockable content.Unlockable, user *store.User, unlockables []store.UserUnlockable, profileDataCheckpoints string) content.UnlockableWithState {
+func mapToUnlockableWithState(unlockable content.Unlockable, user *persistence.User, unlockables []persistence.UserUnlockable, profileDataCheckpoints string) content.UnlockableWithState {
 	unlockableWithState := content.UnlockableWithState{
 		Unlockable: unlockable,
 		LevelOk:    user.Rank >= unlockable.RequiredLevel,
@@ -231,7 +231,7 @@ func mapToUnlockableWithState(unlockable content.Unlockable, user *store.User, u
 		},
 	}
 
-	if lo.ContainsBy(unlockables, func(item store.UserUnlockable) bool {
+	if lo.ContainsBy(unlockables, func(item persistence.UserUnlockable) bool {
 		return item.UnlockableId == unlockableWithState.UnlockableState.Id
 	}) {
 		unlockableWithState.UnlockableState.State = content.UnlockState_Unlocked

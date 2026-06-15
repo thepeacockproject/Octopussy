@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"context"
@@ -85,7 +85,8 @@ func (s *Store) SeedCustomProfileDefaults(ctx context.Context, userId string, de
 	}
 
 	// Omit the User association so the upsert never touches the users table.
-	err := s.db.WithContext(ctx).
+	err := s.db.
+		WithContext(ctx).
 		Omit("User").
 		Clauses(clause.OnConflict{DoNothing: true}).
 		Create(&recs).

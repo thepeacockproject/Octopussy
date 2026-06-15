@@ -64,11 +64,11 @@ func TestGetPlayerProgression(t *testing.T) {
 	// Seed the user, then give them enough XP to be level 2 under the test
 	// thresholds [3950, 7900].
 	ctx := context.Background()
-	if err := c.Store.EnsureUser(ctx, userId, "gamer", "steam", "steam-123"); err != nil {
+	if err := c.Persistence.EnsureUser(ctx, userId, "gamer", "steam", "steam-123"); err != nil {
 		t.Fatalf("seed user: %v", err)
 	}
 
-	user, err := c.Store.GetUser(ctx, userId)
+	user, err := c.Persistence.GetUser(ctx, userId)
 	if err != nil {
 		t.Fatalf("get user: %v", err)
 	}
@@ -77,7 +77,7 @@ func TestGetPlayerProgression(t *testing.T) {
 	user.XPEarned = 5500
 	user.Rank = c.Content.LevelForXP(user.XPEarned)
 
-	if err := c.Store.UpdateUser(ctx, user); err != nil {
+	if err := c.Persistence.UpdateUser(ctx, user); err != nil {
 		t.Fatalf("update user: %v", err)
 	}
 

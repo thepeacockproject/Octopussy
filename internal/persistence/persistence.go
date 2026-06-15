@@ -1,9 +1,9 @@
-// Package store is Octopussy's persistence layer. It is built on GORM so the
+// Package persistence is Octopussy's persistence layer. It is built on GORM so the
 // same model definitions and query code work across database backends, with
 // gormigrate providing Rails-style versioned up/down migrations. SQLite (the
 // pure-Go glebarez driver, so no cgo) is the default; the dialect is selected
 // by Config.Driver, leaving room to add Postgres/MySQL later.
-package store
+package persistence
 
 import (
 	"fmt"

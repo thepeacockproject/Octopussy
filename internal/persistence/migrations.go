@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"github.com/go-gormigrate/gormigrate/v2"

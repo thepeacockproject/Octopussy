@@ -22,9 +22,9 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 	"github.com/thepeacockproject/Octopussy/internal/logging"
+	"github.com/thepeacockproject/Octopussy/internal/persistence"
 	"github.com/thepeacockproject/Octopussy/internal/proxy"
 	"github.com/thepeacockproject/Octopussy/internal/shared"
-	"github.com/thepeacockproject/Octopussy/internal/store"
 )
 
 // embeddedData holds the static game data baked into the binary so the server
@@ -88,7 +88,7 @@ func run() error {
 	if dbDSN == "" {
 		dbDSN = "octopussy.db"
 	}
-	st, err := store.Open(store.Config{Driver: dbDriver, DSN: dbDSN, Debug: dev})
+	st, err := persistence.Open(persistence.Config{Driver: dbDriver, DSN: dbDSN, Debug: dev})
 	if err != nil {
 		return err
 	}

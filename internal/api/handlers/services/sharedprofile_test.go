@@ -29,7 +29,7 @@ func TestResolveProfiles(t *testing.T) {
 	c, token := apitest.NewTestController(t)
 
 	const userId = "d97fc63c-9379-4300-9018-4c8d787ac63c"
-	if err := c.Store.EnsureUser(context.Background(), userId, "peacock", "steam", "0123"); err != nil {
+	if err := c.Persistence.EnsureUser(context.Background(), userId, "peacock", "steam", "0123"); err != nil {
 		t.Fatalf("seed user: %v", err)
 	}
 
