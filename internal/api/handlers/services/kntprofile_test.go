@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
 )
@@ -27,7 +28,7 @@ func TestSetClientEntitlementsRequiresToken(t *testing.T) {
 
 func TestSetClientEntitlementsNoop(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const userId = "00000000-0000-4000-8000-000000000001"
+	userId := uuid.Nil.String()
 
 	rr := httptest.NewRecorder()
 	body := `{"entitlements":["dlc1","dlc2"]}`
@@ -59,7 +60,7 @@ func TestGetPlayerProgressionRequiresToken(t *testing.T) {
 
 func TestGetPlayerProgression(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const userId = "00000000-0000-4000-8000-000000000001"
+	userId := uuid.Nil.String()
 
 	// Seed the user, then give them enough XP to be level 2 under the test
 	// thresholds [3950, 7900].
@@ -118,7 +119,7 @@ func TestGetEntitlementsRequiresToken(t *testing.T) {
 
 func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const userId = "00000000-0000-4000-8000-000000000001"
+	userId := uuid.Nil.String()
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,

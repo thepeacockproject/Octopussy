@@ -7,6 +7,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
 )
@@ -25,7 +26,7 @@ func TestCustomProfileReadAllRequiresToken(t *testing.T) {
 
 func TestCustomProfileWritePersists(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const userId = "00000000-0000-4000-8000-000000000001"
+	userId := uuid.Nil.String()
 	bearer := "Bearer " + token(userId)
 
 	// Write a new value.

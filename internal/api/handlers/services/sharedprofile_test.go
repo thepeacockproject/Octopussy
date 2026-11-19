@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
 )
@@ -33,7 +34,7 @@ func TestResolveProfiles(t *testing.T) {
 		t.Fatalf("seed user: %v", err)
 	}
 
-	body := `{"profileIDs":["` + userId + `","00000000-0000-4000-8000-000000000000"]}`
+	body := `{"profileIDs":["` + userId + `","` + uuid.Nil.String() + `"]}`
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/services/SharedProfileService/ResolveProfiles",
 		strings.NewReader(body))

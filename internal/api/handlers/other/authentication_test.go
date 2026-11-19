@@ -9,6 +9,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/api/handlers/other"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
@@ -29,7 +30,7 @@ func TestAuthConfigInitRequiresToken(t *testing.T) {
 
 func TestAuthConfigInit(t *testing.T) {
 	c, _ := apitest.NewTestController(t)
-	const userId = "00000000-0000-4000-8000-000000000001"
+	userId := uuid.Nil.String()
 
 	// Mint a token with the full claim set Init derives its fields from.
 	now := time.Now()

@@ -6,6 +6,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 )
 
@@ -24,7 +25,7 @@ func TestGetChallengesRequiresToken(t *testing.T) {
 
 func TestGetChallengesReturnsEmptyArray(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const userId = "00000000-0000-4000-8000-000000000001"
+	userId := uuid.Nil.String()
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,

@@ -6,6 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/content"
 )
@@ -27,7 +28,7 @@ func TestGetMenuContent(t *testing.T) {
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/services/KntAggregateService/GetMenuContent", nil)
-	req.Header.Set("Authorization", "Bearer "+token("00000000-0000-4000-8000-000000000001"))
+	req.Header.Set("Authorization", "Bearer "+token(uuid.Nil.String()))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {
