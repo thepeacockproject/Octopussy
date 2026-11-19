@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"context"
@@ -7,8 +7,8 @@ import (
 
 func (s *Store) CreateUnlockable(ctx context.Context, userId string, unlockableId string) (UserUnlockable, error) {
 	row := UserUnlockable{
-		UserID:       userId,
-		UnlockableID: unlockableId,
+		UserId:       userId,
+		UnlockableId: unlockableId,
 	}
 
 	err := s.db.
@@ -44,7 +44,7 @@ func (s *Store) GetUnlockableById(ctx context.Context, userId string, unlockable
 
 	err := s.db.
 		WithContext(ctx).
-		Where("user_id = ? AND unlockable_id", userId, unlockableId).
+		Where("user_id = ? AND unlockable_id = ?", userId, unlockableId).
 		First(&row).
 		Error
 

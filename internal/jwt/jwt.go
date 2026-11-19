@@ -36,7 +36,7 @@ func init() {
 // sub, exp, nbf, iat, jti) and adds the IOI-specific fields observed on the
 // game's real access tokens.
 type Claims struct {
-	ClientID   string   `json:"client_id,omitempty"`
+	ClientId   string   `json:"client_id,omitempty"`
 	Roles      string   `json:"roles,omitempty"`
 	UniqueName string   `json:"unique_name,omitempty"`
 	AuthMethod string   `json:"auth:method,omitempty"`
@@ -45,9 +45,9 @@ type Claims struct {
 	Locale     string   `json:"locale,omitempty"`
 	Region     string   `json:"rgn,omitempty"`
 	GameServer string   `json:"gs,omitempty"`
-	BuildID    string   `json:"bid,omitempty"`
+	BuildId    string   `json:"bid,omitempty"`
 	PIS        string   `json:"pis,omitempty"`
-	UserID     string   `json:"userid,omitempty"`
+	UserId     string   `json:"userid,omitempty"`
 	Scope      []string `json:"scope,omitempty"`
 	RegisteredClaims
 }

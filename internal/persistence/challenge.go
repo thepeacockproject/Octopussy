@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"context"
@@ -7,8 +7,8 @@ import (
 
 func (s *Store) CreateChallenge(ctx context.Context, userId string, challengeId string) (UserChallenge, error) {
 	row := UserChallenge{
-		UserID:      userId,
-		ChallengeID: challengeId,
+		UserId:      userId,
+		ChallengeId: challengeId,
 		Progress:    1,
 	}
 
@@ -40,7 +40,7 @@ func (s *Store) GetChallenges(ctx context.Context, userId string) ([]UserChallen
 	return rows, nil
 }
 
-func (s *Store) GetChallengesById(ctx context.Context, userId string, challengeIds []string) ([]UserChallenge, error) {
+func (s *Store) GetChallengesByIds(ctx context.Context, userId string, challengeIds []string) ([]UserChallenge, error) {
 	var rows []UserChallenge
 
 	err := s.db.

@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"context"
@@ -13,7 +13,7 @@ import (
 // reference, with the intel-currency and rank values a session should snapshot.
 func seedUser(t *testing.T, st *Store, id string, intel, rank int) User {
 	t.Helper()
-	u := User{ID: id, Gamertag: "gamer", IntelCurrency: intel, Rank: rank}
+	u := User{Id: id, Gamertag: "gamer", IntelCurrency: intel, Rank: rank}
 	if err := st.db.WithContext(context.Background()).Create(&u).Error; err != nil {
 		t.Fatalf("seed user %q: %v", id, err)
 	}
@@ -31,14 +31,14 @@ func TestCreateSessionSnapshotsUser(t *testing.T) {
 		t.Fatalf("CreateSession: %v", err)
 	}
 
-	if sess.SessionID == "" {
-		t.Error("SessionID is empty, want a generated UUID")
+	if sess.SessionId == "" {
+		t.Error("SessionId is empty, want a generated UUID")
 	}
-	if sess.UserID != "profile-1" {
-		t.Errorf("UserID = %q, want %q", sess.UserID, "profile-1")
+	if sess.UserId != "profile-1" {
+		t.Errorf("UserId = %q, want %q", sess.UserId, "profile-1")
 	}
-	if sess.ContractID != "contract-9" {
-		t.Errorf("ContractID = %q, want %q", sess.ContractID, "contract-9")
+	if sess.ContractId != "contract-9" {
+		t.Errorf("ContractId = %q, want %q", sess.ContractId, "contract-9")
 	}
 	if sess.IntelCurrencyWas != 250 {
 		t.Errorf("IntelCurrencyWas = %d, want 250", sess.IntelCurrencyWas)
@@ -49,13 +49,13 @@ func TestCreateSessionSnapshotsUser(t *testing.T) {
 
 	// The row must actually be persisted.
 	var count int64
-	st.db.WithContext(ctx).Model(&UserSession{}).Where("session_id = ?", sess.SessionID).Count(&count)
+	st.db.WithContext(ctx).Model(&UserSession{}).Where("session_id = ?", sess.SessionId).Count(&count)
 	if count != 1 {
 		t.Errorf("persisted session count = %d, want 1", count)
 	}
 }
 
-func TestCreateSessionGeneratesUniqueIDs(t *testing.T) {
+func TestCreateSessionGeneratesUniqueIds(t *testing.T) {
 	st := newTestStore(t)
 	ctx := context.Background()
 	user := seedUser(t, st, "profile-1", 0, 1)
@@ -68,12 +68,12 @@ func TestCreateSessionGeneratesUniqueIDs(t *testing.T) {
 	if err != nil {
 		t.Fatalf("CreateSession #2: %v", err)
 	}
-	if first.SessionID == second.SessionID {
-		t.Errorf("two sessions share id %q, want distinct ids", first.SessionID)
+	if first.SessionId == second.SessionId {
+		t.Errorf("two sessions share id %q, want distinct ids", first.SessionId)
 	}
 }
 
-func TestGetSessionByID(t *testing.T) {
+func TestGetSessionById(t *testing.T) {
 	st := newTestStore(t)
 	ctx := context.Background()
 	user := seedUser(t, st, "profile-1", 250, 5)
@@ -83,32 +83,32 @@ func TestGetSessionByID(t *testing.T) {
 		t.Fatalf("CreateSession: %v", err)
 	}
 
-	got, err := st.GetSessionByID(ctx, created.SessionID)
+	got, err := st.GetSessionById(ctx, created.SessionId)
 	if err != nil {
-		t.Fatalf("GetSessionByID: %v", err)
+		t.Fatalf("GetSessionById: %v", err)
 	}
-	if got.SessionID != created.SessionID {
-		t.Errorf("SessionID = %q, want %q", got.SessionID, created.SessionID)
+	if got.SessionId != created.SessionId {
+		t.Errorf("SessionId = %q, want %q", got.SessionId, created.SessionId)
 	}
-	if got.UserID != "profile-1" {
-		t.Errorf("UserID = %q, want %q", got.UserID, "profile-1")
+	if got.UserId != "profile-1" {
+		t.Errorf("UserId = %q, want %q", got.UserId, "profile-1")
 	}
-	if got.ContractID != "contract-9" {
-		t.Errorf("ContractID = %q, want %q", got.ContractID, "contract-9")
+	if got.ContractId != "contract-9" {
+		t.Errorf("ContractId = %q, want %q", got.ContractId, "contract-9")
 	}
 	if got.IntelCurrencyWas != 250 || got.RankWas != 5 {
 		t.Errorf("snapshot = (%d, %d), want (250, 5)", got.IntelCurrencyWas, got.RankWas)
 	}
 }
 
-func TestGetSessionByIDUnknownReturnsNotFound(t *testing.T) {
+func TestGetSessionByIdUnknownReturnsNotFound(t *testing.T) {
 	st := newTestStore(t)
 	ctx := context.Background()
 
-	// GetSessionByID uses First, so an unknown id surfaces as ErrRecordNotFound.
-	_, err := st.GetSessionByID(ctx, "does-not-exist")
+	// GetSessionById uses First, so an unknown id surfaces as ErrRecordNotFound.
+	_, err := st.GetSessionById(ctx, "does-not-exist")
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
-		t.Fatalf("GetSessionByID(unknown) error = %v, want gorm.ErrRecordNotFound", err)
+		t.Fatalf("GetSessionById(unknown) error = %v, want gorm.ErrRecordNotFound", err)
 	}
 }
 
@@ -130,11 +130,11 @@ func TestGetCurrentSessionByUser(t *testing.T) {
 	// values to make "most recent" unambiguous and actually exercise the ordering.
 	base := time.Date(2026, 1, 1, 0, 0, 0, 0, time.UTC)
 	if err := st.db.WithContext(ctx).Model(&UserSession{}).
-		Where("session_id = ?", older.SessionID).Update("created_at", base).Error; err != nil {
+		Where("session_id = ?", older.SessionId).Update("created_at", base).Error; err != nil {
 		t.Fatalf("set older created_at: %v", err)
 	}
 	if err := st.db.WithContext(ctx).Model(&UserSession{}).
-		Where("session_id = ?", latest.SessionID).Update("created_at", base.Add(time.Hour)).Error; err != nil {
+		Where("session_id = ?", latest.SessionId).Update("created_at", base.Add(time.Hour)).Error; err != nil {
 		t.Fatalf("set latest created_at: %v", err)
 	}
 
@@ -142,10 +142,10 @@ func TestGetCurrentSessionByUser(t *testing.T) {
 	if err != nil {
 		t.Fatalf("GetCurrentSessionByUser: %v", err)
 	}
-	if got.UserID != "profile-1" {
-		t.Errorf("UserID = %q, want %q", got.UserID, "profile-1")
+	if got.UserId != "profile-1" {
+		t.Errorf("UserId = %q, want %q", got.UserId, "profile-1")
 	}
-	if got.SessionID != latest.SessionID {
-		t.Errorf("SessionID = %q, want the most recent session %q", got.SessionID, latest.SessionID)
+	if got.SessionId != latest.SessionId {
+		t.Errorf("SessionId = %q, want the most recent session %q", got.SessionId, latest.SessionId)
 	}
 }

@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"context"
@@ -7,11 +7,11 @@ import (
 	"github.com/google/uuid"
 )
 
-func (s *Store) GetSessionByID(ctx context.Context, sessionID string) (UserSession, error) {
+func (s *Store) GetSessionById(ctx context.Context, sessionId string) (UserSession, error) {
 	var row UserSession
 
 	err := s.db.WithContext(ctx).
-		Where("session_id = ?", sessionID).
+		Where("session_id = ?", sessionId).
 		First(&row).
 		Error
 
@@ -22,13 +22,13 @@ func (s *Store) GetSessionByID(ctx context.Context, sessionID string) (UserSessi
 	return row, nil
 }
 
-func (s *Store) GetCurrentSessionByUser(ctx context.Context, userID string) (UserSession, error) {
+func (s *Store) GetCurrentSessionByUser(ctx context.Context, userId string) (UserSession, error) {
 	var row UserSession
 
 	err := s.db.WithContext(ctx).
-		Where("user_id = ?", userID).
+		Where("user_id = ?", userId).
 		Order("created_at DESC").
-		Find(&row).
+		First(&row).
 		Error
 
 	if err != nil {
@@ -38,17 +38,17 @@ func (s *Store) GetCurrentSessionByUser(ctx context.Context, userID string) (Use
 	return row, nil
 }
 
-func (s *Store) CreateSession(ctx context.Context, user User, contractID string) (UserSession, error) {
-	sessionID, err := uuid.NewUUID()
+func (s *Store) CreateSession(ctx context.Context, user User, contractId string) (UserSession, error) {
+	sessionId, err := uuid.NewUUID()
 
 	if err != nil {
 		panic("failed to generate session id")
 	}
 
 	row := UserSession{
-		SessionID:        sessionID.String(),
-		UserID:           user.ID,
-		ContractID:       contractID,
+		SessionId:        sessionId.String(),
+		UserId:           user.Id,
+		ContractId:       contractId,
 		IntelCurrencyWas: user.IntelCurrency,
 		RankWas:          user.Rank,
 	}

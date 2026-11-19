@@ -5,7 +5,6 @@
     <kind value="PACKAGE" />
     <package value="github.com/thepeacockproject/Octopussy/cmd/strip-unlockables" />
     <directory value="$PROJECT_DIR$" />
-    <auto_managed_config_id value="$PROJECT_DIR$/cmd/strip-unlockables" />
     <method v="2" />
   </configuration>
 </component>

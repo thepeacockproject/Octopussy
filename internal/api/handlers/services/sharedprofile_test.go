@@ -28,16 +28,16 @@ func TestResolveProfilesRequiresToken(t *testing.T) {
 func TestResolveProfiles(t *testing.T) {
 	c, token := apitest.NewTestController(t)
 
-	const profileID = "d97fc63c-9379-4300-9018-4c8d787ac63c"
-	if err := c.Store.EnsureUser(context.Background(), profileID, "peacock", "steam", "0123"); err != nil {
+	const userId = "d97fc63c-9379-4300-9018-4c8d787ac63c"
+	if err := c.Persistence.EnsureUser(context.Background(), userId, "peacock", "steam", "0123"); err != nil {
 		t.Fatalf("seed user: %v", err)
 	}
 
-	body := `{"profileIDs":["` + profileID + `","00000000-0000-4000-8000-000000000000"]}`
+	body := `{"profileIDs":["` + userId + `","00000000-0000-4000-8000-000000000000"]}`
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/services/SharedProfileService/ResolveProfiles",
 		strings.NewReader(body))
-	req.Header.Set("Authorization", "Bearer "+token(profileID))
+	req.Header.Set("Authorization", "Bearer "+token(userId))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {
@@ -54,8 +54,8 @@ func TestResolveProfiles(t *testing.T) {
 		t.Fatalf("got %d profiles, want 1: %s", len(resp), rr.Body.String())
 	}
 	got := resp[0]
-	if got.Id != profileID {
-		t.Errorf("Id = %q, want %q", got.Id, profileID)
+	if got.Id != userId {
+		t.Errorf("Id = %q, want %q", got.Id, userId)
 	}
 	if got.Gamertag != "peacock" {
 		t.Errorf("Gamertag = %q, want %q", got.Gamertag, "peacock")

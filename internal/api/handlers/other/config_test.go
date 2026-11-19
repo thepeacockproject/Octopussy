@@ -36,8 +36,8 @@ func TestOnlineConfigDiscovery(t *testing.T) {
 	if v.Name != "pc-prod" {
 		t.Errorf("Name = %q, want pc-prod", v.Name)
 	}
-	if v.IssuerID != "3768760" {
-		t.Errorf("ISSUER_ID = %q, want 3768760", v.IssuerID)
+	if v.IssuerId != "3768760" {
+		t.Errorf("ISSUER_ID = %q, want 3768760", v.IssuerId)
 	}
 	if v.GameVer != other.SupportedGameVersion {
 		t.Errorf("GAME_VER = %q, want %q", v.GameVer, other.SupportedGameVersion)

@@ -1,4 +1,4 @@
-package store
+package persistence
 
 import (
 	"context"
@@ -7,18 +7,14 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-// CustomProfileData accessors back the CustomProfileDataService. The game stores
-// arbitrary client-side state (menu flags, "new item seen" lists, checkpoint
-// blobs) as opaque string values — Octopussy persists and returns them verbatim.
-
-// ReadCustomProfileData returns every stored key/value pair for a user. A user
+// GetCustomProfileData returns every stored key/value pair for a user. A user
 // with nothing stored yet returns an empty (non-nil) map; callers can seed
 // defaults via SeedCustomProfileDefaults.
-func (s *Store) ReadCustomProfileData(ctx context.Context, userID string) (map[string]string, error) {
+func (s *Store) GetCustomProfileData(ctx context.Context, userId string) (map[string]string, error) {
 	var rows []CustomProfileData
 
 	err := s.db.WithContext(ctx).
-		Where("user_id = ?", userID).
+		Where("user_id = ?", userId).
 		Find(&rows).
 		Error
 
@@ -34,10 +30,10 @@ func (s *Store) ReadCustomProfileData(ctx context.Context, userID string) (map[s
 	return out, nil
 }
 
-// WriteCustomProfileData upserts a single key/value pair for a user. This is the
+// SetCustomProfileData upserts a single key/value pair for a user. This is the
 // persistence behind CustomProfileDataService/Write.
-func (s *Store) WriteCustomProfileData(ctx context.Context, userID, key, data string) error {
-	row := CustomProfileData{UserID: userID, Key: key, Data: data}
+func (s *Store) SetCustomProfileData(ctx context.Context, userId, key, data string) error {
+	row := CustomProfileData{UserId: userId, Key: key, Data: data}
 
 	// Omit the User association so the upsert never touches the users table.
 	err := s.db.WithContext(ctx).
@@ -58,13 +54,13 @@ func (s *Store) WriteCustomProfileData(ctx context.Context, userID, key, data st
 
 // CountCustomProfileData reports how many key/value pairs a user has stored. It
 // is used to decide whether a profile is brand new and needs default seeding.
-func (s *Store) CountCustomProfileData(ctx context.Context, userID string) (int, error) {
+func (s *Store) CountCustomProfileData(ctx context.Context, userId string) (int, error) {
 	var count int64
 
 	err := s.db.
 		WithContext(ctx).
 		Model(&CustomProfileData{}).
-		Where("user_id = ?", userID).
+		Where("user_id = ?", userId).
 		Count(&count).
 		Error
 
@@ -78,18 +74,19 @@ func (s *Store) CountCustomProfileData(ctx context.Context, userID string) (int,
 // SeedCustomProfileDefaults writes the given defaults for a user, but only for
 // keys it doesn't already have. Existing values are left untouched (ON CONFLICT
 // DO NOTHING), so this is safe to call on every ReadAll.
-func (s *Store) SeedCustomProfileDefaults(ctx context.Context, userID string, defaults map[string]string) error {
+func (s *Store) SeedCustomProfileDefaults(ctx context.Context, userId string, defaults map[string]string) error {
 	if len(defaults) == 0 {
 		return nil
 	}
 
 	recs := make([]CustomProfileData, 0, len(defaults))
 	for key, data := range defaults {
-		recs = append(recs, CustomProfileData{UserID: userID, Key: key, Data: data})
+		recs = append(recs, CustomProfileData{UserId: userId, Key: key, Data: data})
 	}
 
 	// Omit the User association so the upsert never touches the users table.
-	err := s.db.WithContext(ctx).
+	err := s.db.
+		WithContext(ctx).
 		Omit("User").
 		Clauses(clause.OnConflict{DoNothing: true}).
 		Create(&recs).

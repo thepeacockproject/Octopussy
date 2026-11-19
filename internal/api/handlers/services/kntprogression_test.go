@@ -24,12 +24,12 @@ func TestGetChallengesRequiresToken(t *testing.T) {
 
 func TestGetChallengesReturnsEmptyArray(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const profileID = "00000000-0000-4000-8000-000000000001"
+	const userId = "00000000-0000-4000-8000-000000000001"
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
 		"/services/KntProgressionService/GetChallenges", strings.NewReader(`{"query":""}`))
-	req.Header.Set("Authorization", "Bearer "+token(profileID))
+	req.Header.Set("Authorization", "Bearer "+token(userId))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {

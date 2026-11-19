@@ -19,15 +19,19 @@ import (
 
 // resolveProfilesRequest is the body posted to ResolveProfiles.
 type resolveProfilesRequest struct {
-	ProfileIDs []string `json:"profileIDs"`
+	ProfileIds []string `json:"profileIDs"`
 }
 
-// resolvedProfileResponse is one entry in the ResolveProfiles response. Field
+// resolveProfileResponse is one entry in the ResolveProfiles response. Field
 // order and casing match the game's expected shape.
-type resolvedProfileResponse struct {
+type resolveProfileResponse struct {
 	Id             string            `json:"Id"`
 	LinkedAccounts map[string]string `json:"LinkedAccounts"`
 	Gamertag       string            `json:"Gamertag"`
+}
+
+func (c *Handler) handleGetFriendsCount(w http.ResponseWriter, r *http.Request) {
+	c.WriteJSON(w, http.StatusOK, 0)
 }
 
 // handleResolveProfiles returns the gamertag and linked platform accounts for
@@ -40,24 +44,24 @@ func (c *Handler) handleResolveProfiles(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	profiles, err := c.Store.ResolveProfiles(r.Context(), body.ProfileIDs)
+	profiles, err := c.Persistence.GetProfilesByIds(r.Context(), body.ProfileIds)
 	if err != nil {
 		c.Log.Error("resolve profiles failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
 
-	out := make([]resolvedProfileResponse, 0, len(profiles))
+	out := make([]resolveProfileResponse, 0, len(profiles))
 	for _, p := range profiles {
-		out = append(out, resolvedProfileResponse{
-			Id:             p.ID,
+		out = append(out, resolveProfileResponse{
+			Id:             p.Id,
 			LinkedAccounts: p.LinkedAccounts,
 			Gamertag:       p.Gamertag,
 		})
 	}
 
 	c.Log.Debug("resolve profiles",
-		slog.Int("requested", len(body.ProfileIDs)),
+		slog.Int("requested", len(body.ProfileIds)),
 		slog.Int("resolved", len(out)),
 	)
 	c.WriteJSON(w, http.StatusOK, out)

@@ -11,16 +11,16 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/content"
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
-	"github.com/thepeacockproject/Octopussy/internal/store"
+	"github.com/thepeacockproject/Octopussy/internal/persistence"
 )
 
 // NewTestController builds an api backed by an in-memory store and a
 // fresh (ephemeral-key) JWT manager. It returns the api and a helper
 // that mints a bearer token for the given profile id.
-func NewTestController(t *testing.T) (*controller.Controller, func(profileID string) string) {
+func NewTestController(t *testing.T) (*controller.Controller, func(userId string) string) {
 	t.Helper()
 
-	st, err := store.Open(store.Config{Driver: "sqlite", DSN: ":memory:"})
+	st, err := persistence.Open(persistence.Config{Driver: "sqlite", DSN: ":memory:"})
 	if err != nil {
 		t.Fatalf("open store: %v", err)
 	}
@@ -34,8 +34,8 @@ func NewTestController(t *testing.T) (*controller.Controller, func(profileID str
 	c := controller.New(slog.New(slog.NewTextHandler(io.Discard, nil)), mgr, st, testContent(t))
 	api.RegisterRoutes(c)
 
-	token := func(profileID string) string {
-		tok, err := mgr.Sign(jwt.Claims{RegisteredClaims: jwt.RegisteredClaims{Subject: profileID}})
+	token := func(userId string) string {
+		tok, err := mgr.Sign(jwt.Claims{RegisteredClaims: jwt.RegisteredClaims{Subject: userId}})
 		if err != nil {
 			t.Fatalf("sign token: %v", err)
 		}

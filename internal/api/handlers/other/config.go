@@ -24,7 +24,7 @@ type onlineConfigVersion struct {
 	Name      string                `json:"Name"`
 	GameVer   string                `json:"GAME_VER"`
 	ServerVer onlineConfigServerVer `json:"SERVER_VER"`
-	IssuerID  string                `json:"ISSUER_ID"`
+	IssuerId  string                `json:"ISSUER_ID"`
 }
 
 type onlineConfigServerVer struct {
@@ -78,7 +78,7 @@ func (c *Handler) handleOnlineConfig(w http.ResponseWriter, r *http.Request) {
 		Versions: []onlineConfigVersion{{
 			Name:     configName,
 			GameVer:  supportedGameVersion,
-			IssuerID: issuer,
+			IssuerId: issuer,
 			ServerVer: onlineConfigServerVer{
 				Metrics: onlineConfigMetrics{
 					MetricsServerHost:        base + "/ingest",

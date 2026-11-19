@@ -7,8 +7,8 @@ import (
 	"github.com/samber/lo"
 	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/content"
+	"github.com/thepeacockproject/Octopussy/internal/persistence"
 	shared2 "github.com/thepeacockproject/Octopussy/internal/shared"
-	"github.com/thepeacockproject/Octopussy/internal/store"
 )
 
 type getChallengesRequest struct {
@@ -22,10 +22,15 @@ func (c *Handler) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := r.Context()
-	profileId := profileIDFor(r)
+	userId, ok := shared.GetUserId(r)
+	if !ok {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	challenges, err := c.Store.GetChallenges(ctx, profileId)
+	ctx := r.Context()
+
+	challenges, err := c.Persistence.GetChallenges(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -61,24 +66,27 @@ func (c *Handler) handleGetChallenges(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Request) {
-	// TODO: Rename to UserId instead of Profile, or at least be consistent.
-	session, err := c.Store.GetCurrentSessionByUser(r.Context(), profileIDFor(r))
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	// TODO: Rename to Mission/MissionId
-	mission, found := c.Content.Contract(session.ContractID)
-	if !found {
+	userId, ok := shared.GetUserId(r)
+	if !ok {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
 	ctx := r.Context()
-	profileId := profileIDFor(r)
 
-	challenges, err := c.Store.GetChallenges(ctx, profileId)
+	session, err := c.Persistence.GetCurrentSessionByUser(ctx, userId)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	mission, found := c.Content.Mission(session.ContractId)
+	if !found {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	challenges, err := c.Persistence.GetChallenges(ctx, userId)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -98,19 +106,19 @@ func (c *Handler) handleGetChallengeMosaic(w http.ResponseWriter, r *http.Reques
 	c.WriteJSON(w, http.StatusOK, result)
 }
 
-func mapToChallengeWithState(c content.Challenge, challenges []store.UserChallenge) content.ChallengeWithState {
-	_, ok := lo.Find(challenges, func(item store.UserChallenge) bool {
-		return item.ChallengeID == c.Definition.Id
+func mapToChallengeWithState(c content.Challenge, challenges []persistence.UserChallenge) content.ChallengeWithState {
+	_, ok := lo.Find(challenges, func(item persistence.UserChallenge) bool {
+		return item.ChallengeId == c.Definition.Id
 	})
 
 	return content.ChallengeWithState{
 		Challenge: c,
-		State: content.StateWithState{
-			State:           c.State,
+		State: content.ChallengeStateWithState{
+			ChallengeState:  c.State,
 			CompletionState: shared2.ShortHandIf(ok, content.CompletionState_Completed, content.CompletionState_NotCompleted),
 			ProgressCurrent: shared2.ShortHandIf(ok, 1, 0),
 		},
-		KntState: content.KntState{
+		KntState: content.ChallengeKntState{
 			NewlyCompleted: false, // TODO: Track if not shown in mosaic before
 		},
 	}

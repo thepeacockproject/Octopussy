@@ -25,12 +25,12 @@ func TestCustomProfileReadAllRequiresToken(t *testing.T) {
 
 func TestCustomProfileWritePersists(t *testing.T) {
 	c, token := apitest.NewTestController(t)
-	const profileID = "00000000-0000-4000-8000-000000000001"
-	bearer := "Bearer " + token(profileID)
+	const userId = "00000000-0000-4000-8000-000000000001"
+	bearer := "Bearer " + token(userId)
 
 	// Write a new value.
 	rr := httptest.NewRecorder()
-	body := `{"profileId":"` + profileID + `","key":"attractToMainMenuFlow","data":"true"}`
+	body := `{"profileId":"` + userId + `","key":"attractToMainMenuFlow","data":"true"}`
 	req := httptest.NewRequest(http.MethodPost,
 		"/services/CustomProfileDataService/Write", strings.NewReader(body))
 	req.Header.Set("Authorization", bearer)
