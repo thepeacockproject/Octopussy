@@ -262,9 +262,18 @@ func (c *Handler) handleCompleteActiveChallenge(w http.ResponseWriter, r *http.R
 
 	ctx := r.Context()
 
-	_, err := c.Persistence.CreateChallenge(ctx, userId, body.ChallengeId)
+	_, created, err := c.Persistence.CreateChallenge(ctx, userId, body.ChallengeId)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	// Already completed (e.g. the game retried the request): acknowledge without re-granting rewards.
+	if !created {
+		c.WriteJSON(w, http.StatusOK, completeActiveChallengeResponse{
+			CompletedChallengeIds:  []string{},
+			UpdatedChallengeStates: []updatedChallengeState{},
+		})
 		return
 	}
 

@@ -3,25 +3,31 @@ package persistence
 import (
 	"context"
 	"fmt"
+
+	"gorm.io/gorm/clause"
 )
 
-func (s *Store) CreateChallenge(ctx context.Context, userId string, challengeId string) (UserChallenge, error) {
-	row := UserChallenge{
+// CreateChallenge records challengeId as completed for userId. It is idempotent:
+// if the row already exists nothing is written and created is false, so callers
+// can avoid granting rewards twice when the game retries a completion.
+func (s *Store) CreateChallenge(ctx context.Context, userId string, challengeId string) (row UserChallenge, created bool, err error) {
+	row = UserChallenge{
 		UserId:      userId,
 		ChallengeId: challengeId,
 		Progress:    1,
 	}
 
-	err := s.db.
+	res := s.db.
 		WithContext(ctx).
-		Create(&row).
-		Error
+		Omit("User").
+		Clauses(clause.OnConflict{DoNothing: true}).
+		Create(&row)
 
-	if err != nil {
-		return row, fmt.Errorf("failed to create challengeId %s for userId %s", challengeId, userId)
+	if res.Error != nil {
+		return row, false, fmt.Errorf("failed to create challengeId %s for userId %s: %w", challengeId, userId, res.Error)
 	}
 
-	return row, nil
+	return row, res.RowsAffected > 0, nil
 }
 
 func (s *Store) GetChallenges(ctx context.Context, userId string) ([]UserChallenge, error) {
