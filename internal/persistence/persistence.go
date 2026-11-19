@@ -7,6 +7,7 @@ package persistence
 
 import (
 	"fmt"
+	"log/slog"
 	"strings"
 
 	"github.com/glebarez/sqlite"
@@ -21,8 +22,11 @@ import (
 type Config struct {
 	Driver string
 	DSN    string
-	// Debug enables verbose GORM query logging; otherwise only warnings/errors.
+	// Debug enables Rails-style logging of every query at Debug level;
+	// otherwise only slow queries (Warn) and failures (Error) are logged.
 	Debug bool
+	// Logger receives SQL log lines. Defaults to slog.Default().
+	Logger *slog.Logger
 }
 
 // Store wraps the GORM handle. It is safe for concurrent use.
@@ -44,10 +48,13 @@ func Open(cfg Config) (*Store, error) {
 	}
 
 	db, err := gorm.Open(dialector, &gorm.Config{
-		Logger: logger.Default.LogMode(logLevel),
+		Logger: newSQLLogger(cfg.Logger, logLevel),
 	})
 	if err != nil {
 		return nil, fmt.Errorf("open database: %w", err)
+	}
+	if err := registerModelNameCallbacks(db); err != nil {
+		return nil, err
 	}
 
 	// A ":memory:" SQLite database lives inside a single connection; if the pool

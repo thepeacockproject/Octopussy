@@ -88,7 +88,7 @@ func run() error {
 	if dbDSN == "" {
 		dbDSN = "octopussy.db"
 	}
-	st, err := persistence.Open(persistence.Config{Driver: dbDriver, DSN: dbDSN, Debug: dev})
+	st, err := persistence.Open(persistence.Config{Driver: dbDriver, DSN: dbDSN, Debug: dev, Logger: log})
 	if err != nil {
 		return err
 	}
