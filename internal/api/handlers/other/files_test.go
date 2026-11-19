@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"testing"
 
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
@@ -60,4 +61,36 @@ func TestPrivacyPolicyFile(t *testing.T) {
 	if string(doc["view"]) != `"menu3.modal.ModalDialogGeneric"` {
 		t.Errorf("view = %s, want the modal dialog view", doc["view"])
 	}
+}
+
+func TestPrivacyPolicyVariants(t *testing.T) {
+	c, _ := apitest.NewTestController(t)
+	want := `{"view":"menu3.modal.ModalDialogGeneric","type":"gdprconsent"}`
+
+	for _, name := range []string{"privacypolicy_pc_en.json", "privacypolicy_en.json"} {
+		t.Run("HEAD "+name, func(t *testing.T) {
+			rr := httptest.NewRecorder()
+			req := httptest.NewRequest(http.MethodHead, "/files/privacypolicy/knt/"+name, nil)
+			c.Handler().ServeHTTP(rr, req)
+
+			if rr.Code != http.StatusOK {
+				t.Fatalf("status = %d, want 200", rr.Code)
+			}
+			if cl := rr.Header().Get("Content-Length"); cl != strconv.Itoa(len(want)) {
+				t.Errorf("Content-Length = %q, want %d", cl, len(want))
+			}
+			if rr.Body.Len() != 0 {
+				t.Errorf("HEAD returned a %d-byte body", rr.Body.Len())
+			}
+		})
+	}
+
+	t.Run("unrelated name 404s", func(t *testing.T) {
+		rr := httptest.NewRecorder()
+		req := httptest.NewRequest(http.MethodGet, "/files/privacypolicy/knt/other.json", nil)
+		c.Handler().ServeHTTP(rr, req)
+		if rr.Code != http.StatusNotFound {
+			t.Errorf("status = %d, want 404", rr.Code)
+		}
+	})
 }

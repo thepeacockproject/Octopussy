@@ -27,9 +27,9 @@ func (c *Handler) RegisterRoutes() {
 	// Static documents the config discovery doc points at.
 	mux.HandleFunc("GET /files/onlineconfig.json", c.handleOnlineConfigFile)
 
-	// TODO: Add some sort of wildcard support for "_pc_en"
-	mux.HandleFunc("HEAD /files/privacypolicy/knt/privacypolicy_pc_en.json", c.handlePrivacyPolicy)
-	mux.HandleFunc("GET /files/privacypolicy/knt/privacypolicy_pc_en.json", c.handlePrivacyPolicy)
+	// ServeMux wildcards are whole-segment only, so the handler validates
+	// the name itself. A GET pattern also matches HEAD.
+	mux.HandleFunc("GET /files/privacypolicy/knt/{file}", c.handlePrivacyPolicy)
 
 	// Resources
 	// TODO: Add some sort of wildcard support for the version in the URL

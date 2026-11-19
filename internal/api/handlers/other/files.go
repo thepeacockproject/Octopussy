@@ -4,6 +4,7 @@ import (
 	"log/slog"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 // privacyPolicyVersion is sent as the x-ms-meta-version response header on the
@@ -53,15 +54,25 @@ func (c *Handler) handleOnlineConfigFile(w http.ResponseWriter, _ *http.Request)
 // body is stored verbatim and embedded in the binary; the x-ms-meta-version
 // header reproduces what the original blob storage returned, which the client
 // checks to decide whether the cached policy is current.
+//
+// Every platform/language variant (privacypolicy_pc_en.json,
+// privacypolicy_en.json, ...) gets the same document; we only ship English.
 func (c *Handler) handlePrivacyPolicy(w http.ResponseWriter, r *http.Request) {
+	file := r.PathValue("file")
+	if !strings.HasPrefix(file, "privacypolicy") || !strings.HasSuffix(file, ".json") {
+		http.NotFound(w, r)
+		return
+	}
+
+	body := c.Content.PrivacyPolicy()
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("x-ms-meta-version", privacyPolicyVersion)
+	// Headers must be set before WriteHeader; HEAD relies on this for the size.
+	w.Header().Set("Content-Length", strconv.Itoa(len(body)))
 	w.WriteHeader(http.StatusOK)
 
-	if r.Method == http.MethodHead {
-		w.Header().Set("Content-Length", strconv.Itoa(len(c.Content.PrivacyPolicy())))
-	} else if r.Method == http.MethodGet {
-		if _, err := w.Write(c.Content.PrivacyPolicy()); err != nil {
+	if r.Method == http.MethodGet {
+		if _, err := w.Write(body); err != nil {
 			c.Log.Error("failed to write privacy policy", slog.String("error", err.Error()))
 		}
 	}
