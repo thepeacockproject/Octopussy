@@ -25,6 +25,7 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/persistence"
 	"github.com/thepeacockproject/Octopussy/internal/proxy"
 	"github.com/thepeacockproject/Octopussy/internal/shared"
+	"github.com/thepeacockproject/Octopussy/internal/steam"
 )
 
 // embeddedData holds the static game data baked into the binary so the server
@@ -117,7 +118,25 @@ func run() error {
 		slog.Int("unlockables", gameContent.UnlockableCount()),
 	)
 
-	ctrl := controller.New(log, jwtMgr, st, gameContent)
+	backendURL := os.Getenv("OCTOPUSSY_BACKEND_URL")
+	if backendURL == "" {
+		backendURL = steam.DefaultBackendURL
+	}
+	steamMethod := steam.Method(strings.ToUpper(os.Getenv("OCTOPUSSY_STEAM_AUTH")))
+	if steamMethod == steam.MethodNone {
+		return errors.New("OCTOPUSSY_STEAM_AUTH=NONE is only for tests")
+	}
+	steamValidator, err := steam.NewValidator(steam.Config{
+		Method:     steamMethod,
+		APIKey:     os.Getenv("OCTOPUSSY_STEAM_API_KEY"),
+		BackendURL: backendURL,
+	})
+	if err != nil {
+		return err
+	}
+	log.Info("steam authentication configured", slog.String("method", string(steamValidator.Method())))
+
+	ctrl := controller.New(log, jwtMgr, st, gameContent, steamValidator)
 	api.RegisterRoutes(ctrl)
 
 	addr := os.Getenv("OCTOPUSSY_ADDR")

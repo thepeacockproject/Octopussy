@@ -6,5 +6,3 @@ type (
 	PlayerProgressionResponse    = playerProgressionResponse
 	ResolvedProfileResponse      = resolveProfileResponse
 )
-
-var PlatformEntitlements = platformEntitlements

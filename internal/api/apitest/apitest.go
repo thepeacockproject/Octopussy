@@ -12,6 +12,7 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/controller"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 	"github.com/thepeacockproject/Octopussy/internal/persistence"
+	"github.com/thepeacockproject/Octopussy/internal/steam"
 )
 
 // NewTestController builds an api backed by an in-memory store and a
@@ -31,7 +32,12 @@ func NewTestController(t *testing.T) (*controller.Controller, func(userId string
 		t.Fatalf("jwt manager: %v", err)
 	}
 
-	c := controller.New(slog.New(slog.NewTextHandler(io.Discard, nil)), mgr, st, testContent(t))
+	sv, err := steam.NewValidator(steam.Config{Method: steam.MethodNone})
+	if err != nil {
+		t.Fatalf("steam validator: %v", err)
+	}
+
+	c := controller.New(slog.New(slog.NewTextHandler(io.Discard, nil)), mgr, st, testContent(t), sv)
 	api.RegisterRoutes(c)
 
 	token := func(userId string) string {

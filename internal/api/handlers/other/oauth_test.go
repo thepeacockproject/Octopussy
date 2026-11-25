@@ -69,3 +69,16 @@ func TestOAuthTokenMissingFields(t *testing.T) {
 		t.Fatalf("status = %d, want 400", rr.Code)
 	}
 }
+
+func TestOAuthTokenRejectsInvalidSteamUserId(t *testing.T) {
+	c, _ := apitest.NewTestController(t)
+
+	body := strings.Replace(steamLoginBody, "steam_userid=0123", "steam_userid=not-a-number", 1)
+	req := httptest.NewRequest(http.MethodPost, "/oauth/token", strings.NewReader(body))
+	rr := httptest.NewRecorder()
+	c.Handler().ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusBadRequest {
+		t.Fatalf("status = %d, want 400", rr.Code)
+	}
+}

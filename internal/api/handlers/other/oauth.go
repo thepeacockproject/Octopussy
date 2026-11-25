@@ -1,19 +1,25 @@
 package other
 
 import (
+	"context"
+	"errors"
 	"io"
 	"log/slog"
 	"net/http"
 	"net/url"
+	"regexp"
 
 	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/shared"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
+	"github.com/thepeacockproject/Octopussy/internal/steam"
 )
 
 // maxFormBody caps how much of an oauth request body we read, guarding against
 // an oversized body while staying well above any real login payload.
 const maxFormBody = 1 << 20 // 1 MiB
+
+var steamUserIdPattern = regexp.MustCompile(`^\d{1,20}$`)
 
 // oAuthTokenResponse is the body returned by POST /oauth/token.
 type oAuthTokenResponse struct {
@@ -29,7 +35,7 @@ type oAuthTokenResponse struct {
 // endpoint. The request is form-encoded; the response carries an RS256 JWT
 // shaped like the game's real tokens.
 //
-// TODO: validate the steam_clienttoken / external session ticket against the platform, and support the refresh_token grant. For now we trust the supplied external id and derive a stable profile id from it.
+// TODO: support the refresh_token grant.
 func (c *Handler) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 	form, err := parseAuthForm(r)
 	if err != nil {
@@ -43,6 +49,11 @@ func (c *Handler) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 
 	if grantType == "" || platformId == "" {
 		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "missing grant_type or external user id"})
+		return
+	}
+
+	if platform == "steam" && !steamUserIdPattern.MatchString(platformId) {
+		c.WriteJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid steam_userid"})
 		return
 	}
 
@@ -62,6 +73,10 @@ func (c *Handler) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 		c.Log.Error("failed to persist user", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not issue token"})
 		return
+	}
+
+	if platform == "steam" {
+		c.refreshSteamEntitlements(r.Context(), userId, platformId, form)
 	}
 
 	access, err := c.JWT.Sign(jwt.Claims{
@@ -103,6 +118,37 @@ func (c *Handler) handleOAuthToken(w http.ResponseWriter, r *http.Request) {
 		RefreshToken: userId,
 		Scope:        "ioi:games offline_access",
 	})
+}
+
+// refreshSteamEntitlements stores the entitlements proven by the login's Steam
+// ticket. On failure the previously stored set is kept, and login proceeds.
+func (c *Handler) refreshSteamEntitlements(ctx context.Context, userId, steamId string, form url.Values) {
+	ents, err := c.Steam.Entitlements(ctx,
+		form.Get("steam_clienttoken"), form.Get("steam_identity"), steamId)
+	if err == nil && len(ents) > 0 {
+		if err := c.Persistence.SetEntitlements(ctx, userId, ents); err != nil {
+			c.Log.Error("failed to store entitlements",
+				slog.String("profile", userId), slog.String("error", err.Error()))
+		}
+		return
+	}
+	if errors.Is(err, steam.ErrDisabled) {
+		return
+	}
+
+	reason := "no entitlements returned"
+	if err != nil {
+		reason = err.Error()
+	}
+
+	stored, getErr := c.Persistence.GetEntitlements(ctx, userId)
+	if getErr == nil && len(stored) > 0 {
+		c.Log.Warn("could not refresh steam entitlements; recently acquired DLC may not show",
+			slog.String("profile", userId), slog.String("reason", reason))
+		return
+	}
+	c.Log.Error("could not get steam entitlements for user",
+		slog.String("profile", userId), slog.String("reason", reason))
 }
 
 // parseAuthForm parses an x-www-form-urlencoded login body WITHOUT trusting the

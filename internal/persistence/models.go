@@ -74,5 +74,13 @@ type UserChallenge struct {
 	User        User   `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
 }
 
+// UserEntitlement is a platform entitlement (Steam app or DLC id) a user was
+// last verified to own.
+type UserEntitlement struct {
+	UserId      string `gorm:"primaryKey;column:user_id"`
+	Entitlement string `gorm:"primaryKey;column:entitlement"`
+	User        User   `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
+}
+
 // TableName pins the table name because "data" should not be pluralized.
 func (CustomProfileData) TableName() string { return "custom_profile_data" }

@@ -108,5 +108,15 @@ func migrations() []*gormigrate.Migration {
 				return tx.Migrator().DropTable(&UserChallenge{}, &UserUnlockable{})
 			},
 		},
+		{
+			// Platform entitlements verified from Steam ownership tickets.
+			ID: "0009_user_entitlements",
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&UserEntitlement{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				return tx.Migrator().DropTable(&UserEntitlement{})
+			},
+		},
 	}
 }

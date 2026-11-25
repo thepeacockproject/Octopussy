@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
+	"github.com/thepeacockproject/Octopussy/internal/steam"
 )
 
 func TestSetClientEntitlementsRequiresToken(t *testing.T) {
@@ -117,6 +118,58 @@ func TestGetEntitlementsRequiresToken(t *testing.T) {
 	}
 }
 
+func getEntitlements(t *testing.T, h http.Handler, token string) services.GetEntitlementsResponse {
+	t.Helper()
+	rr := httptest.NewRecorder()
+	req := httptest.NewRequest(http.MethodPost,
+		"/services/KntProfileService/GetEntitlements", nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	h.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusOK {
+		t.Fatalf("status = %d, want 200 (body %s)", rr.Code, rr.Body.String())
+	}
+	var resp services.GetEntitlementsResponse
+	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+	return resp
+}
+
+func TestGetEntitlementsReturnsStored(t *testing.T) {
+	c, token := apitest.NewTestController(t)
+	userId := uuid.Nil.String()
+	ctx := context.Background()
+
+	if err := c.Persistence.EnsureUser(ctx, userId, "gamer", "steam", "123"); err != nil {
+		t.Fatalf("seed user: %v", err)
+	}
+	if err := c.Persistence.SetEntitlements(ctx, userId, []string{steam.AppId, "3950810"}); err != nil {
+		t.Fatalf("set entitlements: %v", err)
+	}
+
+	resp := getEntitlements(t, c.Handler(), token(userId))
+	if got := strings.Join(resp.PlatformEntitlements, ","); got != steam.AppId+",3950810" {
+		t.Errorf("PlatformEntitlements = %s, want %s,3950810", got, steam.AppId)
+	}
+}
+
+// TestGetEntitlementsNoneVerified checks that outside tests, a user with no
+// verified entitlements gets none.
+func TestGetEntitlementsNoneVerified(t *testing.T) {
+	c, token := apitest.NewTestController(t)
+	sv, err := steam.NewValidator(steam.Config{Method: steam.MethodSteam, APIKey: "unused"})
+	if err != nil {
+		t.Fatalf("validator: %v", err)
+	}
+	c.Steam = sv
+
+	resp := getEntitlements(t, c.Handler(), token(uuid.Nil.String()))
+	if resp.PlatformEntitlements == nil || len(resp.PlatformEntitlements) != 0 {
+		t.Errorf("PlatformEntitlements = %v, want non-null empty array", resp.PlatformEntitlements)
+	}
+}
+
 func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
 	c, token := apitest.NewTestController(t)
 	userId := uuid.Nil.String()
@@ -135,9 +188,9 @@ func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
-	if len(resp.PlatformEntitlements) != len(services.PlatformEntitlements) {
-		t.Errorf("PlatformEntitlements len = %d, want %d",
-			len(resp.PlatformEntitlements), len(services.PlatformEntitlements))
+	if len(resp.PlatformEntitlements) != len(steam.Catalog) {
+		t.Errorf("PlatformEntitlements len = %d, want %d (NONE catalog)",
+			len(resp.PlatformEntitlements), len(steam.Catalog))
 	}
 	if resp.IoiEntitlements == nil {
 		t.Errorf("IoiEntitlements = nil, want non-null empty array")
