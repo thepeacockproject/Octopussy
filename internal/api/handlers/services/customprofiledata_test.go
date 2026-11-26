@@ -1,6 +1,7 @@
 package services_test
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -28,6 +29,10 @@ func TestCustomProfileWritePersists(t *testing.T) {
 	c, token := apitest.NewTestController(t)
 	userId := uuid.Nil.String()
 	bearer := "Bearer " + token(userId)
+
+	if err := c.Persistence.EnsureUser(context.Background(), userId, "gamer", "steam", "123"); err != nil {
+		t.Fatalf("seed user: %v", err)
+	}
 
 	// Write a new value.
 	rr := httptest.NewRecorder()

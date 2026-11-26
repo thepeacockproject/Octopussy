@@ -5,6 +5,9 @@ import "time"
 // GORM models. Schema changes to these structs must be paired with a migration
 // in migrations.go - AutoMigrate is only ever invoked from inside a versioned
 // migration, never implicitly at startup, so the schema stays reproducible.
+//
+// Constraints go on the has-many side: GORM ignores the belongs-to tag once
+// both exist. Their names are pinned to match already-migrated databases.
 
 // User is a single player account. Id is the canonical profile id (the stable
 // UUID derived from the external identity at login, also used as the JWT
@@ -18,6 +21,12 @@ type User struct {
 	IntelCurrency int `gorm:"column:intel_currency;not null;default:0"`
 	// Rank is the player's current rank (starts at 1).
 	Rank int `gorm:"column:rank;not null;default:1"`
+
+	Identities        []UserIdentity      `gorm:"foreignKey:UserId;references:Id;constraint:fk_user_identities_user,OnDelete:CASCADE"`
+	Sessions          []UserSession       `gorm:"foreignKey:UserId;references:Id;constraint:fk_user_sessions_user,OnDelete:CASCADE"`
+	CustomProfileData []CustomProfileData `gorm:"foreignKey:UserId;references:Id;constraint:fk_custom_profile_data_user,OnDelete:CASCADE"`
+	Unlockables       []UserUnlockable    `gorm:"foreignKey:UserId;references:Id;constraint:fk_user_unlockables_user,OnDelete:CASCADE"`
+	Challenges        []UserChallenge     `gorm:"foreignKey:UserId;references:Id;constraint:fk_user_challenges_user,OnDelete:CASCADE"`
 }
 
 // UserIdentity links an external platform login (e.g. Steam, Epic, Apple) to a
@@ -28,7 +37,9 @@ type UserIdentity struct {
 	UserId     string `gorm:"column:user_id;not null;index"`
 	Platform   string `gorm:"column:platform;not null;uniqueIndex:idx_user_identities_platform_id"`
 	PlatformId string `gorm:"column:platform_id;not null;uniqueIndex:idx_user_identities_platform_id"`
-	User       User   `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
+	User       User   `gorm:"foreignKey:UserId;references:Id"`
+
+	Entitlements []IdentityEntitlement `gorm:"foreignKey:IdentityId;references:Id;constraint:fk_identity_entitlements_identity,OnDelete:CASCADE"`
 }
 
 // UserSession is one play session for a user.
@@ -48,7 +59,7 @@ type UserSession struct {
 	CreatedAt time.Time `gorm:"column:created_at;not null"`
 	// XpWas value of users.xp_earned when session started.
 	XpWas int  `gorm:"column:xp_was;not null"`
-	User  User `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
+	User  User `gorm:"foreignKey:UserId;references:Id"`
 }
 
 // CustomProfileData is one entry in a profile's CustomProfileDataService bag: an
@@ -58,20 +69,28 @@ type CustomProfileData struct {
 	UserId string `gorm:"primaryKey;column:user_id"`
 	Key    string `gorm:"primaryKey;column:key"`
 	Data   string `gorm:"column:data;not null"`
-	User   User   `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
+	User   User   `gorm:"foreignKey:UserId;references:Id"`
 }
 
 type UserUnlockable struct {
 	UserId       string `gorm:"primaryKey;column:user_id"`
 	UnlockableId string `gorm:"primaryKey;column:unlockable_id"`
-	User         User   `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
+	User         User   `gorm:"foreignKey:UserId;references:Id"`
 }
 
 type UserChallenge struct {
 	UserId      string `gorm:"primaryKey;column:user_id"`
 	ChallengeId string `gorm:"primaryKey;column:challenge_id"`
 	Progress    int    `gorm:"column:progress_current"`
-	User        User   `gorm:"foreignKey:UserId;references:Id;constraint:OnDelete:CASCADE"`
+	User        User   `gorm:"foreignKey:UserId;references:Id"`
+}
+
+// IdentityEntitlement is a platform entitlement (Steam app or DLC id) an
+// identity was last verified to own.
+type IdentityEntitlement struct {
+	IdentityId  uint         `gorm:"primaryKey;autoIncrement:false;column:identity_id"`
+	Entitlement string       `gorm:"primaryKey;column:entitlement"`
+	Identity    UserIdentity `gorm:"foreignKey:IdentityId;references:Id"`
 }
 
 // TableName pins the table name because "data" should not be pluralized.

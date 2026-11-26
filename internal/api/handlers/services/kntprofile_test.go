@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/thepeacockproject/Octopussy/internal/api/apitest"
 	"github.com/thepeacockproject/Octopussy/internal/api/handlers/services"
+	"github.com/thepeacockproject/Octopussy/internal/steam"
 )
 
 func TestSetClientEntitlementsRequiresToken(t *testing.T) {
@@ -117,14 +118,81 @@ func TestGetEntitlementsRequiresToken(t *testing.T) {
 	}
 }
 
+func getEntitlements(t *testing.T, h http.Handler, token string) services.GetEntitlementsResponse {
+	t.Helper()
+	rr := httptest.NewRecorder()
+	req := httptest.NewRequest(http.MethodPost,
+		"/services/KntProfileService/GetEntitlements", nil)
+	req.Header.Set("Authorization", "Bearer "+token)
+	h.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusOK {
+		t.Fatalf("status = %d, want 200 (body %s)", rr.Code, rr.Body.String())
+	}
+	var resp services.GetEntitlementsResponse
+	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
+		t.Fatalf("decode: %v", err)
+	}
+	return resp
+}
+
+func steamLogin(t *testing.T, h http.Handler, steamId string) string {
+	t.Helper()
+	rr := httptest.NewRecorder()
+	h.ServeHTTP(rr, httptest.NewRequest(http.MethodPost, "/oauth/token",
+		strings.NewReader("grant_type=external_steam&gs=steam-prod_1&steam_userid="+steamId)))
+
+	if rr.Code != http.StatusOK {
+		t.Fatalf("login status = %d, want 200 (body %s)", rr.Code, rr.Body.String())
+	}
+	var resp struct {
+		AccessToken string `json:"access_token"`
+	}
+	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
+		t.Fatalf("decode login: %v", err)
+	}
+	return resp.AccessToken
+}
+
+func TestGetEntitlementsReturnsStored(t *testing.T) {
+	c, _ := apitest.NewTestController(t)
+	token := steamLogin(t, c.Handler(), "123")
+
+	err := c.Persistence.SetEntitlements(context.Background(), "steam", "123", []string{steam.AppId, "3950810"})
+	if err != nil {
+		t.Fatalf("set entitlements: %v", err)
+	}
+
+	resp := getEntitlements(t, c.Handler(), token)
+	if got := strings.Join(resp.PlatformEntitlements, ","); got != steam.AppId+",3950810" {
+		t.Errorf("PlatformEntitlements = %s, want %s,3950810", got, steam.AppId)
+	}
+}
+
+// TestGetEntitlementsNoneVerified checks that outside tests, a user with no
+// verified entitlements gets none.
+func TestGetEntitlementsNoneVerified(t *testing.T) {
+	c, _ := apitest.NewTestController(t)
+	token := steamLogin(t, c.Handler(), "123")
+	sv, err := steam.NewValidator(steam.Config{Method: steam.MethodSteam, APIKey: "unused"})
+	if err != nil {
+		t.Fatalf("validator: %v", err)
+	}
+	c.Steam = sv
+
+	resp := getEntitlements(t, c.Handler(), token)
+	if resp.PlatformEntitlements == nil || len(resp.PlatformEntitlements) != 0 {
+		t.Errorf("PlatformEntitlements = %v, want non-null empty array", resp.PlatformEntitlements)
+	}
+}
+
 func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
-	c, token := apitest.NewTestController(t)
-	userId := uuid.Nil.String()
+	c, _ := apitest.NewTestController(t)
 
 	rr := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost,
 		"/services/KntProfileService/GetEntitlements", nil)
-	req.Header.Set("Authorization", "Bearer "+token(userId))
+	req.Header.Set("Authorization", "Bearer "+steamLogin(t, c.Handler(), "123"))
 	c.Handler().ServeHTTP(rr, req)
 
 	if rr.Code != http.StatusOK {
@@ -135,9 +203,9 @@ func TestGetEntitlementsReturnsPlatformEntitlements(t *testing.T) {
 	if err := json.Unmarshal(rr.Body.Bytes(), &resp); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
-	if len(resp.PlatformEntitlements) != len(services.PlatformEntitlements) {
-		t.Errorf("PlatformEntitlements len = %d, want %d",
-			len(resp.PlatformEntitlements), len(services.PlatformEntitlements))
+	if len(resp.PlatformEntitlements) != len(steam.Catalog) {
+		t.Errorf("PlatformEntitlements len = %d, want %d (NONE catalog)",
+			len(resp.PlatformEntitlements), len(steam.Catalog))
 	}
 	if resp.IoiEntitlements == nil {
 		t.Errorf("IoiEntitlements = nil, want non-null empty array")

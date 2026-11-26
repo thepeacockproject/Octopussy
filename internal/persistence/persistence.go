@@ -85,21 +85,39 @@ func dialectorFor(cfg Config) (gorm.Dialector, bool, error) {
 			dsn = "octopussy.db"
 		}
 		isMemory := strings.Contains(dsn, ":memory:") || strings.Contains(dsn, "mode=memory")
-		return sqlite.Open(dsn), isMemory, nil
+		return sqlite.Open(withForeignKeys(dsn)), isMemory, nil
 	default:
 		// Future: add gorm.io/driver/postgres, gorm.io/driver/mysql here.
 		return nil, false, fmt.Errorf("unsupported database driver %q", cfg.Driver)
 	}
 }
 
-// migrate applies every pending migration in order, tracked in a migrations
-// table so each runs exactly once.
-func migrate(db *gorm.DB) error {
-	m := gormigrate.New(db, gormigrate.DefaultOptions, migrations())
-	if err := m.Migrate(); err != nil {
-		return fmt.Errorf("run migrations: %w", err)
+// withForeignKeys turns on foreign-key enforcement, which SQLite leaves off.
+func withForeignKeys(dsn string) string {
+	if strings.Contains(dsn, "foreign_keys") {
+		return dsn
 	}
-	return nil
+	sep := "?"
+	if strings.Contains(dsn, "?") {
+		sep = "&"
+	}
+	return dsn + sep + "_pragma=foreign_keys(1)"
+}
+
+// migrate applies every pending migration in order, tracked in a migrations
+// table so each runs exactly once. Foreign keys are off meanwhile: SQLite alters
+// a table by rebuilding it, and dropping the old copy would cascade.
+func migrate(db *gorm.DB) error {
+	return db.Connection(func(conn *gorm.DB) error {
+		conn = conn.Session(&gorm.Session{NewDB: true})
+		if err := conn.Exec("PRAGMA foreign_keys = OFF").Error; err != nil {
+			return err
+		}
+		if err := gormigrate.New(conn, gormigrate.DefaultOptions, migrations()).Migrate(); err != nil {
+			return fmt.Errorf("run migrations: %w", err)
+		}
+		return conn.Exec("PRAGMA foreign_keys = ON").Error
+	})
 }
 
 // Close releases the underlying database connections.

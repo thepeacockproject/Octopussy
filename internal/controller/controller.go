@@ -12,6 +12,7 @@ import (
 	"github.com/thepeacockproject/Octopussy/internal/content"
 	"github.com/thepeacockproject/Octopussy/internal/jwt"
 	"github.com/thepeacockproject/Octopussy/internal/persistence"
+	"github.com/thepeacockproject/Octopussy/internal/steam"
 )
 
 // Controller holds the shared services and the configured router.
@@ -20,6 +21,7 @@ type Controller struct {
 	JWT         *jwt.Manager
 	Persistence *persistence.Store
 	Content     *content.Store
+	Steam       *steam.Validator
 
 	mux *http.ServeMux
 }
@@ -27,12 +29,13 @@ type Controller struct {
 type middleware func(http.Handler) http.Handler
 
 // New builds a Controller and registers its routes.
-func New(log *slog.Logger, jwtMgr *jwt.Manager, st *persistence.Store, gameContent *content.Store) *Controller {
+func New(log *slog.Logger, jwtMgr *jwt.Manager, st *persistence.Store, gameContent *content.Store, steamValidator *steam.Validator) *Controller {
 	c := &Controller{
 		Log:         log,
 		JWT:         jwtMgr,
 		Persistence: st,
 		Content:     gameContent,
+		Steam:       steamValidator,
 
 		mux: http.NewServeMux(),
 	}
