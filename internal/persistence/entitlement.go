@@ -8,33 +8,47 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-// SetEntitlements atomically replaces the user's stored entitlements.
-func (s *Store) SetEntitlements(ctx context.Context, userId string, entitlements []string) error {
+// SetEntitlements atomically replaces the identity's stored entitlements.
+func (s *Store) SetEntitlements(ctx context.Context, platform, platformId string, entitlements []string) error {
 	return s.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		if err := tx.Where("user_id = ?", userId).Delete(&UserEntitlement{}).Error; err != nil {
+		var identity UserIdentity
+		err := tx.Select("id").
+			Where("platform = ? AND platform_id = ?", platform, platformId).
+			Take(&identity).
+			Error
+		if err != nil {
+			return fmt.Errorf("find identity %s/%s: %w", platform, platformId, err)
+		}
+
+		if err := tx.Where("identity_id = ?", identity.Id).Delete(&IdentityEntitlement{}).Error; err != nil {
 			return fmt.Errorf("clear entitlements: %w", err)
 		}
 		if len(entitlements) == 0 {
 			return nil
 		}
 
-		rows := make([]UserEntitlement, 0, len(entitlements))
+		rows := make([]IdentityEntitlement, 0, len(entitlements))
 		for _, e := range entitlements {
-			rows = append(rows, UserEntitlement{UserId: userId, Entitlement: e})
+			rows = append(rows, IdentityEntitlement{IdentityId: identity.Id, Entitlement: e})
 		}
-		if err := tx.Omit("User").Clauses(clause.OnConflict{DoNothing: true}).Create(&rows).Error; err != nil {
+		if err := tx.Omit("Identity").Clauses(clause.OnConflict{DoNothing: true}).Create(&rows).Error; err != nil {
 			return fmt.Errorf("store entitlements: %w", err)
 		}
 		return nil
 	})
 }
 
-// GetEntitlements returns the user's stored entitlements, sorted.
-func (s *Store) GetEntitlements(ctx context.Context, userId string) ([]string, error) {
-	var out []string
+// GetEntitlements returns the identity's stored entitlements, sorted.
+func (s *Store) GetEntitlements(ctx context.Context, platform, platformId string) ([]string, error) {
+	identity := s.db.
+		Model(&UserIdentity{}).
+		Select("id").
+		Where("platform = ? AND platform_id = ?", platform, platformId)
+
+	out := []string{}
 	err := s.db.WithContext(ctx).
-		Model(&UserEntitlement{}).
-		Where("user_id = ?", userId).
+		Model(&IdentityEntitlement{}).
+		Where("identity_id IN (?)", identity).
 		Order("entitlement").
 		Pluck("entitlement", &out).
 		Error

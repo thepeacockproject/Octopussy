@@ -127,3 +127,26 @@ func TestEnsureUserLinksSecondIdentity(t *testing.T) {
 		t.Errorf("identity count = %d, want 2", identities)
 	}
 }
+
+func TestDeleteUserCascades(t *testing.T) {
+	st := newTestStore(t)
+	ctx := context.Background()
+
+	if err := st.EnsureUser(ctx, "profile-1", "gamer", "steam", "steam-123"); err != nil {
+		t.Fatalf("EnsureUser: %v", err)
+	}
+	if err := st.SetEntitlements(ctx, "steam", "steam-123", []string{"a"}); err != nil {
+		t.Fatalf("SetEntitlements: %v", err)
+	}
+
+	if err := st.db.WithContext(ctx).Delete(&User{Id: "profile-1"}).Error; err != nil {
+		t.Fatalf("delete user: %v", err)
+	}
+
+	var identities, entitlements int64
+	st.db.WithContext(ctx).Model(&UserIdentity{}).Count(&identities)
+	st.db.WithContext(ctx).Model(&IdentityEntitlement{}).Count(&entitlements)
+	if identities != 0 || entitlements != 0 {
+		t.Errorf("after delete: %d identities, %d entitlements, want 0 and 0", identities, entitlements)
+	}
+}

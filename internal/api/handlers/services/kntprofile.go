@@ -46,19 +46,19 @@ func (c *Handler) handleSetClientEntitlements(w http.ResponseWriter, _ *http.Req
 // caller at login. With none on record it falls back to the Steam validator's
 // policy.
 func (c *Handler) handleGetEntitlements(w http.ResponseWriter, r *http.Request) {
-	userId, ok := shared.GetUserId(r)
+	platform, platformId, ok := shared.GetIdentity(r)
 	if !ok {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	ents, err := c.Persistence.GetEntitlements(r.Context(), userId)
+	ents, err := c.Persistence.GetEntitlements(r.Context(), platform, platformId)
 	if err != nil {
 		c.Log.Error("get entitlements failed", slog.String("error", err.Error()))
 		c.WriteJSON(w, http.StatusInternalServerError, map[string]string{"error": "internal error"})
 		return
 	}
-	if len(ents) == 0 {
+	if len(ents) == 0 && platform == "steam" {
 		ents = c.Steam.Fallback()
 	}
 

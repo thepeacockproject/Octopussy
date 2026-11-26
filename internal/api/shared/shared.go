@@ -53,3 +53,14 @@ func GetUserId(r *http.Request) (userId string, ok bool) {
 
 	return "", false
 }
+
+// GetIdentity resolves the platform account the caller logged in with from the
+// validated token claims.
+func GetIdentity(r *http.Request) (platform, platformId string, ok bool) {
+	claims, ok := jwt.ClaimsFrom(r.Context())
+	if !ok || claims.Platform == "" || claims.UserId == "" {
+		return "", "", false
+	}
+
+	return claims.Platform, claims.UserId, true
+}

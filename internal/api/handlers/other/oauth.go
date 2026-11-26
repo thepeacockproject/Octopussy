@@ -126,7 +126,7 @@ func (c *Handler) refreshSteamEntitlements(ctx context.Context, userId, steamId 
 	ents, err := c.Steam.Entitlements(ctx,
 		form.Get("steam_clienttoken"), form.Get("steam_identity"), steamId)
 	if err == nil && len(ents) > 0 {
-		if err := c.Persistence.SetEntitlements(ctx, userId, ents); err != nil {
+		if err := c.Persistence.SetEntitlements(ctx, "steam", steamId, ents); err != nil {
 			c.Log.Error("failed to store entitlements",
 				slog.String("profile", userId), slog.String("error", err.Error()))
 		}
@@ -141,7 +141,7 @@ func (c *Handler) refreshSteamEntitlements(ctx context.Context, userId, steamId 
 		reason = err.Error()
 	}
 
-	stored, getErr := c.Persistence.GetEntitlements(ctx, userId)
+	stored, getErr := c.Persistence.GetEntitlements(ctx, "steam", steamId)
 	if getErr == nil && len(stored) > 0 {
 		c.Log.Warn("could not refresh steam entitlements; recently acquired DLC may not show",
 			slog.String("profile", userId), slog.String("reason", reason))
